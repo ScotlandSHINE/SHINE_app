@@ -6,7 +6,8 @@ shinyUI(
     windowTitle = "Explore Scotland's SHINE project data",
     theme = bs_theme(version = 4),
     header = tags$head(
-      tags$link(href = "shine_app.css", rel = "stylesheet", type = "text/css")
+      tags$link(href = "shine_app.css", rel = "stylesheet", type = "text/css"),
+      tags$link(rel="shortcut icon", href="favicon_shine.ico")
     ),
     title = div(class = "logo",
                 tags$a(
