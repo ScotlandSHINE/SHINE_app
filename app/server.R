@@ -14,6 +14,6 @@ shinyServer(function(input, output, session) {
                                                         "main_page",
                                                         selected = "Social media use")})
     
-    soc_med_func(input, output, session)
+    soc_med_serv(input, output, session)
 
 })

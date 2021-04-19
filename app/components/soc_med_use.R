@@ -1,3 +1,5 @@
+
+
 soc_med_ui <- fluidPage(
   titlePanel("App example 1"),
   sidebarLayout(
@@ -12,7 +14,7 @@ soc_med_ui <- fluidPage(
   )
 )
 
-soc_med_func <- function(input, output, session){
+soc_med_serv <- function(input, output, session){
   
   output$soc_med_use_bar <- renderPlot({
   
