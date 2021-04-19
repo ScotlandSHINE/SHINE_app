@@ -8,9 +8,9 @@ options(sass.cache = FALSE)
 load("data/prob_soc_med.RData")
 theme_set(theme_minimal())
 
-sass(
+try(sass(
   sass_file("styles/shine_app.scss"),
-  output = "www/shine_app.css")
+  output = "www/shine_app.css"))
 
 source("components/soc_med_use.R")
 
