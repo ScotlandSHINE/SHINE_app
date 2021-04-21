@@ -18,8 +18,6 @@ soc_med_ui <- function(id) {
 soc_med_serv <- function(id) {
   moduleServer(id, function(input, output, session) {
     
-    load("data/prob_soc_med.RData")
-    
     output$soc_med_use_bar <- renderPlot({
       sex_choice <- str_to_upper(input$sex_soc)
       

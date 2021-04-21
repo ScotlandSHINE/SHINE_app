@@ -4,7 +4,7 @@ library(bslib)
 library(sass)
 
 options(sass.cache = FALSE)
-# load("data/prob_soc_med.RData")
+load("data/prob_soc_med.RData")
 
 try(sass(sass_file("styles/shine_app.scss"),
          output = "www/shine_app.css"))
