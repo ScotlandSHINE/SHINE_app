@@ -12,6 +12,8 @@ primary_colour <-  "#2e3192"
 secondary_colour <- "#016bb2"
 main_colour <- "#333333"
 
+css <- sass(sass_file("app/styles/shine_app.scss"))
+
 theme_set(theme_minimal() +
             theme(text = element_text(colour = main_colour),
                   line = element_line(colour = main_colour),
