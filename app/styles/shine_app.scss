@@ -1,3 +1,7 @@
+$primary-color: #2e3192;
+$secondary-color: #016bb2;
+$main-color: #333333;
+
 .navbar-brand {
   cursor: pointer;
 }
@@ -49,8 +53,9 @@
 }
 
 .landing-page-box-title {
-  font-size: 20px;
-  color: blue;
+  font-size: 1.17em;
+  font-weight: bold;
+  color: #016bb2;
   text-align: center;
   padding-top: 5px;
 }
@@ -67,5 +72,20 @@
   
 }
 
+body {
+  font-family: Myriad Pro;
+  color: $main-color;
+}
 
+h1 {
+  font-weight: bold;
+  color: $primary-color;
+  font-size: 1.7em;
+}
+
+h2 {
+  font-weight: bold;
+  color: $secondary-color;
+  font-size: 1.17em;
+}
 

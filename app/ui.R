@@ -1,5 +1,3 @@
-# Define UI for application that draws a histogram
-
 shinyUI(
   navbarPage(
     id = "main_page",
@@ -12,15 +10,16 @@ shinyUI(
     title = div(class = "logo",
                 tags$a(
                   href = "/",
-                  img(class = "top-logo img-fluid", src = "images/cropped-180-with-isles.png")
+                  img(class = "top-logo img-fluid", src = "images/SHINE Final logo@300x.png")
                 )),
     
-    # Placeholder
+    # Home page - layout of panels
     tabPanel("Home",
              
              mainPanel(width = 11,style="margin-left:4%; margin-right:4%",
                fluidRow(
-                 h1("Check out our apps below to explore HBSC and SHINE data..."),
+                 h1("Check out our apps below to explore HBSC and SHINE data...")),
+               fluidRow(
                  column(
                  6,
                  lp_main_box(
@@ -32,6 +31,7 @@ shinyUI(
                ))
              )),
     
+    # All apps nested in single menu (so as not to distract from screen)
     navbarMenu("Explore apps... ",
                
                tabPanel("Social media use",

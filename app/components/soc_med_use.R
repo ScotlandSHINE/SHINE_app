@@ -17,6 +17,9 @@ soc_med_ui <- function(id) {
 
 soc_med_serv <- function(id) {
   moduleServer(id, function(input, output, session) {
+    
+    load("data/prob_soc_med.RData")
+    
     output$soc_med_use_bar <- renderPlot({
       sex_choice <- str_to_upper(input$sex_soc)
       
@@ -25,8 +28,7 @@ soc_med_serv <- function(id) {
         filter(country == "GB-SCT",
                sex == sex_choice) %>%
         ggplot(aes(age_grp_2, value)) +
-        geom_bar(stat = "identity",
-                 fill = "#7722ff") +
+        geom_bar(stat = "identity") +
         scale_y_continuous("Proportion of young people who are problematic users of social media") +
         scale_x_discrete("Age group",
                          labels = c("11 year-olds", "13 year-olds", "15 year-olds"))
