@@ -2,14 +2,17 @@ library(shiny)
 library(tidyverse)
 library(bslib)
 library(sass)
+library(zeallot)
+
+
+# Setting display options for whole app -----------------------------------
+
 
 options(sass.cache = FALSE)
-load("data/prob_soc_med.RData")
 
 try(sass(sass_file("styles/shine_app.scss"),
          output = "www/shine_app.css"))
 
-source("components/soc_med_use.R")
 
 # Setting standard display of text and graphs
 
@@ -28,7 +31,7 @@ update_geom_defaults("bar",   list(fill = primary_colour))
 
 
 
-#Creating big boxes for main tabs in the landing page (see ui for formatting css)
+# Creating big boxes for main tabs in the landing page --------------------
 lp_main_box <-
   function(title_box,
            image_name,
@@ -50,3 +53,14 @@ lp_main_box <-
       actionButton(button_name, NULL, class = "landing-page-button")
     )
   }
+
+
+# Loading components and setting data functions ---------------------------
+
+# Social media use
+
+soc_med_data <- function() {
+  load("data/prob_soc_med.RData", envir = parent.frame(1))
+}
+
+c(soc_med_ui, soc_med_serve) %<-% source("components/soc_med_use.R")$value

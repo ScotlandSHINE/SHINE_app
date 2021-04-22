@@ -1,4 +1,4 @@
-soc_med_ui <- function(id) {
+soc_med_ui <- function(id = "soc_med") {
   fluidPage(titlePanel("App example 1"),
             sidebarLayout(sidebarPanel(
               selectInput(
@@ -15,7 +15,7 @@ soc_med_ui <- function(id) {
 }
 
 
-soc_med_serv <- function(id) {
+soc_med_server <- function(id = "soc_med") {
   moduleServer(id, function(input, output, session) {
     
     output$soc_med_use_bar <- renderPlot({
@@ -36,3 +36,17 @@ soc_med_serv <- function(id) {
   )
   
 } 
+
+soc_med_app <- function() {
+  ui <- tagList(
+    tags$style(sass::sass(sass::sass_file("app/styles/shine_app.scss"))),
+    soc_med_ui())
+  
+  server <- function(input, output, session) {
+    soc_med_server()
+  }  
+  shinyApp(ui, server)
+}
+
+list(soc_med_ui, soc_med_server)
+

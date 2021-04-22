@@ -6,8 +6,6 @@ library(bslib)
 
 options(sass.cache = FALSE)
 
-load("app/data/prob_soc_med.RData")
-
 primary_colour <-  "#2e3192"
 secondary_colour <- "#016bb2"
 main_colour <- "#333333"
@@ -24,20 +22,12 @@ update_geom_defaults("bar",   list(fill = primary_colour))
 # Social media use app ----------------------------------------------------
 
 source("app/components/soc_med_use.R")
-load("app/data/prob_soc_med.RData")
 
-test_soc_med <- function(component = "soc_med") {
-  test_app <- function() {
-    ui <- tagList(tags$style(css),
-                  soc_med_ui(component))
-    
-    server <- function(input, output, session) {
-      soc_med_serv(component)
-    }
-    
-    shinyApp(ui, server)
-  }
-  test_app()
+soc_med_data <- function() {
+  load("app/data/prob_soc_med.RData", envir = parent.frame(2))
 }
 
-test_soc_med()
+soc_med_data()
+
+
+soc_med_app()
