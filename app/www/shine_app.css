@@ -21,11 +21,11 @@
 
 .landing-page-icon {
   width: 100%;
-  height: 60%;
+  /*height: 60%;
+    position: absolute;*/
   min-height: 12vh;
   background-color: white;
   border: 0;
-  position: absolute;
   object-fit: scale-down;
 }
 
@@ -70,16 +70,25 @@
 body {
   font-family: Myriad Pro;
   color: #333333;
+  font-size: 18px;
 }
 
 h1 {
-  font-weight: bold;
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 48px;
   color: #2e3192;
-  font-size: 1.7em;
+  margin-bottom: 28px;
 }
 
 h2 {
   font-weight: bold;
   color: #016bb2;
-  font-size: 1.17em;
+  font-size: 30px;
+}
+
+#main-panel {
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
 }

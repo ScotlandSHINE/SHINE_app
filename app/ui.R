@@ -16,7 +16,8 @@ shinyUI(
     # Home page - layout of panels
     tabPanel("Home",
              
-             mainPanel(width = 11,style="margin-left:4%; margin-right:4%",
+             mainPanel(id = "main-panel",
+                       style="max-width: 1140px",
                fluidRow(
                  h1("Check out our apps below to explore HBSC and SHINE data...")),
                fluidRow(

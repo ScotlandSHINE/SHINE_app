@@ -10,7 +10,7 @@ soc_med_ui <- function(id = "soc_med") {
             ),
             
             mainPanel(plotOutput(
-              NS(id, "soc_med_use_bar")
+              NS(id, "soc_med_use_bar"),
             ))))
 }
 

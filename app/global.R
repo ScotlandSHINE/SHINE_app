@@ -60,7 +60,7 @@ lp_main_box <-
 # Social media use
 
 soc_med_data <- function() {
-  load("data/prob_soc_med.RData", envir = parent.frame(1))
+  load("data/prob_soc_med.RData", envir = .GlobalEnv)
 }
 
 c(soc_med_ui, soc_med_serve) %<-% source("components/soc_med_use.R")$value
