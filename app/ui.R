@@ -23,12 +23,13 @@ shinyUI(
                fluidRow(
                  column(
                  6,
-                 lp_main_box(
-                   "Problematic social media use",
-                   "prob_soc_med",
-                   "prob_soc_med",
-                   "What proportions of adoelscents report problematic social media use?"
-                 )
+                 exec(lp_main_box, !!!soc_med_lpBox)
+                 # lp_main_box(
+                 #   "Problematic social media use",
+                 #   "prob_soc_med",
+                 #   "prob_soc_med",
+                 #   "What proportions of adoelscents report problematic social media use?"
+                 # )
                ))
              )),
     

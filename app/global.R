@@ -3,6 +3,7 @@ library(tidyverse)
 library(bslib)
 library(sass)
 library(zeallot)
+library(rlang)
 
 
 # Setting display options for whole app -----------------------------------
@@ -63,4 +64,4 @@ soc_med_data <- function() {
   load("data/prob_soc_med.RData", envir = .GlobalEnv)
 }
 
-c(soc_med_ui, soc_med_serve) %<-% source("components/soc_med_use.R")$value
+c(soc_med_ui, soc_med_serve, soc_med_lpBox) %<-% source("components/soc_med_use.R")$value

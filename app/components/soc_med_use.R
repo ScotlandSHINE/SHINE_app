@@ -48,5 +48,12 @@ soc_med_app <- function() {
   shinyApp(ui, server)
 }
 
-list(soc_med_ui, soc_med_server)
+soc_med_lpBox <- list(
+  title_box  = "Problematic social media use",
+  image_name = "prob_soc_med",
+  button_name  = "prob_soc_med",
+  description  = "What proportions of adoelscents report problematic social media use?"
+)
+
+list(soc_med_ui, soc_med_server, soc_med_lpBox)
 
