@@ -1,6 +1,6 @@
 FROM rocker/shiny-verse
 
-RUN R -e "install.packages(c('bslib', 'sass'))"
+RUN R -e "install.packages(c('bslib', 'sass', 'zeallot'))"
 
 COPY app /srv/shiny-server/
 
