@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Work%20Sans");
+@import url("https://use.typekit.net/jco6ucq.css");
 .navbar-brand {
   cursor: pointer;
 }
@@ -68,7 +70,7 @@
 }
 
 body {
-  font-family: Myriad Pro;
+  font-family: Myriad Pro, 'Work sans', Sans-Serif;
   color: #333333;
   font-size: 18px;
 }
@@ -79,6 +81,7 @@ h1 {
   line-height: 48px;
   color: #2e3192;
   margin-bottom: 28px;
+  font-family: myriad-pro, 'Work sans', Sans-Serif;
 }
 
 h2 {

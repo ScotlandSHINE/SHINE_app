@@ -37,6 +37,6 @@ shinyUI(
     navbarMenu("Explore apps... ",
                
                tabPanel("Social media use",
-                        soc_med_ui("soc_med"),))
+                        soc_med_ui(),))
   )
 )

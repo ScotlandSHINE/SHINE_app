@@ -5,9 +5,9 @@ account: andybaxter
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3992032
-bundleId: 4491026
+bundleId: 4517895
 url: https://andybaxter.shinyapps.io/Scotland_SHINE/
-when: 1618844502.21606
-lastSyncTime: 1618844502.21606
+when: 1619389547.36118
+lastSyncTime: 1619389547.36118
 asMultiple: FALSE
 asStatic: FALSE

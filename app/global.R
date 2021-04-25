@@ -62,6 +62,7 @@ lp_main_box <-
 
 soc_med_data <- function() {
   load("data/prob_soc_med.RData", envir = .GlobalEnv)
+  message("Loaded data for soc med app component\n")
 }
 
 c(soc_med_ui, soc_med_serve, soc_med_lpBox) %<-% source("components/soc_med_use.R")$value
