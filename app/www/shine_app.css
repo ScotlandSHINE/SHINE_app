@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Work%20Sans");
-@import url("https://use.typekit.net/jco6ucq.css");
+@import url("https://p.typekit.net/p.css?s=1&k=jco6ucq&ht=tk&f=6808.6846&a=30079999&app=typekit&e=css");
 .navbar-brand {
   cursor: pointer;
 }
@@ -85,7 +85,7 @@ h1 {
 }
 
 h2 {
-  font-weight: bold;
+  font-weight: 500;
   color: #016bb2;
   font-size: 30px;
 }
