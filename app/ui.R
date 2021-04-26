@@ -8,10 +8,15 @@ shinyUI(
       tags$link(rel="shortcut icon", href="favicon_shine.ico")
     ),
     title = div(class = "logo",
-                tags$a(
-                  href = "/",
-                  img(class = "top-logo img-fluid", src = "images/SHINE Final logo@300x.png")
-                )),
+                actionLink(
+                  inputId = "home_logo",
+                  label = img(class = "top-logo img-fluid", src = "images/SHINE Final logo@300x.png")
+                )
+                # tags$a(
+                #   href = "/",
+                #   img(class = "top-logo img-fluid", src = "images/SHINE Final logo@300x.png")
+                # )
+                ),
     
     # Home page - layout of panels
     tabPanel("Home",
@@ -23,13 +28,7 @@ shinyUI(
                fluidRow(
                  column(
                  6,
-                 exec(lp_main_box, !!!soc_med_lpBox)
-                 # lp_main_box(
-                 #   "Problematic social media use",
-                 #   "prob_soc_med",
-                 #   "prob_soc_med",
-                 #   "What proportions of adoelscents report problematic social media use?"
-                 # )
+                 soc_med_lpBox,
                ))
              )),
     
@@ -37,6 +36,6 @@ shinyUI(
     navbarMenu("Explore apps... ",
                
                tabPanel("Social media use",
-                        soc_med_ui("soc_med"),))
+                        soc_med_ui(),))
   )
 )

@@ -48,7 +48,7 @@ soc_med_app <- function() {
   shinyApp(ui, server)
 }
 
-soc_med_lpBox <- list(
+soc_med_lpBox <- lp_main_box(
   title_box  = "Problematic social media use",
   image_name = "prob_soc_med",
   button_name  = "prob_soc_med",
