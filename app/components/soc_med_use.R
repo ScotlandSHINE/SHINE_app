@@ -23,13 +23,15 @@ soc_med_server <- function(id = "soc_med") {
 
       prob_soc_med %>%
         filter(country == "GB-SCT",
-               sex == sex_choice) %>%
-        ggplot(aes(age_grp_2, value)) +
-        geom_bar(stat = "identity") +
+               # sex == sex_choice,
+               ) %>%
+        ggplot(aes(age_grp_2, value, fill = sex)) +
+        geom_bar(stat = "identity", position = "dodge") +
         scale_y_continuous("Proportion of young people who are problematic users of social media",
                            labels = scales::label_percent(scale = 1)) +
         scale_x_discrete("Age group",
-                         labels = c("11 year-olds", "13 year-olds", "15 year-olds"))
+                         labels = c("11 year-olds", "13 year-olds", "15 year-olds")) +
+        scale_fill_manual(values = c("#ff44cc", "#2266ee"))
       
     })
   }
