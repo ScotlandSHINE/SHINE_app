@@ -13,6 +13,9 @@ shinyServer(function(input, output, session) {
                       selected = "Social media use")
   })
   
+  observeEvent(input$debug, {
+    browser()
+  })
   
   soc_med_server()
   
