@@ -21,7 +21,6 @@ update_geom_defaults("bar",   list(fill = primary_colour))
 
 # Social media use app ----------------------------------------------------
 
-source("app/components/soc_med_use.R")
 
 soc_med_data <- function() {
   load("app/data/prob_soc_med.RData", envir = parent.frame(2))
@@ -30,13 +29,13 @@ soc_med_data <- function() {
 soc_med_data()
 
 
+source("app/components/soc_med_use.R")
 soc_med_app()
 
 
 
 # vars by age app ---------------------------------------------------------
 
-source("app/components/vars_by_age.R")
 
 vars_by_age_data <- function() {
   load("app/data/vars_by_age.RData", parent.frame(2))
@@ -44,5 +43,6 @@ vars_by_age_data <- function() {
 
 vars_by_age_data()
 
+source("app/components/vars_by_age.R")
 vars_by_age_app()
 

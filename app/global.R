@@ -40,4 +40,7 @@ soc_med_data <- function() {
 }
 
 # unpacking the three expected elements in the list call in the app creation script
-c(soc_med_ui, soc_med_serve, soc_med_lpBox) %<-% source("components/soc_med_use.R")$value
+c(soc_med_ui, soc_med_server, soc_med_lpBox) %<-% load_component("soc_med_use")
+
+
+c(vars_by_age_ui, vars_by_age_server, vars_by_age_lpBox) %<-% load_component("vars_by_age")

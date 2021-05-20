@@ -25,3 +25,13 @@ lp_main_box <-
       actionButton(button_name, NULL, class = "landing-page-button")
     )
   }
+
+
+#' Load UI, Server and Landing Page Box objects for a component
+#' 
+#' @param component The name of the component to load
+
+load_component <- function(component) {
+  objects <- source(paste0("components/", component, ".R"), local = TRUE)$value
+  objects
+}
