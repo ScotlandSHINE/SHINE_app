@@ -33,9 +33,11 @@ update_geom_defaults("bar",   list(fill = primary_colour))
 
 # Social media use
 
+# Functions to load data so that they only load when needed on page
 soc_med_data <- function() {
   load("data/prob_soc_med.RData", envir = .GlobalEnv)
   message("Loaded data for soc med app component\n")
 }
 
+# unpacking the three expected elements in the list call in the app creation script
 c(soc_med_ui, soc_med_serve, soc_med_lpBox) %<-% source("components/soc_med_use.R")$value

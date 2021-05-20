@@ -31,3 +31,18 @@ soc_med_data()
 
 
 soc_med_app()
+
+
+
+# vars by age app ---------------------------------------------------------
+
+source("app/components/vars_by_age.R")
+
+vars_by_age_data <- function() {
+  load("app/data/vars_by_age.RData", parent.frame(2))
+}
+
+vars_by_age_data()
+
+vars_by_age_app()
+

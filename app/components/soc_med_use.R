@@ -1,8 +1,11 @@
 soc_med_ui <- function(id = "soc_med") {
+  
+  ns <- NS(id)
+  
   fluidPage(titlePanel("App example 1"),
             sidebarLayout(sidebarPanel(
               selectInput(
-                NS(id, "sex_soc"),
+                ns("sex_soc"),
                 "Sex to compare across",
                 choices = c("Male", "Female"),
                 selected = "Male"
@@ -10,7 +13,7 @@ soc_med_ui <- function(id = "soc_med") {
             ),
             
             mainPanel(plotOutput(
-              NS(id, "soc_med_use_bar"),
+              ns("soc_med_use_bar"),
             ))))
 }
 
