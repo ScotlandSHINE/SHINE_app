@@ -1,7 +1,7 @@
 soc_med_ui <- function(id = "soc_med") {
   
   ns <- NS(id)
-  
+  mainPanel(id = "main-panel",
   fluidPage(titlePanel("App example 1"),
             sidebarLayout(sidebarPanel(
               selectInput(
@@ -14,7 +14,7 @@ soc_med_ui <- function(id = "soc_med") {
             
             mainPanel(plotOutput(
               ns("soc_med_use_bar"),
-            ))))
+            )))))
 }
 
 

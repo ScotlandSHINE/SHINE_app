@@ -1,58 +1,91 @@
 vars_by_age_ui <- function(id = "vars_by_age") {
   ns <- NS("vars_by_age")
-  
-  fluidPage(
-    fluidRow(
-    selectInput(ns("select_var"), "Select a variable to compare:", choices = "Loading...")
-  ),
-  fluidRow(
-    plotOutput(ns("plot"))
-  )
-  )
-} 
+  fluidPage(style = "display: flex;",
+            
+            mainPanel(id = "main-panel",
+                      fluidPage(
+                        titlePanel("How are Scotland's young people doing?"),
+                        fluidRow(style = "display: flex; align-items: flex-end",
+                                 column(8,
+                                        uiOutput(ns(
+                                          "var_sel"
+                                        ))),
+                                 column(
+                                   4,
+                                   checkboxInput(
+                                     ns("agegrp"),
+                                     "Split by age groups?",
+                                     value = TRUE,
+                                     width = "100%"
+                                   )
+                                 )),
+                        fluidRow(plotOutput(ns("plot")))
+                      )))
+}
 
 vars_by_age_server <- function(id = "vars_by_age") {
   moduleServer(id, function(input, output, session) {
-    
-      updateSelectInput(
-        inputId = "select_var",
-        choices = names(vars_by_age)
+    output$var_sel <- renderUI({
+      req(vars_by_age)
+      ns <- session$ns
+      selectInput(
+        ns("select_var"),
+        "Select a variable to compare:",
+        choices = names(vars_by_age),
+        width = "100%"
       )
+    })
     
-    df_ready <- reactive({vars_by_age[[input$select_var]]})
+    df_ready <- reactive({
+      vars_by_age[[input$select_var]]
+    })
     
     
     output$plot <- renderPlot({
-      req(df_ready())
-      vars_by_age[[input$select_var]] %>% 
-        filter(Age != "All") %>% 
-        pivot_longer(-Age, names_to = "Gender", values_to = "Percentage") %>% 
-        ggplot(aes(Age, Percentage, fill = Gender)) +
-        geom_bar(stat = "identity", position = "dodge") +
-        scale_fill_manual(values = c("Girls" = "#ff44cc","Boys" = "#2266ee"))
-    
+      req(input$select_var, df_ready())
+      if (input$agegrp) {
+        vars_by_age[[input$select_var]] %>%
+          filter(Age != "All") %>%
+          pivot_longer(-Age, names_to = "Gender", values_to = "Percentage") %>%
+          ggplot(aes(Age, Percentage, fill = Gender)) +
+          geom_bar(stat = "identity", position = "dodge") +
+          scale_fill_manual(values = c("Girls" = "#ff44cc", "Boys" = "#2266ee")) +
+          theme(panel.grid.major.x = element_blank())
+        
+      } else {
+        vars_by_age[[input$select_var]] %>%
+          filter(Age == "All") %>%
+          pivot_longer(-Age, names_to = "Gender", values_to = "Percentage") %>%
+          ggplot(aes(Gender, Percentage, fill = Gender)) +
+          geom_bar(stat = "identity", position = "dodge") +
+          scale_fill_manual(values = c("Girls" = "#ff44cc", "Boys" = "#2266ee")) +
+          theme(panel.grid.major.x = element_blank())
+        
+      }
+      
     })
     
   })
 }
 
 vars_by_age_app <- function() {
-  ui <- tagList(
-    tags$style(sass::sass(sass::sass_file("app/styles/shine_app.scss"))),
-    vars_by_age_ui())
+  ui <- tagList(tags$style(sass::sass(
+    sass::sass_file("app/styles/shine_app.scss")
+  )),
+  vars_by_age_ui())
   
   server <- function(input, output, session) {
     vars_by_age_server()
-  }  
+  }
   shinyApp(ui, server)
 }
 
 vars_by_age_lpBox <- lp_main_box(
-  title_box = "How are Scotland’s young people doing?",
+  title_box = "How are Scotland's young people doing?",
   description = "How did Scottish young people answer these questions about their health, excercise and how well they're doing?",
   button_name = "vars_by_age",
-  image_name = "vars_by_age.png"
-  )
+  image_name = "vars_by_age"
+)
 
 
 list(vars_by_age_ui, vars_by_age_server, vars_by_age_lpBox)

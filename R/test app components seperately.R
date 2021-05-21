@@ -13,10 +13,10 @@ main_colour <- "#333333"
 css <- sass(sass_file("app/styles/shine_app.scss"))
 
 theme_set(theme_minimal() +
-            theme(text = element_text(colour = main_colour),
+            theme(text = element_text(colour = main_colour, size = 18),
                   line = element_line(colour = main_colour),
                   axis.title = element_text(colour = secondary_colour,
-                                            size = 12)))
+                                            size = 18)))
 update_geom_defaults("bar",   list(fill = primary_colour))
 
 # Social media use app ----------------------------------------------------

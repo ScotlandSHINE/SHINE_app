@@ -13,10 +13,18 @@ shinyServer(function(input, output, session) {
                       selected = "Social media use")
   })
   
+  observeEvent(input$vars_by_age, {
+    vars_by_age_data()
+    updateTabsetPanel(session = session,
+                      "main_page",
+                      selected = "Young people's health")
+  })
+  
   observeEvent(input$debug, {
     browser()
   })
   
   soc_med_server()
   
+  vars_by_age_server()
 })
