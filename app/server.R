@@ -20,9 +20,9 @@ shinyServer(function(input, output, session) {
                       selected = "Young people's health")
   })
   
-  observeEvent(input$debug, {
-    browser()
-  })
+  # observeEvent(input$debug, {
+  #   browser()
+  # })
   
   soc_med_server()
   

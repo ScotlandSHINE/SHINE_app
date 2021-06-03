@@ -33,14 +33,14 @@ shinyUI(
                tabPanel("Social media use",
                         soc_med_ui(), ),
                tabPanel("Young people's health",
-                        vars_by_age_ui())),
+                        vars_by_age_ui()))
     
     # Adds a debug button to navbar
-    tags$script(
-      HTML(
-        "$('.navbar > .container-fluid').append(
-        '<button class=\"btn btn-default action-button btn-primary shiny-bound-input\" id=\"debug\" type=\"button\">Debug</button>')"
-      )
-    )
+    # tags$script(
+    #   HTML(
+    #     "$('.navbar > .container-fluid').append(
+    #     '<button class=\"btn btn-default action-button btn-primary shiny-bound-input\" id=\"debug\" type=\"button\">Debug</button>')"
+    #   )
+    # )
   )
 )
