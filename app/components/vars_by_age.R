@@ -10,7 +10,7 @@ vars_by_age_ui <- function(id = "vars_by_age") {
                                         uiOutput(ns(
                                           "var_sel"
                                         ))),
-                                 column(
+                                 column(style = "align-self: center",
                                    4,
                                    checkboxInput(
                                      ns("agegrp"),
@@ -19,6 +19,8 @@ vars_by_age_ui <- function(id = "vars_by_age") {
                                      width = "100%"
                                    )
                                  )),
+                        div(id = "question",
+                            textOutput(ns("question"))),
                         fluidRow(plotOutput(ns("plot")))
                       )))
 }
@@ -36,34 +38,38 @@ vars_by_age_server <- function(id = "vars_by_age") {
       )
     })
     
-    df_ready <- reactive({
+    df <- reactive({
       vars_by_age[[input$select_var]]
     })
     
     
     output$plot <- renderPlot({
-      req(input$select_var, df_ready())
+      req(input$select_var, df())
       if (input$agegrp) {
-        vars_by_age[[input$select_var]] %>%
+         df()$data %>%
           filter(Age != "All") %>%
           pivot_longer(-Age, names_to = "Gender", values_to = "Percentage") %>%
           ggplot(aes(Age, Percentage, fill = Gender)) +
           geom_bar(stat = "identity", position = "dodge") +
           scale_fill_manual(values = c("Girls" = "#ff44cc", "Boys" = "#2266ee")) +
-          theme(panel.grid.major.x = element_blank())
+          theme(panel.grid.major.x = element_blank()) +
+          scale_y_continuous(name = df()$axis_label, labels = percent_format(scale = 1, accuracy = 1))
         
       } else {
-        vars_by_age[[input$select_var]] %>%
+        df()$data %>%
           filter(Age == "All") %>%
           pivot_longer(-Age, names_to = "Gender", values_to = "Percentage") %>%
           ggplot(aes(Gender, Percentage, fill = Gender)) +
           geom_bar(stat = "identity", position = "dodge") +
           scale_fill_manual(values = c("Girls" = "#ff44cc", "Boys" = "#2266ee")) +
-          theme(panel.grid.major.x = element_blank())
+          theme(panel.grid.major.x = element_blank()) +
+          scale_y_continuous(name = df()$axis_label, labels = percent_format(scale = 1, accuracy = 1))
         
       }
       
     })
+    
+    output$question <- renderText({req(input$select_var, df()); df()$question})
     
   })
 }

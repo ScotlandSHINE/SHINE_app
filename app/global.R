@@ -3,6 +3,7 @@ library(tidyverse)
 library(sass)
 library(bslib)
 library(zeallot)
+library(scales)
 source("R/functions.R")
 
 # Setting display options for whole app -----------------------------------

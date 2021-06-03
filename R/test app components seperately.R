@@ -3,6 +3,7 @@ library(shiny)
 library(tidyverse)
 library(sass)
 library(bslib)
+library(scales)
 
 options(sass.cache = FALSE)
 
