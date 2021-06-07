@@ -23,15 +23,15 @@ update_geom_defaults("bar",   list(fill = primary_colour))
 # Social media use app ----------------------------------------------------
 
 
-soc_med_data <- function() {
-  load("app/data/prob_soc_med.RData", envir = parent.frame(2))
-}
-
-soc_med_data()
-
-
-source("app/components/soc_med_use.R")
-soc_med_app()
+# soc_med_data <- function() {
+#   load("app/data/prob_soc_med.RData", envir = parent.frame(2))
+# }
+# 
+# soc_med_data()
+# 
+# 
+# source("app/components/soc_med_use.R")
+# soc_med_app()
 
 
 
