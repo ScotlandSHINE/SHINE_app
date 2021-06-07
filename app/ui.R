@@ -9,7 +9,7 @@ shinyUI(
     ),
     title = div(class = "logo",
                 actionLink(
-                  inputId = "home-logo",
+                  inputId = "home_logo",
                   label =
                     span(
                       img(class = "top-logo img-fluid", src = "images/SHINE Final logo@300x.png"),
