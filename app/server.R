@@ -15,6 +15,7 @@ shinyServer(function(input, output, session) {
   
   observeEvent(input$vars_by_age, {
     vars_by_age_data()
+    chat_bot_server("vars_by_age_bot")
     updateTabsetPanel(session = session,
                       "main_page",
                       selected = "Young people's health")

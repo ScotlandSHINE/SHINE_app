@@ -9,13 +9,16 @@ shinyUI(
     ),
     title = div(class = "logo",
                 actionLink(
-                  inputId = "home_logo",
-                  label = img(class = "top-logo img-fluid", src = "images/SHINE Final logo@300x.png")
+                  inputId = "home-logo",
+                  label =
+                    span(
+                      img(class = "top-logo img-fluid", src = "images/SHINE Final logo@300x.png"),
+                      img(class = "top-logo img-fluid", src = "images/hbsc.png")
+                    )
                 )),
     
     # Home page - layout of panels
     tabPanel("Home",
-             
              mainPanel(
                id = "main-panel",
                fluidRow(h1(
@@ -26,14 +29,15 @@ shinyUI(
                         column(6,
                                vars_by_age_lpBox))
              )),
-    
     # All apps nested in single menu (so as not to distract from screen)
-    navbarMenu("Explore apps... ",
-               
-               tabPanel("Social media use",
-                        soc_med_ui(), ),
-               tabPanel("Young people's health",
-                        vars_by_age_ui()))
+    navbarMenu(
+      "Explore apps... ",
+      
+      tabPanel("Social media use",
+               soc_med_ui()),
+      tabPanel("Young people's health",
+               vars_by_age_ui())
+    )
     
     # Adds a debug button to navbar
     # tags$script(

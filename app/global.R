@@ -50,3 +50,7 @@ vars_by_age_data <- function() {
 
 
 c(vars_by_age_ui, vars_by_age_server, vars_by_age_lpBox) %<-% load_component("vars_by_age")
+
+# chat bot
+
+c(chat_bot_ui, chat_bot_server) %<-% load_component("chat_bot")

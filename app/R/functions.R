@@ -32,6 +32,6 @@ lp_main_box <-
 #' @param component The name of the component to load
 
 load_component <- function(component) {
-  objects <- source(paste0("components/", component, ".R"), local = TRUE)$value
+  objects <- source(paste0("components/", gsub("(.*)\\.R", "\\1", component), ".R"), local = TRUE)$value
   objects
 }
