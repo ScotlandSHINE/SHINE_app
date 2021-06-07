@@ -37,6 +37,7 @@ shinyUI(
                soc_med_ui()),
       tabPanel("Young people's health",
                vars_by_age_ui())
+      
     )
     
     # Adds a debug button to navbar
@@ -47,4 +48,5 @@ shinyUI(
     #   )
     # )
   )
+  
 )
