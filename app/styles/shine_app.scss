@@ -197,8 +197,12 @@ chat_content {
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: white;
+  
 }
 
+.btn-chart-button.active {
+    background-color: #ddd;
+}
 
 
 .chart-svg {

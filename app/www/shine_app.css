@@ -185,7 +185,7 @@ chat_content {
   line-height: 50px;
 }
 
-.chart-button {
+.chart-button, .btn-chart-button {
   /*  height: 80px;
   width: 80px;
   border: 3px solid lightgrey; */
@@ -193,6 +193,10 @@ chat_content {
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: white;
+}
+
+.btn-chart-button.active {
+  background-color: #ddd;
 }
 
 .chart-svg {

@@ -12,16 +12,16 @@ shinyServer(function(input, output, session) {
   #                     "main_page",
   #                     selected = "Social media use")
   # })
+    load_vars_by_age_data()
+    load_influences_data()
   
   observeEvent(input$vars_by_age, {
-    load_vars_by_age_data()
     updateTabsetPanel(session = session,
                       "main_page",
                       selected = "Young people's health")
   })
   
   observeEvent(input$influences, {
-    load_influences_data()
     updateTabsetPanel(session = session,
                       "main_page",
                       selected = "Influences on health")

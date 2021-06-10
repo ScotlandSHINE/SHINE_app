@@ -40,11 +40,11 @@ update_geom_defaults("bar",   list(fill = primary_colour))
 # vars by age app ---------------------------------------------------------
 
 
-vars_by_age_data <- function() {
+load_vars_by_age_data <- function() {
   load("app/data/vars_by_age.RData", parent.frame(2))
 }
 
-vars_by_age_data()
+load_vars_by_age_data()
 
 source("app/components/vars_by_age.R")
 vars_by_age_app()
@@ -53,11 +53,11 @@ vars_by_age_app()
 
 # influences on health and wellbeing --------------------------------------
 
-influences_data <- function() {
+load_influences_data <- function() {
   load("app/data/influences.RData", parent.frame(2))
 }
 
-influences_data()
+load_influences_data()
 
 source("app/components/influences.R")
 influences_app()

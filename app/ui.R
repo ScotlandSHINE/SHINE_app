@@ -16,30 +16,29 @@ shinyUI(
                       img(class = "top-logo img-fluid", src = "images/hbsc.png")
                     )
                 )),
-    
-    # Home page - layout of panels
-    tabPanel("Home",
-             mainPanel(
-               id = "main-panel",
-               fluidRow(h1(
-                 "Check out our apps below to explore HBSC and SHINE data..."
+      # Home page - layout of panels
+      tabPanel("Home",
+               mainPanel(
+                 id = "main-panel",
+                 fluidRow(h1(
+                   "Check out our apps below to explore HBSC and SHINE data..."
+                 )),
+                 fluidRow(column(6,
+                                 vars_by_age_lp_box),
+                          column(6,
+                                 influences_lp_box))
                )),
-               fluidRow(column(6,
-                               vars_by_age_lp_box),
-                        column(6,
-                               influences_lp_box))
-             )),
-    # All apps nested in single menu (so as not to distract from screen)
-    navbarMenu(
-      "Explore apps... ",
-      
-      tabPanel("Young people's health",
-               vars_by_age_ui()),
-      tabPanel("Influences on health",
-               influences_ui())
-      
-    )
-    
+      # All apps nested in single menu (so as not to distract from screen)
+      navbarMenu(
+        "Explore apps... ",
+        
+        tabPanel("Young people's health",
+                 vars_by_age_ui()),
+        tabPanel("Influences on health",
+                 influences_ui())
+        
+      )
+
     # Adds a debug button to navbar
     # tags$script(
     #   HTML(
