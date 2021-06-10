@@ -25,18 +25,18 @@ shinyUI(
                  "Check out our apps below to explore HBSC and SHINE data..."
                )),
                fluidRow(column(6,
-                               soc_med_lpBox),
+                               vars_by_age_lp_box),
                         column(6,
-                               vars_by_age_lpBox))
+                               influences_lp_box))
              )),
     # All apps nested in single menu (so as not to distract from screen)
     navbarMenu(
       "Explore apps... ",
       
-      tabPanel("Social media use",
-               soc_med_ui()),
       tabPanel("Young people's health",
-               vars_by_age_ui())
+               vars_by_age_ui()),
+      tabPanel("Influences on health",
+               influences_ui())
       
     )
     

@@ -4,6 +4,8 @@ library(tidyverse)
 library(sass)
 library(bslib)
 library(scales)
+library(shinyWidgets)
+library(ggmosaic)
 
 options(sass.cache = FALSE)
 
@@ -47,3 +49,15 @@ vars_by_age_data()
 source("app/components/vars_by_age.R")
 vars_by_age_app()
 
+
+
+# influences on health and wellbeing --------------------------------------
+
+influences_data <- function() {
+  load("app/data/influences.RData", parent.frame(2))
+}
+
+influences_data()
+
+source("app/components/influences.R")
+influences_app()

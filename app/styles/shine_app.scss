@@ -103,7 +103,7 @@ h2 {
   margin-right: auto;
 }
 
-#question {
+.question {
   font-style: italic;
   font-size: 24px;
   font-family: Times New Roman, Trebuchet MS, Sans-Serif;
@@ -187,4 +187,26 @@ chat_content {
   font-size: 1.5em;
   margin-left: 20px;
   line-height: 50px;
+}
+
+.chart-button {
+/*  height: 80px;
+  width: 80px;
+  border: 3px solid lightgrey; */
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+}
+
+
+
+.chart-svg {
+  display: flex;
+  margin: 7px;
+}
+
+#graph-output {
+  display: flex;
+    align-items: center;
 }

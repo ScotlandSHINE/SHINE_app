@@ -4,6 +4,8 @@ library(sass)
 library(bslib)
 library(zeallot)
 library(scales)
+library(shinyWidgets)
+library(ggmosaic)
 source("R/functions.R")
 
 # Setting display options for whole app -----------------------------------
@@ -43,13 +45,22 @@ soc_med_data <- function() {
 # unpacking the three expected elements in the list call in the app creation script
 c(soc_med_ui, soc_med_server, soc_med_lpBox) %<-% load_component("soc_med_use")
 
-vars_by_age_data <- function() {
+load_vars_by_age_data <- function() {
   load("data/vars_by_age.RData", envir = .GlobalEnv)
   message("Loaded data for vars by age component\n")
 }
 
 
-c(vars_by_age_ui, vars_by_age_server, vars_by_age_lpBox) %<-% load_component("vars_by_age")
+c(vars_by_age_ui, vars_by_age_server, vars_by_age_lp_box) %<-% load_component("vars_by_age")
+
+# influences app
+
+load_influences_data <- function() {
+  load("data/influences.RData", envir = .GlobalEnv)
+  message("Loaded data for influences component\n")
+}
+
+c(influences_ui, influences_server, influences_lp_box) %<-% load_component("influences")
 
 # chat bot
 

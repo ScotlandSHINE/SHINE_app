@@ -20,7 +20,7 @@ vars_by_age_ui <- function(id = "vars_by_age") {
                             )
                           )
                         ),
-                        div(id = "question",
+                        div(class = "question",
                             textOutput(ns("question"))),
                         fluidRow(plotOutput(ns("plot"), height = "60vh"))
                       )))
@@ -89,28 +89,6 @@ vars_by_age_server <- function(id = "vars_by_age") {
           )
       }
       
-      # if (input$agegrp) {
-      #    df()$data %>%
-      #     filter(Age != "All") %>%
-      #     pivot_longer(Boys:Girls, names_to = "Gender", values_to = "Percentage") %>%
-      #     ggplot(aes(Age, Percentage, fill = Gender)) +
-      #     geom_bar(stat = "identity", position = "dodge") +
-      #     scale_fill_manual(values = c("Girls" = "#ff44cc", "Boys" = "#2266ee")) +
-      #     theme(panel.grid.major.x = element_blank()) +
-      #     scale_y_continuous(name = df()$axis_label, labels = percent_format(scale = 1, accuracy = 1))
-      #
-      # } else {
-      #   df()$data %>%
-      #     filter(Age == "All") %>%
-      #     pivot_longer(Boys:Girls, names_to = "Gender", values_to = "Percentage") %>%
-      #     ggplot(aes(Gender, Percentage, fill = Gender)) +
-      #     geom_bar(stat = "identity", position = "dodge") +
-      #     scale_fill_manual(values = c("Girls" = "#ff44cc", "Boys" = "#2266ee")) +
-      #     theme(panel.grid.major.x = element_blank()) +
-      #     scale_y_continuous(name = df()$axis_label, labels = percent_format(scale = 1, accuracy = 1))
-      #
-      # }
-      
     })
     
     output$question <-
@@ -134,7 +112,7 @@ vars_by_age_app <- function() {
   shinyApp(ui, server)
 }
 
-vars_by_age_lpBox <- lp_main_box(
+vars_by_age_lp_box <- lp_main_box(
   title_box = "How are Scotland's young people doing?",
   description = "How did Scottish young people answer these questions about their health, excercise and how well they're doing?",
   button_name = "vars_by_age",
@@ -142,4 +120,4 @@ vars_by_age_lpBox <- lp_main_box(
 )
 
 
-list(vars_by_age_ui, vars_by_age_server, vars_by_age_lpBox)
+list(vars_by_age_ui, vars_by_age_server, vars_by_age_lp_box)
