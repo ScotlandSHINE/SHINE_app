@@ -5,6 +5,7 @@ library(sass)
 library(bslib)
 library(scales)
 library(shinyWidgets)
+library(plotly)
 library(ggmosaic)
 
 options(sass.cache = FALSE)
@@ -61,3 +62,15 @@ load_influences_data()
 
 source("app/components/influences.R")
 influences_app()
+
+
+# changes in health behaviours --------------------------------------------
+
+time_changes_data <- function() {
+  load("app/data/time_changes.RData", envir = .GlobalEnv)
+}
+
+time_changes_data()
+
+source("app/components/time_changes.R")
+time_changes_app()

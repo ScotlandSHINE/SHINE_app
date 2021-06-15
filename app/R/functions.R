@@ -17,7 +17,7 @@ lp_main_box <-
         class = "landing-page-icon",
         style = paste0(
           "background-image: url(images/",
-          image_name,
+          gsub("^(.*)\\.png", "\\1", image_name),
           ".png);
           background-size: auto 80%; background-position: center; background-repeat: no-repeat; "
         )

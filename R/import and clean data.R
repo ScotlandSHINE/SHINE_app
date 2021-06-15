@@ -1,6 +1,7 @@
 library(readr)
 library(tidyverse)
 library(janitor)
+library(readxl)
 
 
 # comparing variables -----------------------------------------------------
@@ -36,7 +37,6 @@ save(prob_soc_med, soc_med_time, breakfast_fam, file = "app/data/compare_var.RDa
 
 # app 1 - health variables across Scotland --------------------------------
 
-library(readxl)
 
 dfs <- readxl::excel_sheets("import/app1_data.xlsx")[-1] %>% 
   map(function(sheet){
@@ -172,3 +172,26 @@ influences_data <- hbsc_data %>%
   )
 
 save(influences_data, labs_cats, file = "app/data/influences.RData")
+
+
+# app3 - time_changes data -------------------------------------------------------
+
+time_changes_import <- excel_sheets("import/app3_data.xlsx") %>% 
+  map(function(sheet) {
+    title <- read_excel("import/app3_data.xlsx", sheet = sheet, n_max = 1, col_names = FALSE)[[1]]
+    df <- read_excel("import/app3_data.xlsx", sheet = sheet, skip = 1)
+    list(title = title, data = df)
+  })
+
+time_changes <-
+  set_names(time_changes_import, map(time_changes_import, ~.x$title)) %>% 
+            # map(time_changes_import, ~ make_clean_names(.x$title))) %>%
+  map(~ {
+    .x$data <- .x$data %>%
+      rename(Year = ...1) %>%
+      mutate(sign = ifelse(str_detect(Year, "†"), TRUE, FALSE),
+             Year = as.factor(str_extract(Year, "^\\d{4}")))
+    .x
+  })
+
+save(time_changes, file = "app/data/time_changes.RData")

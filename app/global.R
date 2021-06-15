@@ -5,6 +5,7 @@ library(bslib)
 library(zeallot)
 library(scales)
 library(shinyWidgets)
+library(plotly)
 library(ggmosaic)
 source("R/functions.R")
 
@@ -61,6 +62,15 @@ load_influences_data <- function() {
 }
 
 c(influences_ui, influences_server, influences_lp_box) %<-% load_component("influences")
+
+# time changes app
+
+time_changes_data <- function() {
+  load("data/time_changes.RData", envir = .GlobalEnv)
+  message("Loaded data for changes over time component\n")
+}
+
+c(time_changes_ui, time_changes_server, time_changes_lp_box) %<-% load_component("time_changes")
 
 # chat bot
 
