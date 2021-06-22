@@ -8,6 +8,7 @@ library(shinyWidgets)
 library(plotly)
 library(ggmosaic)
 
+library(ggrepel)
 options(sass.cache = FALSE)
 
 primary_colour <-  "#2e3192"
@@ -22,6 +23,8 @@ theme_set(theme_minimal() +
                   axis.title = element_text(colour = secondary_colour,
                                             size = 18)))
 update_geom_defaults("bar",   list(fill = primary_colour))
+
+load("app/data/country_codes.RData")
 
 # Social media use app ----------------------------------------------------
 
@@ -74,3 +77,16 @@ time_changes_data()
 
 source("app/components/time_changes.R")
 time_changes_app()
+
+
+# comparing with other countries ------------------------------------------
+
+compare_countries_data <- function() {
+  load("app/data/compare_countries.RData", envir = .GlobalEnv)
+}
+
+compare_countries_data()
+
+source("app/components/compare_countries.R")
+
+compare_countries_app()

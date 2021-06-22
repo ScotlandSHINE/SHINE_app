@@ -15,6 +15,7 @@ shinyServer(function(input, output, session) {
     load_vars_by_age_data()
     load_influences_data()
     time_changes_data()
+    compare_countries_data()
   
   observeEvent(input$vars_by_age, {
     updateTabsetPanel(session = session,
@@ -33,6 +34,12 @@ shinyServer(function(input, output, session) {
                       "main_page",
                       selected = "Changes over time")
   })
+
+    observeEvent(input$compare_countries, {
+    updateTabsetPanel(session = session,
+                      "main_page",
+                      selected = "Comparing with other countries")
+  })
   
   # observeEvent(input$debug, {
   #   browser()
@@ -44,4 +51,6 @@ shinyServer(function(input, output, session) {
   influences_server()
   
   time_changes_server()
+  
+  compare_countries_server()
 })

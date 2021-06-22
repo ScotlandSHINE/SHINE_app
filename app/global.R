@@ -7,6 +7,7 @@ library(scales)
 library(shinyWidgets)
 library(plotly)
 library(ggmosaic)
+library(ggrepel)
 source("R/functions.R")
 
 # Setting display options for whole app -----------------------------------
@@ -31,7 +32,7 @@ theme_set(theme_minimal() +
                                             size = 18)))
 update_geom_defaults("bar",   list(fill = primary_colour))
 
-
+load("data/country_codes.RData")
 
 # Loading components and setting data functions ---------------------------
 
@@ -48,7 +49,7 @@ c(soc_med_ui, soc_med_server, soc_med_lpBox) %<-% load_component("soc_med_use")
 
 load_vars_by_age_data <- function() {
   load("data/vars_by_age.RData", envir = .GlobalEnv)
-  message("Loaded data for vars by age component\n")
+  message("Loaded data for vars by age component")
 }
 
 
@@ -58,7 +59,7 @@ c(vars_by_age_ui, vars_by_age_server, vars_by_age_lp_box) %<-% load_component("v
 
 load_influences_data <- function() {
   load("data/influences.RData", envir = .GlobalEnv)
-  message("Loaded data for influences component\n")
+  message("Loaded data for influences component")
 }
 
 c(influences_ui, influences_server, influences_lp_box) %<-% load_component("influences")
@@ -67,10 +68,19 @@ c(influences_ui, influences_server, influences_lp_box) %<-% load_component("infl
 
 time_changes_data <- function() {
   load("data/time_changes.RData", envir = .GlobalEnv)
-  message("Loaded data for changes over time component\n")
+  message("Loaded data for changes over time component")
 }
 
 c(time_changes_ui, time_changes_server, time_changes_lp_box) %<-% load_component("time_changes")
+
+# compare countries
+
+compare_countries_data <- function() {
+  load("data/compare_countries.RData", envir = .GlobalEnv)
+  message("Loaded data for comparing with other countries component")
+}
+
+c(compare_countries_ui, compare_countries_server, compare_countries_lp_box) %<-% load_component("compare_countries")
 
 # chat bot
 

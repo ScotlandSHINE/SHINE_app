@@ -35,3 +35,11 @@ load_component <- function(component) {
   objects <- source(paste0("components/", gsub("(.*)\\.R", "\\1", component), ".R"), local = TRUE)$value
   objects
 }
+
+#' Convert points to pixels
+#' 
+#' @param size Size in pixels
+
+pts <- function (size) {
+  return(size * 5 / 14)
+}

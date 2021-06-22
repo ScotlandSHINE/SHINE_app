@@ -29,7 +29,8 @@ shinyUI(
                                  influences_lp_box)),
                  fluidRow(class = "lp-row", column(6,
                                  time_changes_lp_box),
-                          column(6,))
+                          column(6,
+                                 compare_countries_lp_box))
                )),
       # All apps nested in single menu (so as not to distract from screen)
       navbarMenu(
@@ -40,7 +41,9 @@ shinyUI(
         tabPanel("Influences on health",
                  influences_ui()),
         tabPanel("Changes over time",
-                 time_changes_ui())
+                 time_changes_ui()),
+        tabPanel("Comparing with other countries",
+                 compare_countries_ui())
         
       )
 
