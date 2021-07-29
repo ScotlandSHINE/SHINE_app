@@ -70,12 +70,12 @@ compare_countries_server <- function(id = "compare_countries") {
             # plot.margin = margin(0, 10, 0, 10),
             panel.grid.major.y = element_blank()
             ) +
-      scale_x_continuous(comparison()$title, labels = percent_format(accuracy = 1, scale = 1), expand = expansion(add = c(5, 2))) +
+      scale_x_continuous(comparison()$title, labels = percent_format(accuracy = 1, scale = 1), limits = c(0, NA)) +
       stat_summary(
         fun.data = function(t) {
           tibble(
             y = c(min(t), median(t), max(t)),
-            label = c(paste0("Lowest:\n2", min(t), "%"),
+            label = c(paste0("Lowest:\n", min(t), "%"),
                       paste0("Middle:\n", median(t), "%"),
                       paste0("Highest:\n", max(t), "%"))
           )
