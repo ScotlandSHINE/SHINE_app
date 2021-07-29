@@ -41,12 +41,16 @@ influences_ui <- function(id = "influences") {
                        individual = TRUE,
                        direction = "vertical",
                        status = "chart-button",
-                       choiceValues = c("show_circ",
-                                        "show_sq",
-                                        "show_mosaic"),
-                       choiceNames = c(HTML(read_file("www/images/button_circ.svg")),
-                                       HTML(read_file("www/images/button_sq.svg")),
-                                       HTML(read_file("www/images/button_mosaic.svg")))
+                       choiceValues = c("show_mosaic",
+                                        "show_circ",
+                                        "show_sq"
+                                        ),
+                       selected = "show_mosaic",
+                       choiceNames = c(
+                                       HTML(read_file("www/images/button_mosaic.svg")),
+                                       HTML(read_file("www/images/button_circ.svg")),
+                                       HTML(read_file("www/images/button_sq.svg"))
+                                       )
                      ),
                      ),
                        )
@@ -105,7 +109,8 @@ influences_server <- function(id = "influences") {
       if (input$chart_type == "show_mosaic") {
         chart_data %>% 
           ggplot() +
-          geom_mosaic(aes(product(!!sym(exposure$variable)), fill = !!sym(outcome$variable))) +
+          geom_mosaic(aes(product(!!sym(exposure$variable)), fill = !!sym(outcome$variable)),
+                      offset = 0.05) +
         theme(legend.position = "none",
               panel.grid = element_blank()) +
         xlab(exposure$lab) +

@@ -12,8 +12,8 @@ compare_countries_ui <- function(id = "compare_countries") {
                                  uiOutput(ns("var_sel"))),
                         ),
                         fluidRow(class = "question",
-                            textOutput(ns("description"))),
-                        fluidRow(plotOutput(ns("plot"), height = "55vh"))
+                            textOutput(ns("description")), style = "min-height: 20vh"),
+                        fluidRow(plotOutput(ns("plot"), height = "40vh"))
                       )))
   
 } 
@@ -48,7 +48,7 @@ compare_countries_server <- function(id = "compare_countries") {
       filter(age_grp == "15YO", sex == "Boys") %>%
       left_join(country_codes,
                 by = c("country_region" = "code")) %>%
-      ggplot(aes(x = value, y = "")) +
+      ggplot(aes(x = value, y = "box")) +
       stat_summary(
         fun.data = function(t) {
           tibble(
@@ -60,7 +60,8 @@ compare_countries_server <- function(id = "compare_countries") {
           )
         },
         geom = "boxplot",
-        width = 0.5
+        width = 1,
+        fill = "#DFBFC3"
       ) +
       geom_point(aes(shape = sco), size = 3) +
       geom_text_repel(aes(label = sco), nudge_y = 0.1, box.padding = 2, size = pts(16), point.padding = 1) +
@@ -68,24 +69,33 @@ compare_countries_server <- function(id = "compare_countries") {
       theme(legend.position = "none",
             axis.title.y = element_blank(),
             # plot.margin = margin(0, 10, 0, 10),
-            panel.grid.major.y = element_blank()
+            panel.grid.major.y = element_blank(),
+            axis.text.y = element_blank()
             ) +
-      scale_x_continuous(comparison()$title, labels = percent_format(accuracy = 1, scale = 1), limits = c(0, NA)) +
+
+      scale_x_continuous(comparison()$title, labels = percent_format(accuracy = 1, scale = 1), 
+                         limits = c(0, 100)) +
       stat_summary(
+        aes(y = "label"),
         fun.data = function(t) {
           tibble(
             y = c(min(t), median(t), max(t)),
             label = c(paste0("Lowest:\n", min(t), "%"),
-                      paste0("Middle:\n", median(t), "%"),
+                      paste0("Average:\n", round(mean(t)), "%"),
                       paste0("Highest:\n", max(t), "%"))
           )
         },
-        geom = "text_repel",
+        geom = "text",
         size = pts(16),
-        vjust = 0,
+        vjust = 1,
         hjust = 0.5,
-        nudge_x = 10
-      ) 
+        # nudge_x = 15,
+        nudge_y = 2,
+        colour = "#696969"
+        # direction = "x",
+        # min.segment.length = 200
+      ) +
+      coord_cartesian(ylim = c(0.9, 1.5))
     
     })
     
