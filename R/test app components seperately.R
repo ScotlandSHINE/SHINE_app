@@ -87,6 +87,4 @@ compare_countries_data <- function() {
 
 compare_countries_data()
 
-source("app/components/compare_countries.R")
-
-compare_countries_app()
+source("app/components/compare_countries.R"); compare_countries_app()

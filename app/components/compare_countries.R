@@ -44,15 +44,18 @@ compare_countries_server <- function(id = "compare_countries") {
       
       
     comparison()$data %>%
-      mutate(sco = ifelse(country_region == "GB-SCT", "Scotland", NA)) %>% 
-      filter(age_grp == "15YO", sex == "Boys") %>%
-      left_join(country_codes,
-                by = c("country_region" = "code")) %>%
-      ggplot(aes(x = value, y = "box")) +
-      stat_summary(
+      left_join(country_codes, by = c("country_region" = "code")) %>%
+      mutate(
+        sco = ifelse(country_region == "GB-SCT", paste("Scotland\n", value, "%"), NA),
+        country = str_remove_all(name, "(United Kingdom |\\(|\\))") %>% str_replace("(?<=Belgium)", ":"),
+        tooltip = paste0(country, ":\n", value, "%")
+      ) %>%
+      filter(age_grp == "15YO") %>%
+      ggplot(aes(x = value, y = "box", text = tooltip)) +
+      stat_summary(aes(group = "box"),
         fun.data = function(t) {
           tibble(
-            middle = median(t),
+            middle = mean(t),
             ymin = min(t),
             ymax = max(t),
             lower = ymin,
@@ -60,42 +63,86 @@ compare_countries_server <- function(id = "compare_countries") {
           )
         },
         geom = "boxplot",
-        width = 1,
+        width = 0.5,
         fill = "#DFBFC3"
       ) +
-      geom_point(aes(shape = sco), size = 3) +
-      geom_text_repel(aes(label = sco), nudge_y = 0.1, box.padding = 2, size = pts(16), point.padding = 1) +
-      scale_shape_manual(values = 18) +
-      theme(legend.position = "none",
-            axis.title.y = element_blank(),
-            # plot.margin = margin(0, 10, 0, 10),
-            panel.grid.major.y = element_blank(),
-            axis.text.y = element_blank()
-            ) +
-
-      scale_x_continuous(comparison()$title, labels = percent_format(accuracy = 1, scale = 1), 
-                         limits = c(0, 100)) +
+      geom_text_repel(aes(label = sco), nudge_y = 0.65, box.padding = 2, size = pts(16), point.padding = 1,colour = secondary_colour) +
+      scale_shape_manual(values = c(18, 18)) +
+      theme(
+        legend.position = "none",
+        axis.title.y = element_blank(),
+        # plot.margin = margin(0, 10, 0, 10),
+        panel.grid.major.y = element_blank(),
+        axis.text.y = element_blank()
+      ) +  scale_x_continuous(
+        comparison()$title,
+        labels = percent_format(accuracy = 1, scale = 1),
+        limits = c(0, 100)
+      ) +
       stat_summary(
-        aes(y = "label"),
+        aes(y = "label", group = "none", text = NA),
         fun.data = function(t) {
-          tibble(
-            y = c(min(t), median(t), max(t)),
-            label = c(paste0("Lowest:\n", min(t), "%"),
-                      paste0("Average:\n", round(mean(t)), "%"),
-                      paste0("Highest:\n", max(t), "%"))
-          )
+          tibble(y = c(min(t), mean(t), max(t)),
+                 label = c(
+                   paste0("Lowest:\n", min(t), "%"),
+                   paste0("Average:\n", round(mean(t)), "%"),
+                   paste0("Highest:\n", max(t), "%")
+                 ))
         },
         geom = "text",
         size = pts(16),
         vjust = 1,
-        hjust = 0.5,
+        # hjust = 0.5,
         # nudge_x = 15,
-        nudge_y = 2,
+        # nudge_y = 2,
         colour = "#696969"
         # direction = "x",
-        # min.segment.length = 200
+        # min.segment.length = 0.1
       ) +
-      coord_cartesian(ylim = c(0.9, 1.5))
+      coord_cartesian(ylim = c(0.65, 2.1), clip = FALSE, expand = expansion(add = 0)) +
+      geom_point(colour = "#696969", size = 3) +
+      geom_point(aes(shape = sco), size = 7, colour = secondary_colour) +
+      theme(panel.background = element_rect(fill = "#eeeeee", colour = "white"),
+            panel.grid.major.x = element_line(colour = "white"),
+            plot.margin = margin(1,2,1,2, unit = "lines"),
+            panel.spacing = unit(3, "lines")) +
+      facet_wrap(~sex)
+    
+    
+      # Replaced by above
+      # geom_point(aes(shape = sco), size = 3) +
+      # geom_text_repel(aes(label = sco), nudge_y = 0.1, box.padding = 2, size = pts(16), point.padding = 1) +
+      # scale_shape_manual(values = 18) +
+      # theme(legend.position = "none",
+      #       axis.title.y = element_blank(),
+      #       # plot.margin = margin(0, 10, 0, 10),
+      #       panel.grid.major.y = element_blank(),
+      #       axis.text.y = element_blank()
+      #       ) +
+      # 
+      # scale_x_continuous(comparison()$title, labels = percent_format(accuracy = 1, scale = 1), 
+      #                    limits = c(0, 100)) +
+      # stat_summary(
+      #   aes(y = "label"),
+      #   fun.data = function(t) {
+      #     tibble(
+      #       y = c(min(t), median(t), max(t)),
+      #       label = c(paste0("Lowest:\n", min(t), "%"),
+      #                 paste0("Average:\n", round(mean(t)), "%"),
+      #                 paste0("Highest:\n", max(t), "%"))
+      #     )
+      #   },
+      #   geom = "text",
+      #   size = pts(16),
+      #   vjust = 1,
+      #   hjust = 0.5,
+      #   # nudge_x = 15,
+      #   nudge_y = 2,
+      #   colour = "#696969"
+      #   # direction = "x",
+      #   # min.segment.length = 0.1
+      # ) +
+      # coord_cartesian(ylim = c(0.9, 1.5))
     
     })
     
