@@ -1,4 +1,4 @@
-compare_countries$`Proportion of young people who eat sweets at least every day or more than once a day`$data %>%
+compare_countries$`Proportion of young people who think they are too fat`$data %>%
   left_join(country_codes, by = c("country_region" = "code")) %>%
   mutate(
     sco = ifelse(country_region == "GB-SCT", paste("Scotland\n", value, "%"), NA),
@@ -18,26 +18,26 @@ compare_countries$`Proportion of young people who eat sweets at least every day 
   #       xmax = 1.25
   #       # lower = ymin,
   #       # upper = ymax
-  #     )
-  #   },
-  #   geom = "rect",
-  #   fill = "#DFBFC3"
-  #   ) +
-  stat_summary(aes(group = "box"),
-    fun.data = function(t) {
-      tibble(
-        middle = mean(t),
-        ymin = min(t),
-        ymax = max(t),
-        lower = ymin,
-        upper = ymax
-      )
-    },
-    geom = "boxplot",
-    width = 0.5,
-    fill = "#DFBFC3"
-  ) +
-  # geom_text_repel(aes(label = sco), nudge_y = 0.5, box.padding = 0.5, size = pts(16), point.padding = 1,colour = secondary_colour) +
+#     )
+#   },
+#   geom = "rect",
+#   fill = "#DFBFC3"
+#   ) +
+stat_summary(
+  aes(group = "box"),
+  fun.data = function(t) {
+    tibble(
+      middle = mean(t),
+      ymin = min(t),
+      ymax = max(t),
+      lower = ymin,
+      upper = ymax
+    )
+  },
+  geom = "boxplot",
+  width = 2,
+  fill = "#DFBFC3"
+) +
   scale_shape_manual(values = c(18, 18)) +
   theme(
     legend.position = "none",
@@ -51,7 +51,7 @@ compare_countries$`Proportion of young people who eat sweets at least every day 
     limits = c(0, 100)
   ) +
   stat_summary(
-    aes(y = "label", group = "none", text = NA),
+    aes(y = "label", group = sex),
     fun.data = function(t) {
       tibble(y = c(min(t), mean(t), max(t)),
              label = c(
@@ -62,24 +62,42 @@ compare_countries$`Proportion of young people who eat sweets at least every day 
     },
     geom = "text_repel",
     size = pts(16),
-    vjust = 1,
-    # hjust = 0.5,
+    # vjust = 1,
+    hjust = 0.5,
     # nudge_x = -10,
     # nudge_y = -10,
     # direction = "x",
-    min.segment.length = 200,
+    min.segment.length = 0.1,
+    # point.padding = 10,
     # box.padding = 0.1,
+    force_pull = 100,
     xlim = c(-Inf, Inf),
+    ylim = c(-Inf, Inf),
     colour = "#696969",
-    position = position_nudge_repel(y = -0.2)
+    position = position_nudge_repel(y = 1.5)
   ) +
-  coord_cartesian(ylim = c(0.65, 2.1), expand = expansion(add = 0), clip = "off") +
+  geom_label_repel(
+    aes(label = sco),
+    nudge_y = 1.5,
+    box.padding = 0.5,
+    size = pts(16),
+    point.padding = 1,
+    colour = secondary_colour,
+    label.size = NA,
+    fill = "#ffffffcc",
+    label.r = 0
+  ) +
+  coord_cartesian(ylim = c(-0.4, 4),
+                  expand = expansion(add = 0),
+                  clip = "off") +
   geom_point(colour = "#696969") +
   geom_point(aes(shape = sco), size = 3, colour = secondary_colour) +
-  theme(panel.background = element_rect(fill = "#eeeeee", colour = "white"),
-        panel.grid.major.x = element_line(colour = "white"),
-        plot.margin = margin(1,2,1,2, unit = "lines"),
-        panel.spacing = unit(3, "lines")) +
-  facet_wrap(~sex, scales = "free")#-> plotly_version
+  theme(
+    panel.background = element_rect(fill = "#eeeeee", colour = "white"),
+    panel.grid.major.x = element_line(colour = "white"),
+    plot.margin = margin(1, 2, 1, 2, unit = "lines"),
+    panel.spacing = unit(3, "lines")
+  ) +
+  facet_wrap( ~ sex, scales = "free")#-> plotly_version
 
 ggplotly(plotly_version, tooltip = "text")

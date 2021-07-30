@@ -75,8 +75,7 @@ time_changes_data <- function() {
 
 time_changes_data()
 
-source("app/components/time_changes.R")
-time_changes_app()
+source("app/components/time_changes.R"); time_changes_app()
 
 
 # comparing with other countries ------------------------------------------

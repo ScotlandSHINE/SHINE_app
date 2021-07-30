@@ -39,7 +39,8 @@ time_changes_server <- function(id = "time_changes") {
       req(df())
       gg_out <- df() %>% 
         pivot_longer(Boys:Girls, names_to = "Gender", values_to = "perc") %>% 
-        ggplot(aes(Year, perc, colour = Gender, group = Gender)) +
+        mutate(text = paste0("Proportion of ", tolower(Gender), "\nin ", Year, ": ", perc, "%")) %>% 
+        ggplot(aes(Year, perc, colour = Gender, group = Gender, text = text)) +
         geom_point() +
         geom_line() +
         scale_y_continuous("Percentage", labels = percent_format(scale = 1, accuracy = 1)) +
@@ -48,7 +49,8 @@ time_changes_server <- function(id = "time_changes") {
                                      "Good" = "#2DAAE1",
                                      "Excellent" = "#e30088"))
       
-      ggplotly(gg_out)
+      ggplotly(gg_out, tooltip = "text") %>%
+        config(displayModeBar = FALSE)
       
     })
     
