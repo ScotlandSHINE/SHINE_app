@@ -33,7 +33,7 @@ influences_ui <- function(id = "influences") {
               fluidRow(id = "graph-output",
               column(10,
                      fluidRow(plotOutput(
-                       ns("plot"), height = "60vh"
+                       ns("plot"), height = "55vh"
                      ))),
               column(2,
                      radioGroupButtons(

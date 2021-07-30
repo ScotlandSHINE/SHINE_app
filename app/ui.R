@@ -6,6 +6,17 @@ shinyUI(
     header = tags$head(
       tags$link(href = "shine_app.css", rel = "stylesheet", type = "text/css"),
       tags$link(rel = "shortcut icon", href = "favicon_shine.ico"),
+      tags$script('
+                                var dimension = [0, 0];
+                                $(document).on("shiny:connected", function(e) {
+                                    win_width = window.innerWidth;
+                                    Shiny.onInputChange("compare_countries-win_width", win_width);
+                                });
+                                $(window).resize(function(e) {
+                                    win_width = window.innerWidth;
+                                    Shiny.onInputChange("compare_countries-win_width", win_width);
+                                });
+                            ')
     ),
     title = div(class = "logo",
                 actionLink(

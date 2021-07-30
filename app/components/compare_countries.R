@@ -126,8 +126,15 @@ compare_countries_server <- function(id = "compare_countries") {
         panel.grid.major.x = element_line(colour = "white"),
         plot.margin = margin(1, 2, 1, 2, unit = "lines"),
         panel.spacing = unit(3, "lines")
-      ) +
-      facet_wrap( ~ sex, scales = "free")
+      ) -> non_facet_plot
+    
+    print(input$win_width)
+    
+    if(input$win_width>600) {
+      non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
+    } else {
+      non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 2)
+    }
     
     
       # Replaced by above
