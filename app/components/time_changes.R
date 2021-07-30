@@ -44,10 +44,10 @@ time_changes_server <- function(id = "time_changes") {
         geom_point() +
         geom_line() +
         scale_y_continuous("Percentage", labels = percent_format(scale = 1, accuracy = 1)) +
-        scale_colour_manual(values = c("Girls" = "#ff44cc",
-                                     "Boys" = "#2266ee",
-                                     "Good" = "#2DAAE1",
-                                     "Excellent" = "#e30088"))
+        scale_colour_manual(values = c("Girls" = global_girls_colour,
+                                     "Boys" = global_boys_colour,
+                                     "Good" = global_good_colour,
+                                     "Excellent" = global_excel_colour))
       
       ggplotly(gg_out, tooltip = "text") %>%
         config(displayModeBar = FALSE)

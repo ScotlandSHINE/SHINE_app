@@ -14,6 +14,10 @@ options(sass.cache = FALSE)
 primary_colour <-  "#2e3192"
 secondary_colour <- "#016bb2"
 main_colour <- "#333333"
+global_girls_colour <- "#edae49"
+global_boys_colour <- "#66a182"
+global_good_colour <- "#8d96a3"
+global_excel_colour <- "#00798c" 
 
 css <- sass(sass_file("app/styles/shine_app.scss"))
 
@@ -30,7 +34,7 @@ load("app/data/country_codes.RData")
 
 
 # soc_med_data <- function() {
-#   load("app/data/prob_soc_med.RData", envir = parent.frame(2))
+#   load("app/data/prob_soc_med.RData", envir = envir = .GlobalEnv)
 # }
 # 
 # soc_med_data()
@@ -45,20 +49,19 @@ load("app/data/country_codes.RData")
 
 
 load_vars_by_age_data <- function() {
-  load("app/data/vars_by_age.RData", parent.frame(2))
+  load("app/data/vars_by_age.RData", envir = .GlobalEnv)
 }
 
 load_vars_by_age_data()
 
-source("app/components/vars_by_age.R")
-vars_by_age_app()
+source("app/components/vars_by_age.R"); vars_by_age_app()
 
 
 
 # influences on health and wellbeing --------------------------------------
 
 load_influences_data <- function() {
-  load("app/data/influences.RData", parent.frame(2))
+  load("app/data/influences.RData", envir = .GlobalEnv)
 }
 
 load_influences_data()

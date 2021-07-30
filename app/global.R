@@ -24,6 +24,17 @@ try(sass(sass_file("styles/shine_app.scss"),
 primary_colour <-  "#2e3192"
 secondary_colour <- "#016bb2"
 main_colour <- "#333333"
+global_girls_colour <- "#edae49"
+global_boys_colour <- "#66a182"
+global_good_colour <- "#8d96a3"
+global_excel_colour <- "#00798c" 
+
+# Retired colours
+# global_girls_colour <- "#ff44cc"
+# global_boys_colour <- "#2266ee"
+# global_good_colour <- "#2DAAE1"
+# global_excel_colour <- "#e30088" 
+
 
 theme_set(theme_minimal() +
             theme(text = element_text(colour = main_colour, size = 18),

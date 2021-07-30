@@ -51,10 +51,10 @@ vars_by_age_server <- function(id = "vars_by_age") {
         theme(panel.grid.major.x = element_blank()) +
         scale_y_continuous(name = df()$axis_label,
                            labels = percent_format(scale = 1, accuracy = 1)) +
-        scale_fill_manual(values = c("Girls" = "#ff44cc",
-                                     "Boys" = "#2266ee",
-                                     "Good" = "#2DAAE1",
-                                     "Excellent" = "#e30088"))
+        scale_fill_manual(values = c("Girls" = global_girls_colour,
+                                     "Boys" = global_boys_colour,
+                                     "Good" = global_good_colour,
+                                     "Excellent" = global_excel_colour))
       
       if (input$agegrp) {
         plot_data <- df()$data %>%

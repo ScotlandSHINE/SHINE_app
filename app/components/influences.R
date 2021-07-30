@@ -115,8 +115,8 @@ influences_server <- function(id = "influences") {
               panel.grid = element_blank()) +
         xlab(exposure$lab) +
         ylab(outcome$lab) +
-        scale_fill_manual(values = c("#2DAAE1",
-                                       "#e30088"))
+        scale_fill_manual(values = c(global_good_colour,
+                                       global_excel_colour))
       } else {
         
        chart_data %>%
@@ -138,8 +138,8 @@ influences_server <- function(id = "influences") {
               panel.grid = element_blank()) +
         scale_x_discrete(exposure$lab) +
         scale_y_discrete(outcome$lab) +
-        scale_colour_manual(values = c("#2DAAE1",
-                                       "#e30088"))
+        scale_colour_manual(values = c(global_good_colour,
+                                       global_excel_colour))
       
       }
     })
