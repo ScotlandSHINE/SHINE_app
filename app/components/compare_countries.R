@@ -130,7 +130,7 @@ compare_countries_server <- function(id = "compare_countries") {
     
     print(input$win_width)
     
-    if(input$win_width>600) {
+    if(isolate(input$win_width)>600) {
       non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
     } else {
       non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 2)

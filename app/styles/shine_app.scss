@@ -38,6 +38,9 @@ $main-color: #333333;
 }
 }
 
+#compare_countries-plot {
+  height: 40vh;
+}  
 @media only screen and (max-width: 600px) {
   #compare_countries-plot {
     height: 70vh;

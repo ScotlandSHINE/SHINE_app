@@ -3,7 +3,7 @@ library(tidyverse)
 library(janitor)
 library(readxl)
 
-country_codes <- read_excel("import/HBSC_19_EN.xlsx",
+country_codes <- read_excel("import/HBSC_30_EN.xlsx",
                             sheet = "Countries") %>%
   select(code = Code, name = `Short name`)
 
@@ -372,7 +372,7 @@ compare_countries <- dir("import") %>%
     variable_data <- variable_import %>%
       clean_names() %>%
       select(age_grp, sex, country_region, year, value) %>%
-      filter(year == max(year), country_region %in% country_codes$Code) %>%
+      filter(year == max(year), country_region %in% country_codes$code) %>%
       mutate(sex = case_when(
         sex == "ALL" ~ "All",
         # No 'All' totals for separate countries
