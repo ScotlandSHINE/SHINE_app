@@ -1,11 +1,50 @@
 @import url("https://fonts.googleapis.com/css?family=Work%20Sans");
 @import url("https://p.typekit.net/p.css?s=1&k=jco6ucq&ht=tk&f=6808.6846&a=30079999&app=typekit&e=css");
+@media only screen and (max-width: 575px) {
+  .nav .active {
+    display: none;
+  }
+  .dropdown-toggle {
+    text-align: right;
+  }
+  .dropdown-toggle i {
+    display: inline-block;
+  }
+  .dropdown-toggle span {
+    display: none;
+  }
+  .dropdown-toggle::after {
+    display: none;
+  }
+  .dropdown.show {
+    z-index: 10;
+  }
+  .navbar-nav {
+    position: absolute;
+    right: 10pt;
+    top: 15pt;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .dropdown-toggle i {
+    display: none;
+  }
+  .dropdown-toggle span {
+    display: inline-block;
+  }
+}
+
+.navbar > .container-fluid {
+  align-items: baseline;
+}
+
 .navbar-brand {
   cursor: pointer;
 }
 
 .navbar {
-  height: 70px;
+  height: 80px;
 }
 
 .top-logo {
@@ -210,5 +249,9 @@ chat_content {
 }
 
 .lp-row {
+  /*margin-bottom: 20px;*/
+}
+
+.lp-element {
   margin-bottom: 20px;
 }

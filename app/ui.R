@@ -23,18 +23,20 @@ shinyUI(
                  fluidRow(h1(
                    "Check out our apps below to explore HBSC and SHINE data..."
                  )),
-                 fluidRow(class = "lp-row", column(6,
+                 fluidRow(class = "lp-row", column(6, class = "lp-element",
                                  vars_by_age_lp_box),
-                          column(6,
+                          column(6, class = "lp-element",
                                  influences_lp_box)),
-                 fluidRow(class = "lp-row", column(6,
+                 fluidRow(class = "lp-row", column(6, class = "lp-element",
                                  time_changes_lp_box),
-                          column(6,
+                          column(6, class = "lp-element",
                                  compare_countries_lp_box))
                )),
       # All apps nested in single menu (so as not to distract from screen)
       navbarMenu(
-        "Explore apps... ",
+        tags$span("Explore apps... "),
+        
+        icon = icon("navbar", "fa-bars"),
         
         tabPanel("Young people's health",
                  vars_by_age_ui()),
