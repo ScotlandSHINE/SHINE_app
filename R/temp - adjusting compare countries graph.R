@@ -74,11 +74,11 @@ stat_summary(
     xlim = c(-Inf, Inf),
     ylim = c(-Inf, Inf),
     colour = "#696969",
-    position = position_nudge_repel(y = 1.5)
+    position = position_nudge_repel(y = 0.5)
   ) +
-  geom_label_repel(
+  geom_text_repel(
     aes(label = sco),
-    nudge_y = 1.5,
+    position = position_nudge_repel(y = -1.5),
     box.padding = 0.5,
     size = pts(16),
     point.padding = 1,
@@ -87,7 +87,7 @@ stat_summary(
     fill = "#ffffffcc",
     label.r = 0
   ) +
-  coord_cartesian(ylim = c(-0.4, 4),
+  coord_cartesian(ylim = c(-1, 3),
                   expand = expansion(add = 0),
                   clip = "off") +
   geom_point(colour = "#696969") +

@@ -103,22 +103,22 @@ compare_countries_server <- function(id = "compare_countries") {
         xlim = c(-Inf, Inf),
         ylim = c(-Inf, Inf),
         colour = "#696969",
-        position = position_nudge_repel(y = 1.5)
+        position = position_nudge_repel(y = 0.5)
       ) +
-      geom_label_repel(
+      geom_text_repel(
         aes(label = sco),
-        position = position_nudge_repel(y = 1.5),
-        # box.padding = 0.5,
-        size = pts(18),
+        position = position_nudge_repel(y = -1.5),
+        box.padding = 0.5,
+        size = pts(16),
         point.padding = 1,
         colour = secondary_colour,
         label.size = NA,
         fill = "#ffffffcc",
         label.r = 0
       ) +
-      coord_cartesian(ylim = c(-0.4, 4),
+      coord_cartesian(ylim = c(-1, 3),
                       expand = expansion(add = 0),
-                      clip = "off") +
+                      clip = "off")+
       geom_point(colour = "#696969", size = 3) +
       geom_point(aes(shape = sco), size = 6, colour = secondary_colour) +
       theme(
