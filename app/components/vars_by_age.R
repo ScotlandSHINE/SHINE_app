@@ -50,7 +50,8 @@ vars_by_age_server <- function(id = "vars_by_age") {
       base_plot <- ggplot() +
         theme(panel.grid.major.x = element_blank()) +
         scale_y_continuous(name = df()$axis_label,
-                           labels = percent_format(scale = 1, accuracy = 1)) +
+                           labels = percent_format(scale = 1, accuracy = 1),
+                           limits = c(0, 100)) +
         scale_fill_manual(values = c("Girls" = global_girls_colour,
                                      "Boys" = global_boys_colour,
                                      "Good" = global_good_colour,
