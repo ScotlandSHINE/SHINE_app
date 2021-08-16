@@ -70,8 +70,7 @@ load_influences_data <- function() {
 
 load_influences_data()
 
-source("app/components/influences.R")
-influences_app()
+source("app/components/influences.R"); influences_app()
 
 
 # changes in health behaviours --------------------------------------------

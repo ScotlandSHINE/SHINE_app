@@ -41,17 +41,20 @@ influences_ui <- function(id = "influences") {
                        individual = TRUE,
                        direction = "vertical",
                        status = "chart-button",
-                       choiceValues = c("show_mosaic",
-                                        "show_circ",
-                                        "show_sq"
-                                        ),
-                       selected = "show_mosaic",
-                       choiceNames = c(
-                                       HTML(read_file("www/images/button_mosaic.svg")),
-                                       HTML(read_file("www/images/button_circ.svg")),
-                                       HTML(read_file("www/images/button_sq.svg"))
-                                       )
-                     ),
+                       choiceValues = c("show_bar",
+                                        "show_mosaic",
+                                        "show_sq"),
+                       selected = "show_bar",
+                       choiceNames = c(HTML(
+                         read_file("www/images/button_bar.svg")
+                       ),
+                       HTML(
+                         read_file("www/images/button_mosaic.svg")
+                       ),
+                       HTML(
+                         read_file("www/images/button_sq.svg")
+                       ))
+                     ), 
                      ),
                        )
             ))
@@ -117,6 +120,19 @@ influences_server <- function(id = "influences") {
         ylab(outcome$lab) +
         scale_fill_manual(values = c(global_good_colour,
                                        global_excel_colour))
+        
+      } else if (input$chart_type == "show_bar") {
+        
+        chart_data %>%
+          ggplot(aes_string(exposure$variable, fill = outcome$variable)) +
+          geom_bar(position = "fill") +
+          theme(legend.position = "none",
+                panel.grid = element_blank()) +
+          scale_x_discrete(exposure$lab) +
+          scale_y_continuous("", labels = percent) +
+          scale_fill_manual(values = c(global_good_colour,
+                                         global_excel_colour))
+        
       } else {
         
        chart_data %>%
@@ -156,7 +172,7 @@ influences_app <- function() {
   server <- function(input, output, session) {
     influences_server()
   }
-  shinyApp(ui, server)
+  shinyApp(ui, server, options = list(appDir = "app"))
 }
 
 influences_lp_box <- lp_main_box(
