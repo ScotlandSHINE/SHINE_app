@@ -19,7 +19,7 @@ lp_main_box <-
           "background-image: url(images/",
           gsub("^(.*)\\.png", "\\1", image_name),
           ".png);
-          background-size: auto 80%; background-position: center; background-repeat: no-repeat; "
+          background-size: auto 100%; background-position: center; background-repeat: no-repeat; margin-bottom: 5px; "
         )
       ),
       actionButton(button_name, NULL, class = "landing-page-button")
