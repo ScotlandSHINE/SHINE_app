@@ -1,6 +1,6 @@
 FROM rocker/shiny-verse
 
-RUN R -e "install.packages(c('bslib', 'sass', 'zeallot', 'shinyWidgets' , 'plotly', 'ggmosaic', 'ggrepel', 'scales'))"
+RUN R -e "install.packages(c('bslib', 'sass', 'zeallot', 'shinyWidgets' , 'plotly', 'ggmosaic', 'ggrepel', 'scales', 'Rcpp'))"
 
 COPY app /srv/shiny-server/
 
