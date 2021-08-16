@@ -37,6 +37,8 @@ time_changes_server <- function(id = "time_changes") {
     
     output$plot <- renderPlotly({
       req(df())
+      
+      
       gg_out <- df() %>% 
         pivot_longer(Boys:Girls, names_to = "Gender", values_to = "perc") %>% 
         mutate(text = paste0("Proportion of ", tolower(Gender), "\nin ", Year, ": ", perc, "%")) %>% 
@@ -49,8 +51,9 @@ time_changes_server <- function(id = "time_changes") {
                                      "Good" = global_good_colour,
                                      "Excellent" = global_excel_colour))
       
-      ggplotly(gg_out, tooltip = "text") %>%
-        config(displayModeBar = FALSE)
+      ggpl <- ggplotly(gg_out, tooltip = "text") %>%
+        config(displayModeBar = FALSE) 
+      ggpl 
       
     })
     

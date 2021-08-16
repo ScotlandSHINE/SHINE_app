@@ -25,7 +25,11 @@ theme_set(theme_minimal() +
             theme(text = element_text(colour = main_colour, size = 18),
                   line = element_line(colour = main_colour),
                   axis.title = element_text(colour = secondary_colour,
-                                            size = 18)))
+                                            size = 18),
+                  axis.title.y = element_text(margin = margin(r = 15, unit = "pt")),
+                  axis.title.x = element_text(margin = margin(t = 15, unit = "pt"))
+                  ))
+
 update_geom_defaults("bar",   list(fill = primary_colour))
 
 load("app/data/country_codes.RData")
