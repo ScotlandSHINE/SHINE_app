@@ -48,14 +48,17 @@ vars_by_age_server <- function(id = "vars_by_age") {
       req(input$select_var, df())
       
       base_plot <- ggplot() +
-        theme(panel.grid.major.x = element_blank()) +
-        scale_y_continuous(name = df()$axis_label,
+        theme(panel.grid.major.x = element_blank(),
+              axis.title.y = element_text(angle = 0,vjust = 0.5)) +
+        scale_y_continuous(name = str_wrap(df()$axis_label, 20),
                            labels = percent_format(scale = 1, accuracy = 1),
                            limits = c(0, 100)) +
         scale_fill_manual(values = c("Girls" = global_girls_colour,
                                      "Boys" = global_boys_colour,
                                      "Good" = global_good_colour,
-                                     "Excellent" = global_excel_colour))
+                                     "Excellent" = global_excel_colour)) +
+        scale_alpha_manual(values = c("Good" = 0.5,
+                                      "Excellent" = 1))
       
       if (input$agegrp) {
         plot_data <- df()$data %>%
@@ -63,34 +66,41 @@ vars_by_age_server <- function(id = "vars_by_age") {
           pivot_longer(Boys:Girls,
                        names_to = "Gender",
                        values_to = "Percentage")
+      x_map <- "Age"
       } else {
         plot_data <- df()$data %>%
           filter(Age == "All") %>%
           pivot_longer(Boys:Girls,
                        names_to = "Gender",
                        values_to = "Percentage")
+        x_map <- "Gender"
       }
       
+      
       if ("Rating" %in% colnames(plot_data)) {
-        base_plot +
+        plot_out <- base_plot +
           geom_bar(
             data = plot_data,
-            aes(Age, Percentage, fill = Rating),
+            aes(!!sym(x_map), Percentage, fill = Gender, alpha = Rating),
             stat = "identity",
             position = "stack"
           ) +
-          facet_wrap( ~ Gender)
+          facet_wrap(~ Gender, scales = "free")
       } else {
-        base_plot +
+        plot_out <- base_plot +
           geom_bar(
             data = plot_data,
-            aes(Age, Percentage, fill = Gender),
+            aes(!!sym(x_map), Percentage, fill = Gender),
             stat = "identity",
             position = "dodge"
           )
       }
-      
-    })
+    # browser()
+    plot_out
+    }) %>% bindCache(input$select_var, input$agegrp)
+    
+    
+    
     
     output$question <-
       renderText({
