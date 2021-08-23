@@ -123,7 +123,21 @@ influences_server <- function(id = "influences") {
         
       } else if (input$chart_type == "show_bar") {
         
-        chart_data %>%
+       plot_data <-  chart_data %>%
+          group_by(!!sym(exposure$variable)) %>% 
+          mutate(denom = n()) %>% 
+          group_by(!!sym(exposure$variable), !!sym(outcome$variable)) %>% 
+          mutate(
+            prop = n()/denom,
+            perc_label = paste0(
+              round(100*prop, 0),
+              "%"
+            )) %>% 
+          group_by(!!sym(exposure$variable))
+      
+       
+       plot_data %>%
+         mutate(text_y = abs(as.numeric(!!sym(outcome$variable) == levels(!!sym(outcome$variable))[[1]]) - prop/2)) %>% 
           ggplot(aes_string(exposure$variable, fill = outcome$variable)) +
           geom_bar(position = "fill") +
           theme(legend.position = "none",
@@ -131,7 +145,9 @@ influences_server <- function(id = "influences") {
           scale_x_discrete(exposure$lab) +
           scale_y_continuous("", labels = percent) +
           scale_fill_manual(values = c(global_good_colour,
-                                         global_excel_colour))
+                                         global_excel_colour)) +
+          geom_text(aes(y = text_y, label = perc_label),
+                    colour = "#f5f5f5", size = 15)
         
       } else {
         
@@ -145,7 +161,8 @@ influences_server <- function(id = "influences") {
             size = NULL,
             colour = NULL
           ),
-          size = 15
+          size = 15,
+          colour = "#f5f5f5"
         ) +
         scale_size_continuous(limits = c(1, 6000), range = c(1, 120)) +
         geom_vline(xintercept = 1.5, colour = "grey") +
