@@ -45,7 +45,8 @@ time_changes_server <- function(id = "time_changes") {
         ggplot(aes(Year, perc, colour = Gender, group = Gender, text = text)) +
         geom_point() +
         geom_line() +
-        scale_y_continuous("Percentage", labels = percent_format(scale = 1, accuracy = 1)) +
+        scale_y_continuous("Percentage", labels = percent_format(scale = 1, accuracy = 1), limits = c(0, NA),
+                           expand = expansion(add = c(0, 10))) +
         scale_colour_manual(values = c("Girls" = global_girls_colour,
                                      "Boys" = global_boys_colour,
                                      "Good" = global_good_colour,
