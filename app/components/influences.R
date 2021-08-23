@@ -31,31 +31,32 @@ influences_ui <- function(id = "influences") {
                 )
               ),
               fluidRow(id = "graph-output",
-              column(10,
+              column(12,
                      fluidRow(plotOutput(
                        ns("plot"), height = "55vh"
-                     ))),
-              column(2,
-                     radioGroupButtons(
-                       inputId = ns("chart_type"),
-                       individual = TRUE,
-                       direction = "vertical",
-                       status = "chart-button",
-                       choiceValues = c("show_bar",
-                                        "show_mosaic",
-                                        "show_sq"),
-                       selected = "show_bar",
-                       choiceNames = c(HTML(
-                         read_file("www/images/button_bar.svg")
-                       ),
-                       HTML(
-                         read_file("www/images/button_mosaic.svg")
-                       ),
-                       HTML(
-                         read_file("www/images/button_sq.svg")
-                       ))
-                     ), 
+                     ))
                      ),
+              # column(2,
+              #        radioGroupButtons(
+              #          inputId = ns("chart_type"),
+              #          individual = TRUE,
+              #          direction = "vertical",
+              #          status = "chart-button",
+              #          choiceValues = c("show_bar",
+              #                           "show_mosaic",
+              #                           "show_sq"),
+              #          selected = "show_bar",
+              #          choiceNames = c(HTML(
+              #            read_file("www/images/button_bar.svg")
+              #          ),
+              #          HTML(
+              #            read_file("www/images/button_mosaic.svg")
+              #          ),
+              #          HTML(
+              #            read_file("www/images/button_sq.svg")
+              #          ))
+              #        ), 
+              #        ),
                        )
             ))
   
@@ -109,21 +110,21 @@ influences_server <- function(id = "influences") {
         select(exposure$variable, outcome$variable) %>%
         filter(across(everything(), ~ !is.na(.x)))
       
-      if (input$chart_type == "show_mosaic") {
-        chart_data %>% 
-          ggplot() +
-          geom_mosaic(aes(product(!!sym(exposure$variable)), fill = !!sym(outcome$variable)),
-                      offset = 0.05) +
-        theme(legend.position = "none",
-              panel.grid = element_blank()) +
-        xlab(exposure$lab) +
-        ylab(outcome$lab) +
-        scale_fill_manual(values = c(global_good_colour,
-                                       global_excel_colour))
-        
-      } else if (input$chart_type == "show_bar") {
-        
-       plot_data <-  chart_data %>%
+      # if (input$chart_type == "show_mosaic") {
+      #   chart_data %>% 
+      #     ggplot() +
+      #     geom_mosaic(aes(product(!!sym(exposure$variable)), fill = !!sym(outcome$variable)),
+      #                 offset = 0.05) +
+      #   theme(legend.position = "none",
+      #         panel.grid = element_blank()) +
+      #   xlab(exposure$lab) +
+      #   ylab(outcome$lab) +
+      #   scale_fill_manual(values = c(global_good_colour,
+      #                                  global_excel_colour))
+      #   
+      # } else if (input$chart_type == "show_bar") {
+      #   
+       chart_data %>%
           group_by(!!sym(exposure$variable)) %>% 
           mutate(denom = n()) %>% 
           group_by(!!sym(exposure$variable), !!sym(outcome$variable)) %>% 
@@ -133,10 +134,7 @@ influences_server <- function(id = "influences") {
               round(100*prop, 0),
               "%"
             )) %>% 
-          group_by(!!sym(exposure$variable))
-      
-       
-       plot_data %>%
+          group_by(!!sym(exposure$variable)) %>%
          mutate(text_y = abs(as.numeric(!!sym(outcome$variable) == levels(!!sym(outcome$variable))[[1]]) - prop/2)) %>% 
           ggplot(aes_string(exposure$variable, fill = outcome$variable)) +
           geom_bar(position = "fill") +
@@ -149,32 +147,32 @@ influences_server <- function(id = "influences") {
           geom_text(aes(y = text_y, label = perc_label),
                     colour = "#f5f5f5", size = 15)
         
-      } else {
-        
-       chart_data %>%
-        ggplot(aes_string(exposure$variable, outcome$variable, colour = outcome$variable)) +
-        stat_sum(shape = ifelse(input$chart_type == "show_circ", 16, 15)) +
-        stat_sum(
-          geom = "text",
-          aes(
-            label = scales::comma(after_stat(n), accuracy = 1),
-            size = NULL,
-            colour = NULL
-          ),
-          size = 15,
-          colour = "#f5f5f5"
-        ) +
-        scale_size_continuous(limits = c(1, 6000), range = c(1, 120)) +
-        geom_vline(xintercept = 1.5, colour = "grey") +
-        geom_hline(yintercept = 1.5, colour = "grey") +
-        theme(legend.position = "none",
-              panel.grid = element_blank()) +
-        scale_x_discrete(exposure$lab) +
-        scale_y_discrete(outcome$lab) +
-        scale_colour_manual(values = c(global_good_colour,
-                                       global_excel_colour))
-      
-      }
+      # } else {
+      #   
+      #  chart_data %>%
+      #   ggplot(aes_string(exposure$variable, outcome$variable, colour = outcome$variable)) +
+      #   stat_sum(shape = ifelse(input$chart_type == "show_circ", 16, 15)) +
+      #   stat_sum(
+      #     geom = "text",
+      #     aes(
+      #       label = scales::comma(after_stat(n), accuracy = 1),
+      #       size = NULL,
+      #       colour = NULL
+      #     ),
+      #     size = 15,
+      #     colour = "#f5f5f5"
+      #   ) +
+      #   scale_size_continuous(limits = c(1, 6000), range = c(1, 120)) +
+      #   geom_vline(xintercept = 1.5, colour = "grey") +
+      #   geom_hline(yintercept = 1.5, colour = "grey") +
+      #   theme(legend.position = "none",
+      #         panel.grid = element_blank()) +
+      #   scale_x_discrete(exposure$lab) +
+      #   scale_y_discrete(outcome$lab) +
+      #   scale_colour_manual(values = c(global_good_colour,
+      #                                  global_excel_colour))
+      # 
+      # }
     }) %>% bindCache(input$exposure, input$outcome, input$chart_type)
     
   })
