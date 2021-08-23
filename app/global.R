@@ -98,3 +98,9 @@ c(compare_countries_ui, compare_countries_server, compare_countries_lp_box) %<-%
 # chat bot
 
 c(chat_bot_ui, chat_bot_server) %<-% load_component("chat_bot")
+
+# Try loading data in global.R
+load_vars_by_age_data()
+load_influences_data()
+time_changes_data()
+compare_countries_data()

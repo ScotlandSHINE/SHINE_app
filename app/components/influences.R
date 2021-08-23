@@ -158,7 +158,7 @@ influences_server <- function(id = "influences") {
                                        global_excel_colour))
       
       }
-    })
+    }) %>% bindCache(input$exposure, input$outcome, input$chart_type)
     
   })
 }

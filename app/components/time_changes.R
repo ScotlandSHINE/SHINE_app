@@ -55,7 +55,7 @@ time_changes_server <- function(id = "time_changes") {
         config(displayModeBar = FALSE) 
       ggpl 
       
-    })
+    }) %>% bindCache(input$select_var)
     
   })
 }

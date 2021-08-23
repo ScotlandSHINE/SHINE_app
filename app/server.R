@@ -12,10 +12,10 @@ shinyServer(function(input, output, session) {
   #                     "main_page",
   #                     selected = "Social media use")
   # })
-    load_vars_by_age_data()
-    load_influences_data()
-    time_changes_data()
-    compare_countries_data()
+    # load_vars_by_age_data()
+    # load_influences_data()
+    # time_changes_data()
+    # compare_countries_data()
   
   observeEvent(input$vars_by_age, {
     updateTabsetPanel(session = session,

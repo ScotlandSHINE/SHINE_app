@@ -66,7 +66,6 @@ compare_countries_server <- function(id = "compare_countries") {
         width = 2,
         fill = "#DFBFC3"
       ) +
-      # geom_text_repel(aes(label = sco), nudge_y = 0.55, box.padding = 2, size = pts(16), point.padding = 1,colour = secondary_colour) +
       scale_shape_manual(values = c(18, 18)) +
       theme(
         legend.position = "none",
@@ -93,12 +92,7 @@ compare_countries_server <- function(id = "compare_countries") {
         size = pts(18),
         # vjust = 1,
         hjust = 0.5,
-        # nudge_x = -10,
-        # nudge_y = -10,
-        # direction = "x",
         min.segment.length = 0.1,
-        # point.padding = 10,
-        # box.padding = 0.1,
         force_pull = 100,
         xlim = c(-Inf, Inf),
         ylim = c(-Inf, Inf),
@@ -128,7 +122,7 @@ compare_countries_server <- function(id = "compare_countries") {
         panel.spacing = unit(3, "lines")
       ) -> non_facet_plot
     
-    print(input$win_width)
+    # print(input$win_width)
     
     if(isolate(input$win_width)>600) {
       non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
@@ -137,42 +131,8 @@ compare_countries_server <- function(id = "compare_countries") {
     }
     
     
-      # Replaced by above
-      # geom_point(aes(shape = sco), size = 3) +
-      # geom_text_repel(aes(label = sco), nudge_y = 0.1, box.padding = 2, size = pts(16), point.padding = 1) +
-      # scale_shape_manual(values = 18) +
-      # theme(legend.position = "none",
-      #       axis.title.y = element_blank(),
-      #       # plot.margin = margin(0, 10, 0, 10),
-      #       panel.grid.major.y = element_blank(),
-      #       axis.text.y = element_blank()
-      #       ) +
-      # 
-      # scale_x_continuous(comparison()$title, labels = percent_format(accuracy = 1, scale = 1), 
-      #                    limits = c(0, 100)) +
-      # stat_summary(
-      #   aes(y = "label"),
-      #   fun.data = function(t) {
-      #     tibble(
-      #       y = c(min(t), median(t), max(t)),
-      #       label = c(paste0("Lowest:\n", min(t), "%"),
-      #                 paste0("Average:\n", round(mean(t)), "%"),
-      #                 paste0("Highest:\n", max(t), "%"))
-      #     )
-      #   },
-      #   geom = "text",
-      #   size = pts(16),
-      #   vjust = 1,
-      #   hjust = 0.5,
-      #   # nudge_x = 15,
-      #   nudge_y = 2,
-      #   colour = "#696969"
-      #   # direction = "x",
-      #   # min.segment.length = 0.1
-      # ) +
-      # coord_cartesian(ylim = c(0.9, 1.5))
     
-    })
+    }) %>% bindCache(input$winwidth, input$select_var)
     
   })
 }
