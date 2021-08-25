@@ -15,8 +15,9 @@ source("R/functions.R")
 
 options(sass.cache = FALSE)
 
-try(sass(sass_file("styles/shine_app.scss"),
-         output = "www/shine_app.css"))
+tryCatch(sass(sass_file("styles/shine_app.scss"),
+         output = "www/shine_app.css"),
+         error = function(e) cat("'www/shine_app.css' not writable"))
 
 
 # Setting standard display of text and graphs
