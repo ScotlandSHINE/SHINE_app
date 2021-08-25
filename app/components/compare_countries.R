@@ -13,7 +13,9 @@ compare_countries_ui <- function(id = "compare_countries") {
                         ),
                         fluidRow(class = "question",
                             textOutput(ns("description")), style = "min-height: 20vh"),
-                        fluidRow(plotOutput(ns("plot"), height = "40vh"))
+                        fluidRow(plotlyOutput(ns("plot"), height = "40vh"  # , hover = ns("plot_hover")
+                                            )),
+                        # verbatimTextOutput(ns("hover_pos")), actionButton(ns("button"), "browser")
                       )))
   
 } 
@@ -39,100 +41,148 @@ compare_countries_server <- function(id = "compare_countries") {
       comparison()$description
     })
     
-    output$plot <- renderPlot({
+    output$plot <- renderPlotly({
       req(input$select_var, comparison())
       
       
-    comparison()$data %>%
-      left_join(country_codes, by = c("country_region" = "code")) %>%
-      mutate(
-        sco = ifelse(country_region == "GB-SCT", paste("Scotland\n", value, "%"), NA),
-        country = str_remove_all(name, "(United Kingdom |\\(|\\))") %>% str_replace("(?<=Belgium)", ":"),
-        tooltip = paste0(country, ":\n", value, "%")
-      ) %>%
-      filter(age_grp == "15YO") %>%
-      ggplot(aes(x = value, y = "box", text = tooltip)) +
-      stat_summary(aes(group = "box"),
-        fun.data = function(t) {
-          tibble(
-            middle = mean(t),
-            ymin = min(t),
-            ymax = max(t),
-            lower = ymin,
-            upper = ymax
-          )
-        },
-        geom = "boxplot",
-        width = 2,
-        fill = "#DFBFC3"
-      ) +
-      scale_shape_manual(values = c(18, 18)) +
-      theme(
-        legend.position = "none",
-        axis.title.y = element_blank(),
-        # plot.margin = margin(0, 10, 0, 10),
-        panel.grid.major.y = element_blank(),
-        axis.text.y = element_blank()
-      ) +  scale_x_continuous(
-        comparison()$title,
-        labels = percent_format(accuracy = 1, scale = 1),
-        limits = c(0, 100)
-      ) +
-      stat_summary(
-        aes(y = "label", group = sex),
-        fun.data = function(t) {
-          tibble(y = c(min(t), mean(t), max(t)),
-                 label = c(
-                   paste0("Lowest:\n", min(t), "%"),
-                   paste0("Average:\n", round(mean(t)), "%"),
-                   paste0("Highest:\n", max(t), "%")
-                 ))
-        },
-        geom = "text_repel",
-        size = pts(18),
-        # vjust = 1,
-        hjust = 0.5,
-        min.segment.length = 0.1,
-        force_pull = 100,
-        xlim = c(-Inf, Inf),
-        ylim = c(-Inf, Inf),
-        colour = "#696969",
-        position = position_nudge_repel(y = 0.5)
-      ) +
-      geom_text_repel(
-        aes(label = sco),
-        position = position_nudge_repel(y = -1.5),
-        box.padding = 0.5,
-        size = pts(16),
-        point.padding = 1,
-        colour = secondary_colour,
-        label.size = NA,
-        fill = "#ffffffcc",
-        label.r = 0
-      ) +
-      coord_cartesian(ylim = c(-1, 3),
-                      expand = expansion(add = 0),
-                      clip = "off")+
-      geom_point(colour = "#696969", size = 3) +
-      geom_point(aes(shape = sco), size = 6, colour = secondary_colour) +
-      theme(
-        panel.background = element_rect(fill = "#eeeeee", colour = "white"),
-        panel.grid.major.x = element_line(colour = "white"),
-        plot.margin = margin(1, 2, 1, 2, unit = "lines"),
-        panel.spacing = unit(3, "lines")
-      ) -> non_facet_plot
-    
-    # print(input$win_width)
-    
-    if(isolate(input$win_width)>600) {
-      non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
-    } else {
-      non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 2)
-    }
-    
-    
-    
+      scot_lab_dat <- comparison()$data %>%
+        filter(age_grp == "15YO", country_region == "GB-SCT") %>%
+        mutate(sco = factor(1),
+               sco_lab = paste("Scotland\n", value, "%"))
+      
+      eng_lab_dat <- comparison()$data %>%
+        filter(age_grp == "15YO", country_region == "GB-ENG") %>%
+        mutate(sco = factor(2),
+               eng_lab = paste("England\n", value, "%"))
+      
+      comparison()$data %>%
+        left_join(country_codes, by = c("country_region" = "code")) %>%
+        mutate(
+          sco = factor(ifelse(country_region == "GB-SCT", 1, ifelse(country_region == "GB-ENG", 2, 0))),
+          eng = country_region == "GB-ENG",
+          eng_lab = ifelse(eng, paste("England\n", value, "%"), NA),
+          country = str_remove_all(name, "(United Kingdom |\\(|\\))") %>% str_replace("(?<=Belgium)", ":"),
+          tooltip = paste0(country, ":\n", value, "%")
+        ) %>%
+        filter(age_grp == "15YO") %>%
+        ggplot(aes(y = value, x = 0, text = tooltip)) +
+        stat_summary(
+          aes(
+            xmin = -1,
+            xmax = 1,
+            group = "box",
+            text = paste0("Range:\n", after_stat(ymin), "% to ", after_stat(ymax), "%")
+          ),
+          geom = "rect",
+          fun.data = function(p) {
+            tibble(ymin = min(p),
+                   ymax = max(p),
+                   y = 1)
+          },
+          fill = "#111177",
+          alpha = 0.2
+        ) +
+        coord_flip(ylim = c(0, 100), xlim = c(-1.2, 2)) +
+        stat_summary(
+          aes(
+            xmin = -1,
+            xmax = 1,
+            group = "box",
+            text = paste0("Average: ", round(after_stat(y),0), "%")
+          ),
+          geom = "rect",
+          fun.data = function(p) {
+            tibble(y = mean(p),
+                   ymin = y - 0.5,
+                   ymax = y + 0.5,
+            )
+          },
+          fill = "#111177",
+          alpha = 0.3
+        ) +
+        geom_point(aes(
+          shape = sco,
+          colour = sco,
+          size = sco
+        )) +
+        scale_shape_manual(values = c(18, 18, 18)) +
+        scale_size_manual(values = c(1, 3, 1)) +
+        scale_colour_manual(values = c("#696969", secondary_colour, "red")) +
+        theme(
+          legend.position = "none",
+          axis.title.y = element_blank(),
+          panel.grid.major.y = element_blank(),
+          axis.text.y = element_blank(),
+          panel.background = element_rect(fill = "#eeeeee", colour = "white"),
+          panel.grid.major.x = element_line(colour = "white"),
+          plot.margin = margin(1, 2, 1, 2, unit = "lines"),
+          panel.spacing = unit(3, "lines"),
+          axis.title.x = element_text(size = 16)
+        ) +
+        scale_y_continuous(
+          paste0("&nbsp;\n", str_wrap(comparison()$title, 100)),
+          labels = percent_format(accuracy = 1, scale = 1),
+          limits = c(0, 100),
+          expand = expansion(0)
+        ) +
+        stat_summary(
+          aes(group = sex, x = 1.5, text = ""),
+          fun.data = function(t) {
+            y_pos = if (mean(t) < 25)
+              25
+            else if (mean(t) > 75)
+              75
+            else
+              mean(t)
+            tibble(
+              y = y_pos,
+              ymax = y,
+              ymin = y,
+              label = paste(
+                paste0("Lowest: ", min(t), "%"),
+                paste0("Average: ", round(mean(t)), "%"),
+                paste0("Highest: ", max(t), "%"),
+                sep = "\n"
+              )
+            )
+          },
+          geom = "text",
+          size = pts(12),
+          vjust = 0,
+          hjust = 0.5,
+          colour = "#696969",
+        ) +
+        geom_text(
+          data = eng_lab_dat,
+          aes(
+            label = eng_lab,
+            x = 0.5,
+            colour = sco,
+            text = eng_lab
+          ), fontface = "bold") +
+        geom_text(
+          data = scot_lab_dat,
+          aes(
+            label = sco_lab,
+            x = -0.5,
+            colour = sco,
+            text = sco_lab
+          ),
+          fontface = "bold"
+        ) -> non_facet_plot
+      
+    # if(isolate(input$win_width)>600) {
+    #   gg_part <- non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
+    # } else {
+    #   gg_part <- non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 2)
+    # }
+
+    gg_part <-  non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
+    ggplotly(gg_part, tooltip = "text") %>%
+      config(displayModeBar = FALSE)
+
     }) %>% bindCache(input$winwidth, input$select_var)
+    
     
   })
 }
