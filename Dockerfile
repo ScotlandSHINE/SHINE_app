@@ -4,7 +4,7 @@ RUN R -e "install.packages(c('bslib', 'sass', 'zeallot', 'shinyWidgets' , 'plotl
 
 COPY app /srv/shiny-server/
 
-COPY shine-server-files/shiny-server.conf /etc/shiny-server/
+COPY shiny-server-files/shiny-server.conf /etc/shiny-server/
 
 RUN chmod 777 /srv/shiny-server/
 
