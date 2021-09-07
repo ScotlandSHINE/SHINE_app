@@ -115,12 +115,12 @@ compare_countries_server <- function(id = "compare_countries") {
           axis.text.y = element_blank(),
           panel.background = element_rect(fill = "#eeeeee", colour = "white"),
           panel.grid.major.x = element_line(colour = "white"),
-          plot.margin = margin(1, 2, 1, 2, unit = "lines"),
+          plot.margin = margin(1, 2, 2, 2, unit = "lines"),
           panel.spacing = unit(3, "lines"),
           axis.title.x = element_text(size = 16)
         ) +
         scale_y_continuous(
-          paste0("&nbsp;\n", str_wrap(comparison()$title, 100)),
+          paste0("&nbsp;\n", str_wrap(comparison()$title, 70)),
           labels = percent_format(accuracy = 1, scale = 1),
           limits = c(0, 100),
           expand = expansion(0)
