@@ -4,6 +4,17 @@ $main-color: #333333;
 @import url("https://fonts.googleapis.com/css?family=Work%20Sans");
 @import url("https://p.typekit.net/p.css?s=1&k=jco6ucq&ht=tk&f=6808.6846&a=30079999&app=typekit&e=css");
 
+
+#home_top {
+  position: relative;
+  min-height: calc(100vh - 100px);
+}
+
+#extra_head {
+  position: absolute;
+  bottom: 0;
+}
+
 @media only screen and (max-width: 575px) {
   
   .nav .active {

@@ -31,6 +31,7 @@ shinyUI(
       tabPanel("Home",
                mainPanel(
                  id = "main-panel",
+                 tags$div(id= "home_top",
                  fluidRow(h1(
                    "Check out our apps below to explore HBSC and SHINE data..."
                  )),
@@ -41,9 +42,21 @@ shinyUI(
                  fluidRow(class = "lp-row", column(6, class = "lp-element col-md-6",
                                  time_changes_lp_box),
                           column(6, class = "lp-element col-md-6",
-                                 compare_countries_lp_box))
-               )),
-      # All apps nested in single menu (so as not to distract from screen)
+                                 compare_countries_lp_box)),
+                 h3(id = "extra_head", "More info about data used in these apps...")
+                          ),
+                 tags$div(id="home_extra",
+                          HTML("Data were collected through the Health
+                          Behaviour in School-aged Children (HBSC) study and
+                          the apps were developed in collaboration with the
+                          Scottish Schools Health and Wellbeing Improvement
+                          Research Network (SHINE). See <a href =
+                          'https://www.gla.ac.uk/hbscscotland'>www.gla.ac.uk/hbscscotland</a>
+                          and <a
+                          href='https://shine.sphsu.gla.ac.uk'>shine.sphsu.gla.ac.uk</a>
+                          for more information.")))),
+
+    # All apps nested in single menu (so as not to distract from screen)
       navbarMenu(
         tags$span("Explore apps... "),
         
