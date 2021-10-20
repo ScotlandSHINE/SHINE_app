@@ -146,7 +146,8 @@ influences_server <- function(id = "influences") {
             geom_text(aes(y = text_y, label = perc_label),
                       colour = "#f5f5f5",
                       size = 15) +
-            theme(axis.title.y = element_text(angle = 0,vjust = 0.5))
+            theme(axis.title.y = element_text(angle = 0,vjust = 0.5),
+                  panel.grid.major.y = element_line(colour = "grey"))
           # geom_bar(position = "fill") +
           # theme(legend.position = "none",
           #       panel.grid = element_blank()) +
