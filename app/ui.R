@@ -34,13 +34,13 @@ shinyUI(
                  fluidRow(h1(
                    "Check out our apps below to explore HBSC and SHINE data..."
                  )),
-                 fluidRow(class = "lp-row", column(6, class = "lp-element",
+                 fluidRow(class = "lp-row", column(6, class = "lp-element col-md-6",
                                  vars_by_age_lp_box),
-                          column(6, class = "lp-element",
+                          column(6, class = "lp-element col-md-6",
                                  influences_lp_box)),
-                 fluidRow(class = "lp-row", column(6, class = "lp-element",
+                 fluidRow(class = "lp-row", column(6, class = "lp-element col-md-6",
                                  time_changes_lp_box),
-                          column(6, class = "lp-element",
+                          column(6, class = "lp-element col-md-6",
                                  compare_countries_lp_box))
                )),
       # All apps nested in single menu (so as not to distract from screen)
@@ -60,13 +60,22 @@ shinyUI(
         
       )
 
-    # Adds a debug button to navbar
-    # tags$script(
+    # Adds a debug button to navbar - DEV only!
+    # ,tags$script(
     #   HTML(
     #     "$('.navbar > .container-fluid').append(
     #     '<button class=\"btn btn-default action-button btn-primary shiny-bound-input\" id=\"debug\" type=\"button\">Debug</button>')"
     #   )
     # )
+    
+    
+    # Slight hack here - make landing page boxes respond to col-md-6 and snap to
+    # single row at ~750 px rather than ~560
+    ,tags$script(
+      HTML(
+        "$('.lp-element').removeClass('col-sm-6')"
+      )
+    )
   )
   
 )

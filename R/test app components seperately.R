@@ -27,10 +27,13 @@ theme_set(theme_minimal() +
                   axis.title = element_text(colour = secondary_colour,
                                             size = 18),
                   axis.title.y = element_text(margin = margin(r = 15, unit = "pt")),
-                  axis.title.x = element_text(margin = margin(t = 15, unit = "pt"))
+                  axis.title.x = element_text(margin = margin(t = 15, unit = "pt")),
+                  legend.key.size = unit(40, "pt"),
+                  legend.text = element_text(size = 22),
+                  legend.key = element_blank()
                   ))
 
-update_geom_defaults("bar",   list(fill = primary_colour))
+# update_geom_defaults("bar",   list(fill = primary_colour))
 
 load("app/data/country_codes.RData")
 

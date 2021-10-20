@@ -55,10 +55,9 @@ vars_by_age_server <- function(id = "vars_by_age") {
                            limits = c(0, 100), breaks = seq(0, 100, 10), expand = expansion()) +
         scale_fill_manual(values = c("Girls" = global_girls_colour,
                                      "Boys" = global_boys_colour,
-                                     "Good" = global_good_colour,
-                                     "Excellent" = global_excel_colour), limits = force) +
-        scale_alpha_manual(values = c("Good" = 0.5,
-                                      "Excellent" = 1))
+                                     "Excellent" = global_excel_colour,
+                                     "Good" = global_good_colour), limits = force) +
+        scale_alpha_manual(values = c("Excellent" = 1, "Good" = 0.5))
       
       if (input$agegrp) {
         plot_data <- df()$data %>%
