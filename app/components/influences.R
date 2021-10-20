@@ -27,29 +27,7 @@ influences_ui <- function(id = "influences") {
                      fluidRow(plotOutput(
                        ns("plot"), height = "55vh"
                      ))
-                     ),
-              # column(2,
-              #        radioGroupButtons(
-              #          inputId = ns("chart_type"),
-              #          individual = TRUE,
-              #          direction = "vertical",
-              #          status = "chart-button",
-              #          choiceValues = c("show_bar",
-              #                           "show_mosaic",
-              #                           "show_sq"),
-              #          selected = "show_bar",
-              #          choiceNames = c(HTML(
-              #            read_file("www/images/button_bar.svg")
-              #          ),
-              #          HTML(
-              #            read_file("www/images/button_mosaic.svg")
-              #          ),
-              #          HTML(
-              #            read_file("www/images/button_sq.svg")
-              #          ))
-              #        ), 
-              #        ),
-                       )
+                     ))
             ))
   
 }
