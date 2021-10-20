@@ -5,6 +5,15 @@ $main-color: #333333;
 @import url("https://p.typekit.net/p.css?s=1&k=jco6ucq&ht=tk&f=6808.6846&a=30079999&app=typekit&e=css");
 
 
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: lightgrey;
+  border-radius: 5px;
+}
+
 #home_top {
     min-height: calc(100vh - 100px);
     display: flex;

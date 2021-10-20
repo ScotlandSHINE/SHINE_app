@@ -43,7 +43,8 @@ shinyUI(
                                  time_changes_lp_box),
                           column(6, class = "lp-element col-md-6",
                                  compare_countries_lp_box)),
-                 h3(id = "extra_head", "More info about data used in these apps...")
+                 h3(id = "extra_head", HTML("More info about data used in these apps 
+                                            <i class='fas fa-arrow-down' style='font-size: 18pt'></i>"))
                           ),
                  tags$div(id="home_extra",
                           HTML("Data were collected through the Health
