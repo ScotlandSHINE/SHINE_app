@@ -101,14 +101,14 @@ influences_server <- function(id = "influences") {
                      fill = global_excel_colour) +
             theme(legend.position = "none",
                   panel.grid = element_blank()) +
-            scale_x_discrete(str_wrap(exposure$question)) +
+            scale_x_discrete(str_wrap(exposure$question, 20)) +
             scale_y_continuous(str_wrap(
               paste0(
                 "How many people say \"",
                 base_lab,
                 "\""
               ),
-              20
+              700
             ),
             labels = percent_format(accuracy = 1),
             breaks = c(0, 0.5, 1),
@@ -117,8 +117,10 @@ influences_server <- function(id = "influences") {
                       colour = "#f5f5f5",
                       size = 15) +
             theme(axis.title.y = element_text(angle = 0,vjust = 0.5),
-                  panel.grid.major.y = element_line(colour = "grey"))
+                  panel.grid.major.x = element_line(colour = "grey")) +
+         coord_flip()
 
+       
     }) %>% bindCache(input$exposure, input$outcome, input$chart_type)
     
   })
