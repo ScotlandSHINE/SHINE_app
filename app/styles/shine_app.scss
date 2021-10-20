@@ -6,13 +6,13 @@ $main-color: #333333;
 
 
 #home_top {
-  position: relative;
-  min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
 }
 
 #extra_head {
-  position: absolute;
-  bottom: 0;
+  margin-top: auto;
 }
 
 @media only screen and (max-width: 575px) {
