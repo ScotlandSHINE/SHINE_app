@@ -118,42 +118,7 @@ influences_server <- function(id = "influences") {
                       size = 15) +
             theme(axis.title.y = element_text(angle = 0,vjust = 0.5),
                   panel.grid.major.y = element_line(colour = "grey"))
-          # geom_bar(position = "fill") +
-          # theme(legend.position = "none",
-          #       panel.grid = element_blank()) +
-          # scale_x_discrete(exposure$lab) +
-          # scale_y_continuous("", labels = percent_format(accuracy = 1), breaks = c(0,1)) +
-          # scale_fill_manual(values = c(global_good_colour,
-          #                                global_excel_colour)) +
-          # geom_text(aes(y = text_y, label = perc_label),
-          #           colour = "#f5f5f5", size = 15)
-        
-      # } else {
-      #   
-      #  chart_data %>%
-      #   ggplot(aes_string(exposure$variable, outcome$variable, colour = outcome$variable)) +
-      #   stat_sum(shape = ifelse(input$chart_type == "show_circ", 16, 15)) +
-      #   stat_sum(
-      #     geom = "text",
-      #     aes(
-      #       label = scales::comma(after_stat(n), accuracy = 1),
-      #       size = NULL,
-      #       colour = NULL
-      #     ),
-      #     size = 15,
-      #     colour = "#f5f5f5"
-      #   ) +
-      #   scale_size_continuous(limits = c(1, 6000), range = c(1, 120)) +
-      #   geom_vline(xintercept = 1.5, colour = "grey") +
-      #   geom_hline(yintercept = 1.5, colour = "grey") +
-      #   theme(legend.position = "none",
-      #         panel.grid = element_blank()) +
-      #   scale_x_discrete(exposure$lab) +
-      #   scale_y_discrete(outcome$lab) +
-      #   scale_colour_manual(values = c(global_good_colour,
-      #                                  global_excel_colour))
-      # 
-      # }
+
     }) %>% bindCache(input$exposure, input$outcome, input$chart_type)
     
   })
