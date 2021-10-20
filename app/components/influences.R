@@ -16,18 +16,10 @@ influences_ui <- function(id = "influences") {
                   height: 190px;",
                   
                   column(5,
-                         uiOutput(ns("exp_set")),
-                         div(class = "question",
-                             textOutput(
-                               ns("exp_question")
-                             ))),
+                         uiOutput(ns("exp_set"))),
                   column(2, h2("Vs")),
                   column(5,
-                         uiOutput(ns("out_set")),
-                         div(class = "question",
-                             textOutput(
-                               ns("out_question")
-                             )), ),
+                         uiOutput(ns("out_set"))),
                 )
               ),
               fluidRow(id = "graph-output",
