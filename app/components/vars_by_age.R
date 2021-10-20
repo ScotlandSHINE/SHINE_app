@@ -56,7 +56,7 @@ vars_by_age_server <- function(id = "vars_by_age") {
         scale_fill_manual(values = c("Girls" = global_girls_colour,
                                      "Boys" = global_boys_colour,
                                      "Good" = global_good_colour,
-                                     "Excellent" = global_excel_colour)) +
+                                     "Excellent" = global_excel_colour), limits = force) +
         scale_alpha_manual(values = c("Good" = 0.5,
                                       "Excellent" = 1))
       
