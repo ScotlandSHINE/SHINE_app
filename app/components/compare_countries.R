@@ -123,6 +123,7 @@ compare_countries_server <- function(id = "compare_countries") {
           paste0("&nbsp;\n", str_wrap(comparison()$title, 70)),
           labels = percent_format(accuracy = 1, scale = 1),
           limits = c(0, 100),
+          breaks = seq(0, 100, 20),
           expand = expansion(0)
         ) +
         stat_summary(

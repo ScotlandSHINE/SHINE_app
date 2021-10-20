@@ -52,7 +52,7 @@ vars_by_age_server <- function(id = "vars_by_age") {
               axis.title.y = element_text(angle = 0,vjust = 0.5)) +
         scale_y_continuous(name = str_wrap(df()$axis_label, 20),
                            labels = percent_format(scale = 1, accuracy = 1),
-                           limits = c(0, 100)) +
+                           limits = c(0, 100), breaks = seq(0, 100, 10), expand = expansion()) +
         scale_fill_manual(values = c("Girls" = global_girls_colour,
                                      "Boys" = global_boys_colour,
                                      "Good" = global_good_colour,

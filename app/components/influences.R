@@ -141,7 +141,7 @@ influences_server <- function(id = "influences") {
           theme(legend.position = "none",
                 panel.grid = element_blank()) +
           scale_x_discrete(exposure$lab) +
-          scale_y_continuous("", labels = percent) +
+          scale_y_continuous("", labels = percent_format(accuracy = 1), breaks = c(0,1)) +
           scale_fill_manual(values = c(global_good_colour,
                                          global_excel_colour)) +
           geom_text(aes(y = text_y, label = perc_label),
