@@ -37,21 +37,6 @@ theme_set(theme_minimal() +
 
 load("app/data/country_codes.RData")
 
-# Social media use app ----------------------------------------------------
-
-
-# soc_med_data <- function() {
-#   load("app/data/prob_soc_med.RData", envir = envir = .GlobalEnv)
-# }
-# 
-# soc_med_data()
-# 
-# 
-# source("app/components/soc_med_use.R")
-# soc_med_app()
-
-
-
 # vars by age app ---------------------------------------------------------
 
 

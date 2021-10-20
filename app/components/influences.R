@@ -110,42 +110,52 @@ influences_server <- function(id = "influences") {
         select(exposure$variable, outcome$variable) %>%
         filter(across(everything(), ~ !is.na(.x)))
       
-      # if (input$chart_type == "show_mosaic") {
-      #   chart_data %>% 
-      #     ggplot() +
-      #     geom_mosaic(aes(product(!!sym(exposure$variable)), fill = !!sym(outcome$variable)),
-      #                 offset = 0.05) +
-      #   theme(legend.position = "none",
-      #         panel.grid = element_blank()) +
-      #   xlab(exposure$lab) +
-      #   ylab(outcome$lab) +
-      #   scale_fill_manual(values = c(global_good_colour,
-      #                                  global_excel_colour))
-      #   
-      # } else if (input$chart_type == "show_bar") {
-      #   
+
+      
+      base_lab <- levels(chart_data[[outcome$variable]])[[2]]
+      
        chart_data %>%
           group_by(!!sym(exposure$variable)) %>% 
           mutate(denom = n()) %>% 
           group_by(!!sym(exposure$variable), !!sym(outcome$variable)) %>% 
-          mutate(
-            prop = n()/denom,
-            perc_label = paste0(
-              round(100*prop, 0),
-              "%"
-            )) %>% 
-          group_by(!!sym(exposure$variable)) %>%
+          count() %>% 
+          group_by(!!sym(exposure$variable)) %>% 
+          mutate(denom = sum (n),
+                prop =  n / denom,
+                perc_label = paste0(round(100 * prop, 0),
+                                    "%")) %>%
          mutate(text_y = abs(as.numeric(!!sym(outcome$variable) == levels(!!sym(outcome$variable))[[1]]) - prop/2)) %>% 
-          ggplot(aes_string(exposure$variable, fill = outcome$variable)) +
-          geom_bar(position = "fill") +
-          theme(legend.position = "none",
-                panel.grid = element_blank()) +
-          scale_x_discrete(exposure$lab) +
-          scale_y_continuous("", labels = percent_format(accuracy = 1), breaks = c(0,1)) +
-          scale_fill_manual(values = c(global_good_colour,
-                                         global_excel_colour)) +
-          geom_text(aes(y = text_y, label = perc_label),
-                    colour = "#f5f5f5", size = 15)
+         filter(!!sym(outcome$variable) == base_lab) %>% 
+          ggplot(aes_string(exposure$variable, "prop")) +
+            geom_bar(stat = "identity",
+                     fill = global_excel_colour) +
+            theme(legend.position = "none",
+                  panel.grid = element_blank()) +
+            scale_x_discrete(str_wrap(exposure$question)) +
+            scale_y_continuous(str_wrap(
+              paste0(
+                "How many people say \"",
+                base_lab,
+                "\""
+              ),
+              20
+            ),
+            labels = percent_format(accuracy = 1),
+            breaks = c(0, 0.5, 1),
+            limits = c(0,1)) +
+            geom_text(aes(y = text_y, label = perc_label),
+                      colour = "#f5f5f5",
+                      size = 15) +
+            theme(axis.title.y = element_text(angle = 0,vjust = 0.5))
+          # geom_bar(position = "fill") +
+          # theme(legend.position = "none",
+          #       panel.grid = element_blank()) +
+          # scale_x_discrete(exposure$lab) +
+          # scale_y_continuous("", labels = percent_format(accuracy = 1), breaks = c(0,1)) +
+          # scale_fill_manual(values = c(global_good_colour,
+          #                                global_excel_colour)) +
+          # geom_text(aes(y = text_y, label = perc_label),
+          #           colour = "#f5f5f5", size = 15)
         
       # } else {
       #   
