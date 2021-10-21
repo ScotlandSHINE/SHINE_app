@@ -13,9 +13,8 @@ compare_countries_ui <- function(id = "compare_countries") {
                         ),
                         fluidRow(class = "question",
                             textOutput(ns("description")), style = "min-height: 20vh"),
-                        fluidRow(plotlyOutput(ns("plot"), height = "40vh"  # , hover = ns("plot_hover")
+                        fluidRow(plotlyOutput(ns("plot") # , height = "45vh"  # , hover = ns("plot_hover")
                                             )),
-                        # verbatimTextOutput(ns("hover_pos")), actionButton(ns("button"), "browser")
                       )))
   
 } 
@@ -120,7 +119,8 @@ compare_countries_server <- function(id = "compare_countries") {
           axis.title.x = element_text(size = 16)
         ) +
         scale_y_continuous(
-          paste0("&nbsp;\n", str_wrap(comparison()$title, 70)),
+          # paste0("&nbsp;\n", str_wrap(comparison()$title, 70)),
+          str_wrap(comparison()$title, 70),
           labels = percent_format(accuracy = 1, scale = 1),
           limits = c(0, 100),
           breaks = seq(0, 100, 20),
@@ -172,13 +172,13 @@ compare_countries_server <- function(id = "compare_countries") {
           fontface = "bold"
         ) -> non_facet_plot
       
-    # if(isolate(input$win_width)>600) {
-    #   gg_part <- non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
-    # } else {
-    #   gg_part <- non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 2)
-    # }
+    if(input$win_width >600) {
+      gg_part <- non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
+    } else {
+      gg_part <- non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 2)
+    }
 
-    gg_part <-  non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
+    # gg_part <-  non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
     ggplotly(gg_part, tooltip = "text") %>%
       config(displayModeBar = FALSE)
 

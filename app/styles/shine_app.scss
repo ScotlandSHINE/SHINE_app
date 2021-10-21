@@ -26,11 +26,13 @@ body::-webkit-scrollbar-thumb {
 
 @media only screen and (max-width: 575px) {
   
-  .nav .active {
+  .nav .active, .nav-item>.nav-link.active {
     display:none;
   }
   
-  .dropdown-toggle {
+
+  
+  .dropdown {
     
     text-align: right;
     
@@ -59,8 +61,13 @@ body::-webkit-scrollbar-thumb {
 }
 
 #compare_countries-plot {
-  height: 40vh;
+  height: 50vh;
 }  
+
+#compare_countries-plot .main-svg {
+  height: 50vh;
+}
+
 @media only screen and (max-width: 600px) {
   #compare_countries-plot {
     height: 70vh;
