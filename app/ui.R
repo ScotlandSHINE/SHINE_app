@@ -61,7 +61,7 @@ shinyUI(
       navbarMenu(
         tags$span("Explore apps... "),
         
-        icon = icon("navbar", "fa-bars"),
+        icon = icon("bars", "fa-bars"),
         
         tabPanel("Young people's health",
                  vars_by_age_ui()),
@@ -88,7 +88,8 @@ shinyUI(
     ,tags$script(
       HTML(
         "$('.lp-element').removeClass('col-sm-6');
-        $('.app-panel').removeClass('col-sm-8');"
+        $('.app-panel').removeClass('col-sm-8');
+        "
       )
     )
   )

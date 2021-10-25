@@ -173,7 +173,7 @@ compare_countries_server <- function(id = "compare_countries") {
           fontface = "bold"
         ) -> non_facet_plot
       
-    if(max(0, input$win_width) >600) {
+    if(max(700, input$win_width) >600) {
       gg_part <- non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
     } else {
       gg_part <- non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 2)
