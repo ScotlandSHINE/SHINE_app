@@ -3,7 +3,7 @@ compare_countries_ui <- function(id = "compare_countries") {
   
   fluidPage(style = "display: flex;",
             
-            mainPanel(id = "main-panel",
+            mainPanel(id = ns("main-panel"), class = "app-panel col-lg-8",
                       fluidPage(
                         titlePanel("How does Scotland compare with other countries?"),
                         fluidRow( 
@@ -29,7 +29,8 @@ compare_countries_server <- function(id = "compare_countries") {
         ns("select_var"),
         "Select a variable to compare:",
         choices = names(compare_countries),
-        width = "100%"
+        width = "100%",
+        selectize = FALSE
       )
     })
     
@@ -172,16 +173,22 @@ compare_countries_server <- function(id = "compare_countries") {
           fontface = "bold"
         ) -> non_facet_plot
       
-    if(input$win_width >600) {
+    if(max(0, input$win_width) >600) {
       gg_part <- non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
     } else {
       gg_part <- non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 2)
     }
 
     # gg_part <-  non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
-    ggplotly(gg_part, tooltip = "text") %>%
-      config(displayModeBar = FALSE)
-
+      ggplotly(gg_part, tooltip = "text") %>%
+        config(displayModeBar = FALSE) %>%
+        layout(
+          xaxis = list(fixedrange = TRUE),
+          xaxis2 = list(fixedrange = TRUE),
+          yaxis = list(fixedrange = TRUE),
+          yaxis2 = list(fixedrange = TRUE)
+        )
+      
     }) %>% bindCache(input$winwidth, input$select_var)
     
     

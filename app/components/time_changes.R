@@ -2,7 +2,7 @@ time_changes_ui <- function(id = "time_changes") {
   ns <- NS("time_changes")
   fluidPage(style = "display: flex;",
             
-            mainPanel(id = "main-panel",
+            mainPanel(id = ns("main-panel"), class = "app-panel col-lg-8",
                       fluidPage(
                         titlePanel("What's changed for Scotland's young people?"),
                         fluidRow(
@@ -26,7 +26,8 @@ time_changes_server <- function(id = "time_changes") {
       selectInput(ns("select_var"), 
                      "Select a variable to compare:",
                      choices = names(time_changes),
-                  width = "100%")
+                  width = "100%",
+                  selectize = FALSE)
     })
     
     df <- reactive({
@@ -53,7 +54,12 @@ time_changes_server <- function(id = "time_changes") {
                                      "Excellent" = global_excel_colour))
       
       ggpl <- ggplotly(gg_out, tooltip = "text") %>%
-        config(displayModeBar = FALSE) 
+        config(displayModeBar = FALSE)  %>%
+        layout(
+          xaxis = list(fixedrange = TRUE),
+          yaxis = list(fixedrange = TRUE)
+        )
+      
       ggpl 
       
     }) %>% bindCache(input$select_var)

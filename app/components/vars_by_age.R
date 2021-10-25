@@ -2,7 +2,7 @@ vars_by_age_ui <- function(id = "vars_by_age") {
   ns <- NS("vars_by_age")
   fluidPage(style = "display: flex;",
             
-            mainPanel(id = "main-panel",
+            mainPanel(id = ns("main-panel"), class = "app-panel col-lg-8",
                       fluidPage(
                         titlePanel("How are Scotland's young people doing?"),
                         fluidRow(
@@ -35,7 +35,8 @@ vars_by_age_server <- function(id = "vars_by_age") {
         ns("select_var"),
         "Select a variable to compare:",
         choices = names(vars_by_age),
-        width = "100%"
+        width = "100%",
+        selectize = FALSE
       )
     })
     

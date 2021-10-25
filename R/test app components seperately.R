@@ -6,7 +6,6 @@ library(bslib)
 library(scales)
 library(shinyWidgets)
 library(plotly)
-library(ggmosaic)
 
 library(ggrepel)
 options(sass.cache = FALSE)

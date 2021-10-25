@@ -30,7 +30,7 @@ shinyUI(
       # Home page - layout of panels
       tabPanel("Home",
                mainPanel(
-                 id = "main-panel",
+                 class = "app-panel col-lg-8",
                  tags$div(id= "home_top",
                  fluidRow(h1(
                    "Check out our apps below to explore HBSC and SHINE data..."
@@ -87,7 +87,8 @@ shinyUI(
     # single row at ~750 px rather than ~560
     ,tags$script(
       HTML(
-        "$('.lp-element').removeClass('col-sm-6')"
+        "$('.lp-element').removeClass('col-sm-6');
+        $('.app-panel').removeClass('col-sm-8');"
       )
     )
   )

@@ -164,7 +164,7 @@ h2 {
   font-size: 30px;
 }
 
-#main-panel {
+.app-panel {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;

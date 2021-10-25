@@ -4,7 +4,7 @@ influences_ui <- function(id = "influences") {
   fluidPage(style = "display: flex;",
             
             mainPanel(
-              id = "main-panel",
+              id = ns("main-panel"), class = "app-panel col-lg-8",
               fluidPage(
                 titlePanel(
                   "What influences the health and wellbeing of Scottish young people?"
@@ -42,7 +42,8 @@ influences_server <- function(id = "influences") {
         pull(lab)
       
       selectInput(ns("exposure"), "How does...",
-                  choices = labs)
+                  choices = labs,
+                  selectize = FALSE)
     })
     
     output$out_set <- renderUI({
@@ -53,7 +54,8 @@ influences_server <- function(id = "influences") {
         pull(lab)
       
       selectInput(ns("outcome"), "Affect...",
-                  choices = labs)
+                  choices = labs,
+                  selectize = FALSE)
     })
     
     output$exp_question <- renderText({

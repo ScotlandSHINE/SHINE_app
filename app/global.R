@@ -6,7 +6,6 @@ library(zeallot)
 library(scales)
 # library(shinyWidgets)
 library(plotly)
-library(ggmosaic)
 library(ggrepel)
 source("R/functions.R")
 
