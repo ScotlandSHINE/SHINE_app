@@ -12,7 +12,7 @@ compare_countries_ui <- function(id = "compare_countries") {
                                  uiOutput(ns("var_sel"))),
                         ),
                         fluidRow(class = "question",
-                            textOutput(ns("description")), style = "min-height: 20vh"),
+                            textOutput(ns("description")), style = "min-height: 15vh"),
                         fluidRow(plotlyOutput(ns("plot") # , height = "45vh"  # , hover = ns("plot_hover")
                                             )),
                       )))
@@ -58,7 +58,12 @@ compare_countries_server <- function(id = "compare_countries") {
       comparison()$data %>%
         left_join(country_codes, by = c("country_region" = "code")) %>%
         mutate(
-          sco = factor(ifelse(country_region == "GB-SCT", 1, ifelse(country_region == "GB-ENG", 2, 0))),
+          # sco = factor(ifelse(country_region == "GB-SCT", 1, ifelse(country_region == "GB-ENG", 2, 0))),
+          sco = factor(case_when(country_region == "GB-SCT" ~ 1,
+                           country_region == "GB-ENG" ~ 2,
+                           country_region == "GB-WLS" ~ 3,
+                           country_region == "IRL" ~ 4,
+                           TRUE ~ 0)),
           eng = country_region == "GB-ENG",
           eng_lab = ifelse(eng, paste("England\n", value, "%"), NA),
           country = str_remove_all(name, "(United Kingdom |\\(|\\))") %>% str_replace("(?<=Belgium)", ":"),
@@ -105,9 +110,9 @@ compare_countries_server <- function(id = "compare_countries") {
           colour = sco,
           size = sco
         )) +
-        scale_shape_manual(values = c(18, 18, 18)) +
-        scale_size_manual(values = c(1, 3, 1)) +
-        scale_colour_manual(values = c("#696969", secondary_colour, "red")) +
+        scale_shape_manual(values = c(18, 18, 18, 18, 18)) +
+        scale_size_manual(values = c(1, 3, 1, 1, 1)) +
+        scale_colour_manual(values = c("#696969", secondary_colour, "red", "#257027", "#0DCB12")) +
         theme(
           legend.position = "none",
           axis.title.y = element_blank(),
@@ -154,14 +159,14 @@ compare_countries_server <- function(id = "compare_countries") {
           hjust = 0.5,
           colour = "#696969",
         ) +
-        geom_text(
-          data = eng_lab_dat,
-          aes(
-            label = eng_lab,
-            x = 0.5,
-            colour = sco,
-            text = eng_lab
-          ), fontface = "bold") +
+        # geom_text(
+        #   data = eng_lab_dat,
+        #   aes(
+        #     label = eng_lab,
+        #     x = 0.5,
+        #     colour = sco,
+        #     text = eng_lab
+        #   ), fontface = "bold") +
         geom_text(
           data = scot_lab_dat,
           aes(
@@ -180,14 +185,13 @@ compare_countries_server <- function(id = "compare_countries") {
     }
 
     # gg_part <-  non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
-      ggplotly(gg_part, tooltip = "text") %>%
+      ggplotly(gg_part, height = 400, tooltip = "text") %>%
         config(displayModeBar = FALSE) %>%
         layout(
           xaxis = list(fixedrange = TRUE),
           xaxis2 = list(fixedrange = TRUE),
           yaxis = list(fixedrange = TRUE),
           yaxis2 = list(fixedrange = TRUE),
-          height = 400,
           margin = list(b = 120)
         )
       
