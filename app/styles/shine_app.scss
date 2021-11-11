@@ -64,11 +64,7 @@ body::-webkit-scrollbar-thumb {
   height: 50vh;
 }  
 
-#compare_countries-plot .main-svg {
-  height: 50vh;
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
   #compare_countries-plot {
     height: 70vh;
   }  

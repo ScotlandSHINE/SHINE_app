@@ -186,7 +186,9 @@ compare_countries_server <- function(id = "compare_countries") {
           xaxis = list(fixedrange = TRUE),
           xaxis2 = list(fixedrange = TRUE),
           yaxis = list(fixedrange = TRUE),
-          yaxis2 = list(fixedrange = TRUE)
+          yaxis2 = list(fixedrange = TRUE),
+          height = 400,
+          margin = list(b = 120)
         )
       
     }) %>% bindCache(input$winwidth, input$select_var)
