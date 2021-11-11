@@ -272,3 +272,13 @@ compare_countries <- compare_countries %>%
   set_names(., map(., ~ .x$title))
 
 save(compare_countries, file = "app/data/compare_countries.RData")
+
+
+dir("import") %>%
+  str_subset("^HBSC.*\\.xlsx") %>% 
+  tibble(file = .) %>% 
+  mutate(desc =  map_chr(file, ~ read_excel(file.path("import", .x), sheet = "Measure notes")$Note[1])) %>% 
+  mutate(len = str_length(desc)) %>% 
+  arrange(desc(len))
+
+         
