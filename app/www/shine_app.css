@@ -1,5 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Work%20Sans");
 @import url("https://p.typekit.net/p.css?s=1&k=jco6ucq&ht=tk&f=6808.6846&a=30079999&app=typekit&e=css");
+#influences-out_set, #influences-exp_set {
+  justify-content: center;
+  display: flex;
+}
+
+#influences-out_set .form-group, #influences-exp_set .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#influences-out_set .form-group > div, #influences-exp_set .form-group > div {
+  width: 300px;
+}
+
 body::-webkit-scrollbar {
   width: 0.5em;
 }

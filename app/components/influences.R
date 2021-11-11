@@ -15,10 +15,10 @@ influences_ui <- function(id = "influences") {
                   margin-top: 30px;
                   height: 190px;",
                   
-                  column(5,
+                  column(6,
                          uiOutput(ns("exp_set"))),
-                  column(2, h2("Vs")),
-                  column(5,
+                  # column(2, h2("Vs")),
+                  column(6,
                          uiOutput(ns("out_set"))),
                 )
               ),
@@ -43,7 +43,8 @@ influences_server <- function(id = "influences") {
       
       selectInput(ns("exposure"), "How does...",
                   choices = labs,
-                  selectize = FALSE)
+                  selectize = FALSE,
+                  width = 300)
     })
     
     output$out_set <- renderUI({
@@ -55,7 +56,8 @@ influences_server <- function(id = "influences") {
       
       selectInput(ns("outcome"), "Affect...",
                   choices = labs,
-                  selectize = FALSE)
+                  selectize = FALSE,
+                  width = 300)
     })
     
     output$exp_question <- renderText({
