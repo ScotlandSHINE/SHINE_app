@@ -57,8 +57,9 @@ time_changes_server <- function(id = "time_changes") {
         config(displayModeBar = FALSE)  %>%
         layout(
           xaxis = list(fixedrange = TRUE),
-          yaxis = list(fixedrange = TRUE)
-        )
+          yaxis = list(fixedrange = TRUE, title = list(standoff = 30)),
+          margin = list(l = 100, b = 100)
+          )
       
       ggpl 
       
