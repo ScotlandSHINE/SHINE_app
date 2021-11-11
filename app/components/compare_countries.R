@@ -48,13 +48,14 @@ compare_countries_server <- function(id = "compare_countries") {
       scot_lab_dat <- comparison()$data %>%
         filter(age_grp == "15YO", country_region == "GB-SCT") %>%
         mutate(sco = factor(1),
-               sco_lab = paste("Scotland\n", value, "%"))
+               sco_lab = paste("Scotland\n", value, "%"), 
+               value = case_when(value<10 ~ 10, value > 90 ~ 90, TRUE ~ value))
       
-      eng_lab_dat <- comparison()$data %>%
-        filter(age_grp == "15YO", country_region == "GB-ENG") %>%
-        mutate(sco = factor(2),
-               eng_lab = paste("England\n", value, "%"))
-      
+      # eng_lab_dat <- comparison()$data %>%
+      #   filter(age_grp == "15YO", country_region == "GB-ENG") %>%
+      #   mutate(sco = factor(2),
+      #          eng_lab = paste("England\n", value, "%"))
+      # 
       comparison()$data %>%
         left_join(country_codes, by = c("country_region" = "code")) %>%
         mutate(
@@ -87,7 +88,7 @@ compare_countries_server <- function(id = "compare_countries") {
           fill = "#111177",
           alpha = 0.2
         ) +
-        coord_flip(ylim = c(0, 100), xlim = c(-1.2, 2)) +
+        coord_flip(ylim = c(0, 100), xlim = c(-1.2, 2), clip = "off") +
         stat_summary(
           aes(
             xmin = -1,
