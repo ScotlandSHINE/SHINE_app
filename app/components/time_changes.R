@@ -51,14 +51,17 @@ time_changes_server <- function(id = "time_changes") {
         scale_colour_manual(values = c("Girls" = global_girls_colour,
                                      "Boys" = global_boys_colour,
                                      "Good" = global_good_colour,
-                                     "Excellent" = global_excel_colour))
+                                     "Excellent" = global_excel_colour)) +
+        theme(text = element_text(size = 14), legend.key.size = unit(30, "pt"),
+                        legend.text = element_text(size = 18))
       
       ggpl <- ggplotly(gg_out, tooltip = "text") %>%
         config(displayModeBar = FALSE)  %>%
         layout(
           xaxis = list(fixedrange = TRUE),
-          yaxis = list(fixedrange = TRUE)
-        )
+          yaxis = list(fixedrange = TRUE, title = list(standoff = 30)),
+          margin = list(l = 100, b = 100)
+          )
       
       ggpl 
       
