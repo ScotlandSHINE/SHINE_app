@@ -114,12 +114,14 @@ influences_server <- function(id = "influences") {
             ),
             labels = percent_format(accuracy = 1),
             breaks = c(0, 0.5, 1),
+            minor_breaks = seq(0, 1, 0.1),
             limits = c(0,1)) +
             geom_text(aes(y = text_y, label = perc_label),
                       colour = "#f5f5f5",
                       size = 15) +
             theme(axis.title.y = element_text(angle = 0,vjust = 0.5),
-                  panel.grid.major.x = element_line(colour = "grey")) +
+                  panel.grid.major.x = element_line(colour = "darkgrey", size = 1.2),
+                  panel.grid.minor.x = element_line(colour = "grey")) +
          coord_flip()
 
        
