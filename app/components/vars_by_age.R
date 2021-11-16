@@ -51,7 +51,7 @@ vars_by_age_server <- function(id = "vars_by_age") {
       base_plot <- ggplot() +
         theme(panel.grid.major.x = element_blank(),
               axis.title.y = element_text(angle = 0,vjust = 0.5)) +
-        scale_y_continuous(name = str_wrap(df()$axis_label, 20),
+        scale_y_continuous(name = paste0(paste0(rep(" ", 40), collapse = ""), "\n", str_wrap(df()$axis_label, 20)),
                            labels = percent_format(scale = 1, accuracy = 1),
                            limits = c(0, 100), breaks = seq(0, 100, 10), expand = expansion()) +
         scale_fill_manual(values = c("Girls" = global_girls_colour,

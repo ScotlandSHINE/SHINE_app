@@ -97,15 +97,16 @@ influences_server <- function(id = "influences") {
           mutate(denom = sum (n),
                 prop =  n / denom,
                 perc_label = paste0(round(100 * prop, 0),
-                                    "%")) %>%
+                                    "%"),
+                expo_lab = paste0(paste0(rep(" ", 20), collapse = ""), "\n", str_wrap(!!sym(exposure$variable), 10), "\n ")) %>%
          mutate(text_y = abs(as.numeric(!!sym(outcome$variable) == levels(!!sym(outcome$variable))[[1]]) - prop/2)) %>% 
          filter(!!sym(outcome$variable) == base_lab) %>% 
-          ggplot(aes_string(exposure$variable, "prop")) +
+          ggplot(aes(expo_lab, prop)) +
             geom_bar(stat = "identity",
                      fill = global_excel_colour) +
             theme(legend.position = "none",
                   panel.grid = element_blank()) +
-            scale_x_discrete(str_wrap(exposure$question, 20)) +
+            scale_x_discrete(paste0(paste0(rep(" ", 40), collapse = ""), "\n", str_wrap(exposure$question, 20))) +
             scale_y_continuous(str_wrap(
               paste0(
                 "How many people say \"",
@@ -123,7 +124,8 @@ influences_server <- function(id = "influences") {
                       size = 15) +
             theme(axis.title.y = element_text(angle = 0,vjust = 0.5),
                   panel.grid.major.x = element_line(colour = "darkgrey", size = 1.2),
-                  panel.grid.minor.x = element_line(colour = "grey")) +
+                  panel.grid.minor.x = element_line(colour = "grey"),
+                  axis.text.x = element_text(hjust = 1)) +
          coord_flip()
 
        
