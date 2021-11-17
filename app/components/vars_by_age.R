@@ -60,19 +60,25 @@ vars_by_age_server <- function(id = "vars_by_age") {
                                      "Good" = global_good_colour), limits = force) +
         scale_alpha_manual(values = c("Excellent" = 1, "Good" = 0.5))
       
+        plot_data <- df()$data
+      
       if (input$agegrp) {
-        plot_data <- df()$data %>%
+        plot_data <- plot_data %>%
           filter(Age != "All") %>%
+          mutate(Age = str_remove_all(Age, "†")) %>% 
           pivot_longer(Boys:Girls,
                        names_to = "Gender",
                        values_to = "Percentage")
+        
       x_map <- "Age"
       } else {
-        plot_data <- df()$data %>%
+        plot_data <- plot_data %>%
           filter(Age == "All") %>%
+          mutate(Age = str_remove_all(Age, "†")) %>% 
           pivot_longer(Boys:Girls,
                        names_to = "Gender",
                        values_to = "Percentage")
+        
         x_map <- "Gender"
       }
       
@@ -87,6 +93,7 @@ vars_by_age_server <- function(id = "vars_by_age") {
           ) +
           facet_wrap(~ Gender, scales = "free")
       } else {
+    # browser()
         plot_out <- base_plot +
           geom_bar(
             data = plot_data,
@@ -95,7 +102,6 @@ vars_by_age_server <- function(id = "vars_by_age") {
             position = "dodge"
           )
       }
-    # browser()
     plot_out
     }) %>% bindCache(input$select_var, input$agegrp)
     
