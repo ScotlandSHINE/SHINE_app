@@ -59,7 +59,7 @@ shinyUI(
 
     # All apps nested in single menu (so as not to distract from screen)
       navbarMenu(
-        tags$span("Explore apps... "),
+        "Explore apps... ",
         
         icon = icon("bars", "fa-bars"),
         
@@ -72,7 +72,17 @@ shinyUI(
         tabPanel("Comparing with other countries",
                  compare_countries_ui())
         
-      )
+      ),
+    
+    navbarMenu(
+      # id = "ext-links",
+      # style = "margin-left: auto",
+      "Find out more about...",
+      
+      nav_item(a(href = "https://shine.sphsu.gla.ac.uk/", "The SHINE project")),
+      nav_item(a(href = "http://www.hbsc.org/", "The HBSC international survey")),
+      nav_item(a(href = "https://www.gla.ac.uk/researchinstitutes/healthwellbeing/research/mrccsosocialandpublichealthsciencesunit/programmes/complexity/healthbehaviourinschool-agedchildrenhbscscotlandstudy/", "HBSC in Scotland"))
+    )
 
     # Adds a debug button to navbar - DEV only!
     # ,tags$script(
