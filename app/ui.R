@@ -16,7 +16,8 @@ shinyUI(
                                     win_width = window.innerWidth;
                                     Shiny.onInputChange("compare_countries-win_width", win_width);
                                 });
-                            ')
+                            '),
+    tags$script(src = "https://cdn.plot.ly/plotly-latest.min.js"),
     ),
     title = div(class = "logo",
                 actionLink(
