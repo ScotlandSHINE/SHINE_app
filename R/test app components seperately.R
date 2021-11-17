@@ -13,8 +13,8 @@ options(sass.cache = FALSE)
 primary_colour <-  "#2e3192"
 secondary_colour <- "#016bb2"
 main_colour <- "#333333"
-global_girls_colour <- "#edae49"
-global_boys_colour <- "#66a182"
+global_girls_colour <- "#FFB948"
+global_boys_colour <- "#BE4D00"
 global_good_colour <- "#8d96a3"
 global_excel_colour <- "#00798c" 
 
