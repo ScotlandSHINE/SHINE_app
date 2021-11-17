@@ -34,10 +34,13 @@ influences_ui <- function(id = "influences") {
 
 influences_server <- function(id = "influences") {
   moduleServer(id, function(input, output, session) {
+    
+    labs_filt <- labs_cats %>% filter(variable %in% names(influences_data))
+    
     output$exp_set <- renderUI({
-      req(labs_cats)
+      req(labs_filt)
       ns <- session$ns
-      labs <- labs_cats %>%
+      labs <- labs_filt %>%
         filter(cat == "exposure") %>%
         pull(lab)
       
@@ -48,9 +51,9 @@ influences_server <- function(id = "influences") {
     })
     
     output$out_set <- renderUI({
-      req(labs_cats)
+      req(labs_filt)
       ns <- session$ns
-      labs <- labs_cats %>%
+      labs <- labs_filt %>%
         filter(cat == "outcome") %>%
         pull(lab)
       

@@ -132,21 +132,23 @@ hbsc_data <- hbsc2014 %>%
     nervous,
     sleepdificulty,
     health,
-    lifesat
+    lifesat,
+    smok30d_2,
+    drunk30d
   )
 
 labs_cats <- tribble(	~variable, ~lab, ~cat, ~question,	
   "sex",  "Gender", "group",  "",
   "AGECAT", "Age category", "group",  "",
-  "breakfastwd",  "Breakfast on weekdays", "exposure",  "Do you have breakfast every weekday?",
+  "breakfastwd",  "Breakfast on schooldays", "exposure",  "Do you have breakfast every day on schooldays?",
   "fruits",	"Eating fruit", "exposure",	"How many times a week do you usually eat fruits?",
   "sweets",	"Eating sweets", "exposure",	"How many times a week do you usually eat sweets or chocolate?",
   "family_meal_eve",	"Family meals in the evening", "exposure", "How often do you have an evening meal together with your mother or father?",
   "timeexe",	"Time exercising", "exposure",	"Outside of school hours, how often do you usually exercise?",
-  "tvwd",	"Time watching TV", "exposure",	"How many hours a day on weekdays do you spend watching TV?",	
+  "tvwd",	"Time watching TV", "exposure",	"How many hours a day on weekdays do you spend watching TV?",
   "playgamewd",	"Playing computer games", "exposure",	"How many hours a day on weekdays do you spend playing computer games?",
   "bulliedothers",	"Bullying others", "exposure",	"Have you taken part in bullying others in the last couple of months?",
-  "beenbullied",	"Being bullied", "exposure",	"Have you been bullied in the last couple of months?",
+  "beenbullied",	"Being bullied", "exposure",	"Have you been bullied at school in the past couple of months?",
   "cbullmess",	"",	"",	"",	
   "cbullpict",	"",	"",	"",	
   "talkfather",	"",	"",	"",	
@@ -158,8 +160,7 @@ labs_cats <- tribble(	~variable, ~lab, ~cat, ~question,
   "famsup",	"",	"",	"",
   "famdec",	"",	"",	"",
   "famtalk",	"",	"",	"",
-  "friends_ph_int", "Talk to friends - phone and internet",
-  "exposure",	"How often do you talk to your friends on the phone or internet?",
+  "friends_ph_int", "Talk to friends - phone and internet", "exposure",	"How often do you talk to your friends on the phone or internet?",
   "acachieve",	"",	"",	"",
   "studtogether",	"",	"",	"",
   "studaccept",	"",	"",	"",
@@ -169,13 +170,15 @@ labs_cats <- tribble(	~variable, ~lab, ~cat, ~question,
   "fasbedroom",	"",	"",	"",
   "welloff",	"",	"",	"",
   "likeschool",	"",	"",	"",
-  "schoolpressure",	"",	"",	"",
   "thinkbody",	"Thinking about body",	"",	"Do you think your body is...?",
   "feellow",	"Feeling low",  "outcome",	"In the last 6 months, have you often felt low?",
   "nervous",	"Feeling nervous",  "outcome",	"In the last 6 months, have you often felt nervous?",
   "sleepdificulty",	"Difficulty sleeping",  "outcome",	"In the last 6 months, have you often had difficulies getting to sleep?",
   "health",	"Health",  "outcome",	"How would you rate your health?",
-  "lifesat",	"Life satisfaction",  "outcome",	"How happy do you feel with your life?"
+  "lifesat",	"Life satisfaction",  "outcome",	"How happy do you feel with your life?",
+  "schoolpressure", "Pressured by schoolwork", "exposure", "How pressured do you feel by the schoolwork you have to do?",
+  "smok30d_2", "Smoked in the past 30 days", "exposure", "Have you smoked a cigarette in the past 30 days?",
+  "drunk30d", "Been drunk in the past 30 days", "exposure", "Have you been drunk in the past 30 days?"
 ) %>% filter(cat != "")
 
 
@@ -189,20 +192,23 @@ influences_data <-
     breakfastwd = factor(breakfastwd == 6, labels = c("No", "Yes")),
     fruits = factor(fruits == 6, labels = c("Less often", "Every day")),
     sweets = factor(sweets == 6, labels = c("Less often", "Every day")),
-    family_meal_eve = factor(family_meal_eve == 6, labels = c("Less often", "Every day")),
-    timeexe = factor(timeexe < 4, labels = c("2-3 times a week or more", "Less often")),
-    tvwd = factor(tvwd > 4, labels = c("Less than 3 hours", "3 or more")),
-    playgamewd = factor(playgamewd > 3, labels = c("Less than 2 hours", "2 or more")),
+    # family_meal_eve = factor(family_meal_eve == 6, labels = c("Less often", "Every day")),
+    # timeexe = factor(timeexe < 4, labels = c("2-3 times a week or more", "Less often")),
+    # tvwd = factor(tvwd > 4, labels = c("Less than 3 hours", "3 or more")),
+    # playgamewd = factor(playgamewd > 3, labels = c("Less than 2 hours", "2 or more")),
     bulliedothers = factor(bulliedothers > 2, labels = c("No", "Yes")),
     beenbullied = factor(beenbullied > 2, labels = c("No", "Yes")),
     famhelp = factor(famhelp > 5, labels = c("No", "Yes")),
-    friends_ph_int = factor(friends_ph_int == 4, labels = c("Less often", "Every day")),
-    thinkbody = factor(thinkbody < 3, labels = c("Less often", "More than once a week")),
+    # friends_ph_int = factor(friends_ph_int == 4, labels = c("Less often", "Every day")),
+    # thinkbody = factor(thinkbody < 3, labels = c("Less often", "More than once a week")),
     feellow = factor(feellow < 3, labels = c("Less often", "In the last 6 months, I have felt low more than once a week")),
     nervous = factor(nervous < 3, labels = c("Less often", "In the last 6 months, I have felt nervous more than once a week")),
     sleepdificulty = factor(sleepdificulty < 3, labels = c("Less often", "In the last 6 months, I have had difficulties getting to sleep more than once a week")),
     health = factor(health < 3, labels = c("Fair or Poor", "I would rate my health 'Good' or 'Excellent'")),
-    lifesat = factor(lifesat > 7, labels = c("Fair or Poor", "I feel 'Good' or 'Excellent' about my life"))
+    lifesat = factor(lifesat > 7, labels = c("Fair or Poor", "I feel 'Good' or 'Excellent' about my life")),
+    schoolpressure = factor(schoolpressure > 2, labels = c("A little or not at all", "Some or a lot")),
+    smok30d_2 = factor(smok30d_2 > 1, labels = c("No", "Yes")),
+    drunk30d = factor(drunk30d > 1, labels = c("No", "Yes"))
   )
 
 save(influences_data, labs_cats, file = "app/data/influences.RData")
@@ -280,5 +286,13 @@ dir("import") %>%
   mutate(desc =  map_chr(file, ~ read_excel(file.path("import", .x), sheet = "Measure notes")$Note[1])) %>% 
   mutate(len = str_length(desc)) %>% 
   arrange(desc(len))
+
+         
+
+dir("import") %>%
+  str_subset("^HBSC.*\\.xlsx") %>% 
+  tibble(file = .) %>% 
+  mutate(desc =  map_chr(file, ~read_excel(file.path("import", .x), sheet = "Classifications")$`Measure name`)) %>% 
+  arrange(desc)
 
          
