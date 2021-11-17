@@ -18,6 +18,8 @@ $main-color: #333333;
   }
 }
 
+
+
 // #influences-out_set .form-group, #influences-exp_set .form-group {
 //   display: flex;
 //   flex-direction: column;
@@ -87,6 +89,10 @@ body::-webkit-scrollbar-thumb {
   #compare_countries-plot {
     height: 70vh;
   }  
+  
+  #compare_countries-description {
+    font-size: 18px;
+  }
 }
 
 
