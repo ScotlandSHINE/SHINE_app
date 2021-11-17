@@ -81,7 +81,8 @@ shinyUI(
       "Find out more about...",
       
       nav_item(a(href = "https://shine.sphsu.gla.ac.uk/", "The SHINE project")),
-      nav_item(a(href = "http://www.hbsc.org/", "The HBSC international survey")),
+      nav_item(a(href = "http://www.hbsc.org/", "The HBSC survey")),
+      nav_item(a(href = "http://www.hbsc.org/publications/international/", "HBSC international report")),
       nav_item(a(href = "https://www.gla.ac.uk/hbscscotland", "HBSC in Scotland"))
     )
 
