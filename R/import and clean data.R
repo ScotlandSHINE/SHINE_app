@@ -208,7 +208,7 @@ influences_data <-
 save(influences_data, labs_cats, file = "app/data/influences.RData")
 
 
-# app3 - time_changes data -------------------------------------------------------
+# app 3 - time_changes data -------------------------------------------------------
 
 time_changes_import <- excel_sheets("import/app3_data.xlsx") %>%
   map(function(sheet) {
@@ -238,7 +238,7 @@ time_changes <-
 save(time_changes, file = "app/data/time_changes.RData")
 
 
-# app4 -  data for country comparisons -------------------------------------
+# app 4 -  data for country comparisons -------------------------------------
 
 compare_countries <- dir("import") %>%
   str_subset("^HBSC.*\\.xlsx") %>%
