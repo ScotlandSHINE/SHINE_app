@@ -18,6 +18,7 @@ shinyUI(
                                 });
                             '),
     tags$script(src = "https://cdn.plot.ly/plotly-latest.min.js"),
+    tags$script(src = "https://raw.githubusercontent.com/rstudio/crosstalk/main/inst/www/js/crosstalk.min.js.map"),
     ),
     title = div(class = "logo",
                 actionLink(
@@ -80,10 +81,10 @@ shinyUI(
       # style = "margin-left: auto",
       "Find out more about...",
       
-      nav_item(a(href = "https://shine.sphsu.gla.ac.uk/", "The SHINE project")),
-      nav_item(a(href = "http://www.hbsc.org/", "The HBSC survey")),
-      nav_item(a(href = "http://www.hbsc.org/publications/international/", "HBSC international report")),
-      nav_item(a(href = "https://www.gla.ac.uk/hbscscotland", "HBSC in Scotland"))
+      nav_item(a(href = "https://shine.sphsu.gla.ac.uk/", target = "_blank", "The SHINE project")),
+      nav_item(a(href = "http://www.hbsc.org/", target = "_blank", "The HBSC survey")),
+      nav_item(a(href = "http://www.hbsc.org/publications/international/", target = "_blank", "HBSC international report")),
+      nav_item(a(href = "https://www.gla.ac.uk/hbscscotland", target = "_blank", "HBSC in Scotland"))
     )
 
     # Adds a debug button to navbar - DEV only!
