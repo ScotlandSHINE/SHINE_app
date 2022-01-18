@@ -36,7 +36,8 @@ vars_by_age_server <- function(id = "vars_by_age") {
         "Select a variable to compare:",
         choices = names(vars_by_age),
         width = "100%",
-        selectize = FALSE
+        selected = "Report good or excellent health",
+        selectize = FALSE,
       )
     })
     
@@ -64,8 +65,8 @@ vars_by_age_server <- function(id = "vars_by_age") {
       
       if (input$agegrp) {
         plot_data <- plot_data %>%
-          filter(Age != "All") %>%
-          mutate(Age = str_remove_all(Age, "†")) %>% 
+          filter(!str_detect(Age, "All.?")) %>%
+          mutate(Age = str_remove_all(Age, "\\W$")) %>% 
           pivot_longer(Boys:Girls,
                        names_to = "Gender",
                        values_to = "Percentage")
@@ -73,8 +74,8 @@ vars_by_age_server <- function(id = "vars_by_age") {
       x_map <- "Age"
       } else {
         plot_data <- plot_data %>%
-          filter(Age == "All") %>%
-          mutate(Age = str_remove_all(Age, "†")) %>% 
+          filter(str_detect(Age, "All.?")) %>%
+          mutate(Age = str_remove_all(Age, "\\W$")) %>% 
           pivot_longer(Boys:Girls,
                        names_to = "Gender",
                        values_to = "Percentage")
@@ -87,11 +88,15 @@ vars_by_age_server <- function(id = "vars_by_age") {
         plot_out <- base_plot +
           geom_bar(
             data = plot_data,
-            aes(!!sym(x_map), Percentage, fill = Gender, alpha = Rating),
+            aes(Gender, Percentage, fill = Gender, alpha = Rating),
             stat = "identity",
-            position = "stack"
-          ) #+
-          # facet_wrap(~ Gender, scales = "free")
+            position = "stack",
+            width = 1
+          ) +
+          facet_wrap(~ Age, strip.position = "bottom") + 
+          scale_x_discrete(x_map, expand = expansion(mult = 0.9)) +
+          theme(panel.spacing = grid::unit(-1, "lines"),
+                axis.text.x =  element_blank())
       } else {
     # browser()
         plot_out <- base_plot +
