@@ -45,7 +45,7 @@ shinyUI(
                                  time_changes_lp_box),
                           column(6, class = "lp-element col-md-6",
                                  compare_countries_lp_box)),
-                 h3(id = "extra_head", HTML("More info about data used in these apps 
+                 h3(id = "extra_head", HTML("More info about data used in these apps
                                             <i class='fas fa-arrow-down' style='font-size: 18pt'></i>"))
                           ),
                  tags$div(id="home_extra",
@@ -57,7 +57,8 @@ shinyUI(
                           'https://www.gla.ac.uk/hbscscotland'>www.gla.ac.uk/hbscscotland</a>
                           and <a
                           href='https://shine.sphsu.gla.ac.uk'>shine.sphsu.gla.ac.uk</a>
-                          for more information.")))),
+                          for more information."))
+                 )),
 
     # All apps nested in single menu (so as not to distract from screen)
       navbarMenu(

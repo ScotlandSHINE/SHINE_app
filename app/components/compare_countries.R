@@ -123,7 +123,8 @@ compare_countries_server <- function(id = "compare_countries") {
           panel.grid.major.x = element_line(colour = "white"),
           plot.margin = margin(1, 2, 2, 2, unit = "lines"),
           panel.spacing = unit(3, "lines"),
-          axis.title.x = element_text(size = 16)
+          axis.title.x = element_text(size = 16),
+          axis.text.x = element_text(size = 10)
         ) +
         scale_y_continuous(
           # paste0("&nbsp;\n", str_wrap(comparison()$title, 70)),
