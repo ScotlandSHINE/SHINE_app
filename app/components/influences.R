@@ -116,7 +116,7 @@ influences_server <- function(id = "influences") {
                 base_lab,
                 "\""
               ),
-              700
+              70
             ),
             labels = percent_format(accuracy = 1),
             breaks = c(0, 0.5, 1),
