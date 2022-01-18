@@ -52,8 +52,13 @@ time_changes_server <- function(id = "time_changes") {
                                      "Boys" = global_boys_colour,
                                      "Good" = global_good_colour,
                                      "Excellent" = global_excel_colour)) +
-        theme(text = element_text(size = 14), legend.key.size = unit(30, "pt"),
-                        legend.text = element_text(size = 18))
+        theme(
+          text = element_text(size = 14),
+          legend.key.size = unit(30, "pt"),
+          legend.text = element_text(size = 18),
+          axis.title.y = element_text(size = 18),
+          axis.title.x = element_text(size = 18),
+        )
       
       ggpl <- ggplotly(gg_out, tooltip = "text") %>%
         config(displayModeBar = FALSE)  %>%

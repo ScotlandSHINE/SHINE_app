@@ -44,8 +44,8 @@ theme_set(theme_minimal() +
                   line = element_line(colour = main_colour),
                   axis.title = element_text(colour = secondary_colour,
                                             size = 18),
-                  axis.title.y = element_text(margin = margin(r = 15, unit = "pt")),
-                  axis.title.x = element_text(margin = margin(t = 15, unit = "pt")),
+                  axis.title.y = element_text(margin = margin(r = 15, unit = "pt"), size = 24),
+                  axis.title.x = element_text(margin = margin(t = 15, unit = "pt"), size = 24),
           legend.key.size = unit(40, "pt"),
           legend.text = element_text(size = 22),
           legend.key = element_blank()))
