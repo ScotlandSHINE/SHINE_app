@@ -1,7 +1,7 @@
 shinyUI(
   navbarPage(
     id = "main_page",
-    windowTitle = "Explore Scotland's SHINE project data",
+    windowTitle = "Explore Scotland's young people's health",
     theme = bs_theme(version = 4),
     header = tags$head(
       tags$link(href = "shine_app.css", rel = "stylesheet", type = "text/css"),
@@ -35,7 +35,7 @@ shinyUI(
                  class = "app-panel col-lg-8",
                  tags$div(id= "home_top",
                  fluidRow(h1(
-                   "Check out our apps below to explore HBSC and SHINE data..."
+                   "Check out our apps below to explore HBSC data..."
                  )),
                  fluidRow(class = "lp-row", column(6, class = "lp-element col-md-6",
                                  vars_by_age_lp_box),
