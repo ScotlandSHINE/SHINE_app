@@ -90,8 +90,8 @@ vars_by_age_server <- function(id = "vars_by_age") {
             aes(!!sym(x_map), Percentage, fill = Gender, alpha = Rating),
             stat = "identity",
             position = "stack"
-          ) +
-          facet_wrap(~ Gender, scales = "free")
+          ) #+
+          # facet_wrap(~ Gender, scales = "free")
       } else {
     # browser()
         plot_out <- base_plot +
