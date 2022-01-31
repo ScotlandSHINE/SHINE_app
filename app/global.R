@@ -19,6 +19,19 @@ tryCatch(sass(sass_file("styles/shine_app.scss"),
          output = "www/shine_app.css"),
          error = function(e) cat("'www/shine_app.css' not writable"))
 
+# data sources footer
+
+data_sources <- tags$div(id="home_extra",
+                         HTML("Data were collected through the Health
+                Behaviour in School-aged Children (HBSC) study and
+                the apps were developed in collaboration with the
+                Scottish Schools Health and Wellbeing Improvement
+                Research Network (SHINE). See <a href =
+                'https://www.gla.ac.uk/hbscscotland'>www.gla.ac.uk/hbscscotland</a>
+                and <a
+                href='https://shine.sphsu.gla.ac.uk'>shine.sphsu.gla.ac.uk</a>
+                for more information."))
+
 
 # Setting standard display of text and graphs
 

@@ -35,6 +35,11 @@ body::-webkit-scrollbar-thumb {
   border-radius: 5px;
 }
 
+#home_extra {
+  top: 90vh;
+  position: absolute;
+}
+
 #home_top {
     min-height: calc(100vh - 100px);
     display: flex;

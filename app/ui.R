@@ -48,16 +48,7 @@ shinyUI(
                  h3(id = "extra_head", HTML("More info about data used in these apps
                                             <i class='fas fa-arrow-down' style='font-size: 18pt'></i>"))
                           ),
-                 tags$div(id="home_extra",
-                          HTML("Data were collected through the Health
-                          Behaviour in School-aged Children (HBSC) study and
-                          the apps were developed in collaboration with the
-                          Scottish Schools Health and Wellbeing Improvement
-                          Research Network (SHINE). See <a href =
-                          'https://www.gla.ac.uk/hbscscotland'>www.gla.ac.uk/hbscscotland</a>
-                          and <a
-                          href='https://shine.sphsu.gla.ac.uk'>shine.sphsu.gla.ac.uk</a>
-                          for more information."))
+                 data_sources
                  )),
 
     # All apps nested in single menu (so as not to distract from screen)
@@ -80,7 +71,7 @@ shinyUI(
     navbarMenu(
       # id = "ext-links",
       # style = "margin-left: auto",
-      "Find out more about...",
+      "The project and data...",
       
       nav_item(a(href = "https://shine.sphsu.gla.ac.uk/", target = "_blank", "The SHINE project")),
       nav_item(a(href = "http://www.hbsc.org/", target = "_blank", "The HBSC survey")),

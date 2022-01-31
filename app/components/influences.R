@@ -27,7 +27,8 @@ influences_ui <- function(id = "influences") {
                      fluidRow(plotOutput(
                        ns("plot"), height = "55vh"
                      ))
-                     ))
+                     )),
+              data_sources
             ))
   
 }
