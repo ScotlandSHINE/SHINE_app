@@ -14,7 +14,7 @@ compare_countries_ui <- function(id = "compare_countries") {
                         ),
                         fluidRow(class = "question",
                             textOutput(ns("description")), style = "min-height: 15vh"),
-                        fluidRow(plotlyOutput(ns("plot") # , height = "45vh"  # , hover = ns("plot_hover")
+                        fluidRow(style = "min-height: 60vh", plotlyOutput(ns("plot") # , height = "45vh"  # , hover = ns("plot_hover")
                                             )),
                       ), data_sources
                       ))

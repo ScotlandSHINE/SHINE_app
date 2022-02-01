@@ -25,7 +25,7 @@ vars_by_age_ui <- function(id = "vars_by_age") {
                 ),
                 div(class = "question",
                     textOutput(ns("question"))),
-                fluidRow(plotOutput(ns("plot"), height = "60vh"))
+                fluidRow(style = "min-height: 65vh", plotOutput(ns("plot"), height = "60vh"))
               ),
               data_sources
             ))

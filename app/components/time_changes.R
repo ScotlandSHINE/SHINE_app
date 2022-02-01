@@ -16,7 +16,7 @@ time_changes_ui <- function(id = "time_changes") {
                         #     textOutput(ns("question"))),
                       div(class = "question",
                           textOutput(ns("question"))),
-                        fluidRow(plotlyOutput(ns("plot"), height = "60vh")),
+                        fluidRow(style = "min-height: 50vh",plotlyOutput(ns("plot"), height = "60vh")),
                       data_sources
                       ))
 } 
