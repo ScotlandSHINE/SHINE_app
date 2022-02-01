@@ -46,7 +46,7 @@ influences_server <- function(id = "influences") {
         filter(cat == "exposure") %>%
         pull(lab)
       
-      selectInput(ns("exposure"), "How does...",
+      selectInput(ns("exposure"), "How is...",
                   choices = labs,
                   selectize = FALSE,
                   width = 300)
@@ -59,7 +59,7 @@ influences_server <- function(id = "influences") {
         filter(cat == "outcome") %>%
         pull(lab)
       
-      selectInput(ns("outcome"), "Affect...",
+      selectInput(ns("outcome"), "Linked to...",
                   choices = labs,
                   selectize = FALSE,
                   width = 300)
