@@ -205,7 +205,7 @@ influences_data <-
     nervous = factor(nervous < 3, labels = c("Less often", "In the last 6 months, I have felt nervous more than once a week")),
     sleepdificulty = factor(sleepdificulty < 3, labels = c("Less often", "In the last 6 months, I have had difficulties getting to sleep more than once a week")),
     health = factor(health < 3, labels = c("Fair or Poor", "I would rate my health 'Good' or 'Excellent'")),
-    lifesat = factor(lifesat > 7, labels = c("Fair or Poor", "I feel 'Good' or 'Excellent' about my life")),
+    lifesat = factor(lifesat > 7, labels = c("Fair or Poor", "I have 'high' life satisfaction")),
     schoolpressure = factor(schoolpressure > 2, labels = c("A little or not at all", "Some or a lot")),
     smok30d_2 = factor(smok30d_2 > 1, labels = c("No", "Yes")),
     drunk30d = factor(drunk30d > 1, labels = c("No", "Yes"))
