@@ -6,6 +6,7 @@ influences_ui <- function(id = "influences") {
             mainPanel(
               id = ns("main-panel"), class = "app-panel col-lg-8",
               fluidPage(
+                class = "cont-panel",
                 titlePanel(
                   "What influences the health and wellbeing of Scottish young people?"
                 ),

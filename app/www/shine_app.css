@@ -25,8 +25,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 #home_extra {
-  top: 90vh;
-  position: absolute;
+  top: 10px;
+  position: relative;
 }
 
 #home_top {

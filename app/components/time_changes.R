@@ -4,6 +4,7 @@ time_changes_ui <- function(id = "time_changes") {
             
             mainPanel(id = ns("main-panel"), class = "app-panel col-lg-8",
                       fluidPage(
+                        class = "cont-panel",
                         titlePanel("What's changed for Scotland's young people?"),
                         fluidRow(
                           style = "display: flex; align-items: flex-end",
@@ -13,6 +14,8 @@ time_changes_ui <- function(id = "time_changes") {
                         ),
                         # div(class = "question",
                         #     textOutput(ns("question"))),
+                      div(class = "question",
+                          textOutput(ns("question"))),
                         fluidRow(plotlyOutput(ns("plot"), height = "60vh")),
                       data_sources
                       ))
@@ -34,6 +37,14 @@ time_changes_server <- function(id = "time_changes") {
     df <- reactive({
       req(input$select_var)
       time_changes[[input$select_var]]$data
+    })
+    
+    output$question <- reactive({
+      req(input$select_var)
+      q <- time_changes[[input$select_var]]$question
+      a <- time_changes[[input$select_var]]$axis_label
+      
+      paste0(q, " (", a, ")")
     })
     
     

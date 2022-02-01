@@ -225,9 +225,25 @@ time_changes_import <- excel_sheets("import/app3_data.xlsx") %>%
         n_max = 1,
         col_names = FALSE
       )[[1]]
+    question <-
+      read_excel(
+        "import/app3_data.xlsx",
+        sheet = sheet,
+        skip = 1,
+        n_max = 1,
+        col_names = FALSE
+      )[[1]]
+    axis_label <-
+      read_excel(
+        "import/app3_data.xlsx",
+        sheet = sheet,
+        skip = 1,
+        n_max = 1,
+        col_names = FALSE
+      )[[2]]
     df <-
-      read_excel("import/app3_data.xlsx", sheet = sheet, skip = 1)
-    list(title = title, data = df)
+      read_excel("import/app3_data.xlsx", sheet = sheet, skip = 2)
+    list(title = title, question = question, axis_label = axis_label, data = df)
   })
 
 time_changes <-

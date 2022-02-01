@@ -36,8 +36,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 #home_extra {
-  top: 90vh;
-  position: absolute;
+  top: 30px;
+  position: relative;
 }
 
 #home_top {
@@ -213,6 +213,10 @@ h2 {
   font-weight: 500;
   color: $secondary-color;
   font-size: 30px;
+}
+
+.cont-panel {
+ // min-height: 100%;
 }
 
 .app-panel {

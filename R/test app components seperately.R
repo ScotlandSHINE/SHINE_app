@@ -50,7 +50,7 @@ data_sources <- tags$div(id="home_extra",
                 href='https://shine.sphsu.gla.ac.uk'>shine.sphsu.gla.ac.uk</a>
                 for more information."))
 
-# vars by age app ---------------------------------------------------------
+# 1 - vars by age app ---------------------------------------------------------
 
 
 load_vars_by_age_data <- function() {
@@ -63,7 +63,7 @@ source("app/components/vars_by_age.R"); vars_by_age_app()
 
 
 
-# influences on health and wellbeing --------------------------------------
+# 2 - influences on health and wellbeing --------------------------------------
 
 load_influences_data <- function() {
   load("app/data/influences.RData", envir = .GlobalEnv)
@@ -74,7 +74,7 @@ load_influences_data()
 source("app/components/influences.R"); influences_app()
 
 
-# changes in health behaviours --------------------------------------------
+# 3 - changes in health behaviours --------------------------------------------
 
 time_changes_data <- function() {
   load("app/data/time_changes.RData", envir = .GlobalEnv)
@@ -85,7 +85,7 @@ time_changes_data()
 source("app/components/time_changes.R"); time_changes_app()
 
 
-# comparing with other countries ------------------------------------------
+# 4 - comparing with other countries ------------------------------------------
 
 compare_countries_data <- function() {
   load("app/data/compare_countries.RData", envir = .GlobalEnv)
