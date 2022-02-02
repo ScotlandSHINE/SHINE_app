@@ -113,11 +113,12 @@ influences_server <- function(id = "influences") {
                   panel.grid = element_blank()) +
             scale_x_discrete(paste0(paste0(rep(" ", 40), collapse = ""), "\n", str_wrap(exposure$question, 20))) +
             scale_y_continuous(str_wrap(
-              paste0(
-                "How many people say \"",
-                base_lab,
-                "\""
-              ),
+              outcome$question,
+              # paste0(
+              #   "How many people say \"",
+              #   base_lab,
+              #   "\""
+              # ),
               50
             ),
             labels = percent_format(accuracy = 1),
