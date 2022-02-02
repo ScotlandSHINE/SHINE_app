@@ -158,7 +158,7 @@ vars_by_age_app <- function() {
 
 vars_by_age_lp_box <- lp_main_box(
   title_box = "How are Scotland's young people doing?",
-  description = "How did Scottish young people answer these questions about their health, exercise and how well they're doing?",
+  description = "How did Scottish young people answer these questions about their health and wellbeing?",
   button_name = "vars_by_age",
   image_name = "vars_by_age"
 )
