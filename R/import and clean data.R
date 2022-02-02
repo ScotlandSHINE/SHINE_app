@@ -283,36 +283,37 @@ compare_countries <- dir("import") %>%
         sex == "FEMALE" ~ "Girls"
       ))
     list(
-      title = variable_indicator,
+      title = str_remove(variable_indicator, "(?<=ther)s$"),
       description = variable_desc %>% str_remove(" ?No data.*$") %>% str_remove("Note.*"),
       data = variable_data
     )
   })
 
-tibble::tribble(
-                                                                                                       ~desc,
-                                                "Proportion of young people who eat breakfast every weekday",
-                                     "Proportion of young people who have drunk alcohol in the last 30 days",
-      "Proportion of young people who have been cyber bullied one time or more in the last couple of months",
-    "Proportion of young people who have cyber bullied others one time or more in the last couple of months",
-                                              "Proportion of young people who eat fruit at least once a day",
-    "Proportion of young people who have been bullied at school at least twice in the past couple of months",
+order <- c(
+  "Proportion of young people who eat breakfast every weekday",
+  "Proportion of young people who have drunk alcohol in the last 30 days",
+  "Proportion of young people who have been cyber bullied one time or more in the last couple of months",
+  "Proportion of young people who have cyber bullied others one time or more in the last couple of months",
+  "Proportion of young people who eat fruit at least once a day",
+  "Proportion of young people who have been bullied at school at least twice in the past couple of months",
   "Proportion of young people who have bullied others at school at least twice in the last couple of months",
-                                      "Proportion of young people who find it easy to talk to their mothers",
-                                      "Proportion of young people who find it easy to talk to their fathers",
-                                                          "Proportion of young people who like school a lot",
-                                               "Proportion of young people who feel pressured by schoolwork",
-                  "Proportion of young people who eat vegetables at least every day or more than once a day",
-                                                       "Proportion of young people who eat sweets every day",
-             "Proportion of young people who experience difficulties getting to sleep more than once a week",
-                         "Proportion of young people who eat breakfast together with their family every day",
-                             "Proportion of young people who have smoked 1-2 days or more in their lifetime",
-                                    "Proportion of young people who eat evening meals with family every day",
-                                     "Proportion of young people who brush their teeth more than once a day"
-  )
+  "Proportion of young people who find it easy to talk to their mother",
+  "Proportion of young people who find it easy to talk to their father",
+  "Proportion of young people who like school a lot",
+  "Proportion of young people who feel pressured by schoolwork",
+  "Proportion of young people who eat vegetables at least every day or more than once a day",
+  "Proportion of young people who eat sweets every day",
+  "Proportion of young people who experience difficulties getting to sleep more than once a week",
+  "Proportion of young people who eat breakfast together with their family every day",
+  "Proportion of young people who have smoked 1-2 days or more in their lifetime",
+  "Proportion of young people who eat evening meals with family every day",
+  "Proportion of young people who brush their teeth more than once a day"
+)
 
 compare_countries <- compare_countries %>%
   set_names(., map(., ~ .x$title))
+
+compare_countries <- compare_countries[order]
 
 save(compare_countries, file = "app/data/compare_countries.RData")
 
