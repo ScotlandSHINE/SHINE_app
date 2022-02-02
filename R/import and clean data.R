@@ -261,6 +261,34 @@ save(time_changes, file = "app/data/time_changes.RData")
 
 
 # app 4 -  data for country comparisons -------------------------------------
+
+compare_countries <- dir("import") %>%
+  str_subset("^HBSC.*\\.xlsx") %>%
+  map( ~ {
+    variable_import <-
+      read_excel(file.path("import", .x), sheet = "Data (table)")
+    variable_desc <-
+      read_excel(file.path("import", .x), sheet = "Measure notes")$Note[1]
+    variable_indicator <-
+      read_excel(file.path("import", .x), sheet = "Classifications")$`Measure name`
+    
+    variable_data <- variable_import %>%
+      clean_names() %>%
+      select(age_grp, sex, country_region, year, value) %>%
+      filter(year == max(year), country_region %in% country_codes$code) %>%
+      mutate(sex = case_when(
+        sex == "ALL" ~ "All",
+        # No 'All' totals for separate countries
+        sex == "MALE" ~ "Boys",
+        sex == "FEMALE" ~ "Girls"
+      ))
+    list(
+      title = variable_indicator,
+      description = variable_desc %>% str_remove(" ?No data.*$") %>% str_remove("Note.*"),
+      data = variable_data
+    )
+  })
+
 tibble::tribble(
                                                                                                        ~desc,
                                                 "Proportion of young people who eat breakfast every weekday",
@@ -282,6 +310,12 @@ tibble::tribble(
                                     "Proportion of young people who eat evening meals with family every day",
                                      "Proportion of young people who brush their teeth more than once a day"
   )
+
+compare_countries <- compare_countries %>%
+  set_names(., map(., ~ .x$title))
+
+save(compare_countries, file = "app/data/compare_countries.RData")
+
 
 
 
