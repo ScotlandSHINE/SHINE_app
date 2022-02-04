@@ -115,10 +115,31 @@ vars_by_age_server <- function(id = "vars_by_age") {
             position = "stack",
             width = 1
           ) +
+          scale_fill_manual(
+            values = c(
+              "Girls" = global_girls_colour,
+              "Boys" = global_boys_colour,
+              "Excellent" = global_excel_colour,
+              "Good" = global_good_colour
+            ),
+            labels = c("Excellent", "Good"),
+            limits = force
+          ) +
           facet_wrap( ~ Age, strip.position = "bottom") +
           scale_x_discrete(x_map, expand = expansion(mult = 0.9)) +
           theme(panel.spacing = grid::unit(-1, "lines"),
-                axis.text.x =  element_blank())
+                axis.text.x =  element_blank()) +
+          guides(
+            alpha = guide_legend(
+              title = "Boys",
+              override.aes = list(fill = global_boys_colour)
+            ),
+            fill = guide_legend(
+              title = "Girls",
+              override.aes = list(fill = global_girls_colour,
+                                  alpha = c(1, 0.5))
+            )
+          )
       } else {
         # browser()
         plot_out <- base_plot +
