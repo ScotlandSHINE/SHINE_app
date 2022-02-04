@@ -306,7 +306,7 @@ order <- c(
   "Proportion of young people who experience difficulties getting to sleep more than once a week",
   "Proportion of young people who eat breakfast together with their family every day",
   "Proportion of young people who have smoked 1-2 days or more in their lifetime",
-  "Proportion of young people who eat evening meals with family every day",
+  "Proportion of young people who eat a meal with family every day",
   "Proportion of young people who brush their teeth more than once a day"
 )
 
