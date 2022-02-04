@@ -6,6 +6,7 @@ shinyUI(
     header = tags$head(
       tags$link(href = "shine_app.css", rel = "stylesheet", type = "text/css"),
       tags$link(rel = "shortcut icon", href = "favicon_shine.ico"),
+      includeHTML("google_analytics.html"),
       tags$script('
                                 var dimension = [0, 0];
                                 $(document).on("shiny:connected", function(e) {
