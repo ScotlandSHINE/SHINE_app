@@ -26,7 +26,7 @@ shinyUI(
                   label =
                     span(
                       img(class = "top-logo img-fluid", src = "images/SHINE Final logo@300x.png"),
-                      img(class = "top-logo img-fluid", src = "images/hbsc.png")
+                      img(class = "top-logo img-fluid", src = "images/hbsc_trans.png")
                     )
                 )),
       # Home page - layout of panels
