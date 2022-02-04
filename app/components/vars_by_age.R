@@ -138,7 +138,7 @@ vars_by_age_server <- function(id = "vars_by_age") {
     output$question <-
       renderText({
         req(input$select_var, df())
-        df()$question
+        paste0(df()$question)
       })
     
   })

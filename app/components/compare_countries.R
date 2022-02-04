@@ -40,7 +40,7 @@ compare_countries_server <- function(id = "compare_countries") {
     
     output$description <- renderText({
       req(input$select_var, comparison())
-      comparison()$description
+      paste0(comparison()$description)
     })
     
     output$plot <- renderPlotly({
