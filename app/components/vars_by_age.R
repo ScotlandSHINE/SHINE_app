@@ -38,7 +38,7 @@ vars_by_age_server <- function(id = "vars_by_age") {
       ns <- session$ns
       selectInput(
         ns("select_var"),
-        "Select a variable to compare:",
+        "Select a health topic to compare across ages and genders:",
         choices = names(vars_by_age),
         width = "100%",
         # selected = "Report good or excellent health",

@@ -28,7 +28,7 @@ time_changes_server <- function(id = "time_changes") {
       req(time_changes)
       ns <- session$ns
       selectInput(ns("select_var"), 
-                     "Select a variable to compare:",
+                     "Select a health topic to compare across time:",
                      choices = names(time_changes),
                   width = "100%",
                   selectize = FALSE)

@@ -29,7 +29,7 @@ compare_countries_server <- function(id = "compare_countries") {
       ns <- session$ns
       selectInput(
         ns("select_var"),
-        "Select a variable to compare:",
+        "Select a health topic to compare across countries:",
         choices = names(compare_countries),
         width = "100%",
         selectize = FALSE
