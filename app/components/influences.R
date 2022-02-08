@@ -127,7 +127,7 @@ influences_server <- function(id = "influences") {
             limits = c(0,1)) +
             geom_text(aes(y = text_y, label = perc_label),
                       colour = "#f5f5f5",
-                      size = 15) +
+                      size = 12) +
             theme(axis.title.y = element_text(angle = 0,vjust = 0.5),
                   panel.grid.major.x = element_line(colour = "darkgrey", size = 1.2),
                   panel.grid.minor.x = element_line(colour = "grey"),
