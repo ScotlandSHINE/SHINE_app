@@ -33,7 +33,7 @@ shinyUI(
       # Home page - layout of panels
       tabPanel("Home",
                mainPanel(
-                 class = "app-panel col-lg-8",
+                 class = "app-panel col-xl-8",
                  tags$div(id= "home_top",
                  fluidRow(h1(
                    "Check out our apps below to explore HBSC data..."

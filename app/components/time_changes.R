@@ -2,7 +2,7 @@ time_changes_ui <- function(id = "time_changes") {
   ns <- NS("time_changes")
   fluidPage(style = "display: flex;",
             
-            mainPanel(id = ns("main-panel"), class = "app-panel col-lg-8",
+            mainPanel(id = ns("main-panel"), class = "app-panel col-xl-8",
                       fluidPage(
                         class = "cont-panel",
                         titlePanel("What's changed for Scotland's young people?"),

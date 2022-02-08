@@ -3,7 +3,7 @@ compare_countries_ui <- function(id = "compare_countries") {
   
   fluidPage(style = "display: flex;",
             
-            mainPanel(id = ns("main-panel"), class = "app-panel col-lg-8",
+            mainPanel(id = ns("main-panel"), class = "app-panel col-xl-8",
                       fluidPage(
                         class = "cont-panel",
                         titlePanel("How does Scotland compare with other countries?"),

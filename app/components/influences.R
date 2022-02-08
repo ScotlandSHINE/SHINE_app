@@ -4,7 +4,7 @@ influences_ui <- function(id = "influences") {
   fluidPage(style = "display: flex;",
             
             mainPanel(
-              id = ns("main-panel"), class = "app-panel col-lg-8",
+              id = ns("main-panel"), class = "app-panel col-xl-8",
               fluidPage(
                 class = "cont-panel",
                 titlePanel(

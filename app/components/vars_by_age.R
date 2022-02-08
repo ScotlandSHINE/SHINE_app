@@ -4,7 +4,7 @@ vars_by_age_ui <- function(id = "vars_by_age") {
             
             mainPanel(
               id = ns("main-panel"),
-              class = "app-panel col-lg-8",
+              class = "app-panel col-xl-8",
               fluidPage(
                 class = "cont-panel",
                 titlePanel("How are Scotland's young people doing?"),
