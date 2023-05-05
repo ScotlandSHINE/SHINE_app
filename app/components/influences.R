@@ -104,7 +104,7 @@ influences_server <- function(id = "influences") {
                 perc_label = paste0(round(100 * prop, 0),
                                     "%"),
                 expo_lab = paste0(paste0(rep(" ", 20), collapse = ""), "\n", str_wrap(!!sym(exposure$variable), 10), "\n ")) %>%
-         mutate(text_y = abs(as.numeric(!!sym(outcome$variable) == levels(!!sym(outcome$variable))[[1]]) - prop/2)) %>% 
+         mutate(text_y = abs(as.numeric(!!sym(outcome$variable) == levels(!!sym(outcome$variable))[[1]]) - prop / 2)) %>% 
          filter(!!sym(outcome$variable) == base_lab) %>% 
           ggplot(aes(expo_lab, prop)) +
             geom_bar(stat = "identity",
@@ -124,7 +124,7 @@ influences_server <- function(id = "influences") {
             labels = percent_format(accuracy = 1),
             breaks = c(0, 0.5, 1),
             minor_breaks = seq(0, 1, 0.1),
-            limits = c(0,1)) +
+            limits = c(0, 1)) +
             geom_text(aes(y = text_y, label = perc_label),
                       colour = "#f5f5f5",
                       size = 12) +
@@ -135,7 +135,8 @@ influences_server <- function(id = "influences") {
          coord_flip()
 
        
-    }) %>% bindCache(input$exposure, input$outcome, input$chart_type)
+    }) %>%
+      bindCache(input$exposure, input$outcome, input$chart_type)
     
   })
 }
