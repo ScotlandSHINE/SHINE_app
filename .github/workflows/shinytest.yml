@@ -15,11 +15,11 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       
+    steps:
       - name: Set RENV_PATHS_ROOT
         shell: bash
         run: |
           echo "RENV_PATHS_ROOT=${{ runner.temp }}/renv" >> $GITHUB_ENV
-          steps:
           
       - uses: actions/checkout@v3
 
