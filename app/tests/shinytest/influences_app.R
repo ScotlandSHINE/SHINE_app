@@ -1,5 +1,5 @@
-app <- ShinyDriver$new("../../")
-app$snapshotInit("test_influences")
+app <- ShinyDriver$new("../../", loadTimeout = 1e+05)
+app$snapshotInit("influences_app")
 
 app$setInputs(influences = "click")
 app$setInputs(`influences-exposure` = "Family helpful")

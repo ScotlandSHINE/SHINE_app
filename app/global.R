@@ -1,3 +1,4 @@
+suppressPackageStartupMessages({
 library(shiny)
 library(tidyverse)
 library(sass)
@@ -9,7 +10,7 @@ library(scales)
 library(plotly)
 library(ggrepel)
 source("R/functions.R")
-
+})
 # Setting display options for whole app -----------------------------------
 
 
