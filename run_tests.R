@@ -10,6 +10,6 @@ test_that("Component files compile", {
 })
 
 test_that("Application works", {
-  expect_pass(testApp("app", compareImages = FALSE))
+  expect_pass(testApp("app", compareImages = TRUE))
 })
 

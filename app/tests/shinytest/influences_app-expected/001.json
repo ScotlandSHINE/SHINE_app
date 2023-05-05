@@ -25,7 +25,7 @@
       ]
     },
     "influences-plot": {
-      "src": "[image data sha1: 316c7da044d1992ebd00faabfe7862b5bed28450]",
+      "src": "[image data sha1: 76dbbb488667de13c03c1377b144397f988221ca]",
       "alt": "Plot object",
       "coordmap": {
         "panels": [
@@ -57,10 +57,10 @@
               "y": "expo_lab"
             },
             "range": {
-              "left": 445.354919053549,
-              "right": 990.520547945206,
-              "bottom": 418.645080946451,
-              "top": 5.47945205479452
+              "left": 385.354880363296,
+              "right": 990.520448495351,
+              "bottom": 417.644993937059,
+              "top": 5.47945091324201
             }
           }
         ],
