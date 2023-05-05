@@ -27,5 +27,4 @@ jobs:
         shell: Rscript {0}
 
       - name: Test app directory
-        run: shinytest::testApp("app")
-        shell: Rscript {0}
+        run: R -f run_tests.R
