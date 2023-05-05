@@ -21,7 +21,7 @@ tryCatch(sass(sass_file("styles/shine_app.scss"),
 
 # data sources footer
 
-data_sources <- tags$div(id="home_extra",
+data_sources <- tags$div(id = "home_extra",
                          HTML("Data were collected through the Health
                 Behaviour in School-aged Children (HBSC) study and
                 the apps were developed in collaboration with the

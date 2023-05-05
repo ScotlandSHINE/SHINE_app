@@ -34,7 +34,7 @@ shinyUI(
       tabPanel("Home",
                mainPanel(
                  class = "app-panel col-xl-8",
-                 tags$div(id= "home_top",
+                 tags$div(id = "home_top",
                  fluidRow(h1(
                    "Check out our apps below to explore HBSC data..."
                  )),
@@ -76,7 +76,8 @@ shinyUI(
       
       nav_item(a(href = "https://shine.sphsu.gla.ac.uk/", target = "_blank", "The SHINE project")),
       nav_item(a(href = "http://www.hbsc.org/", target = "_blank", "The HBSC survey")),
-      nav_item(a(href = "http://www.hbsc.org/publications/international/", target = "_blank", "HBSC international report")),
+      nav_item(a(href = "http://www.hbsc.org/publications/international/",
+                 target = "_blank", "HBSC international report")),
       nav_item(a(href = "https://www.gla.ac.uk/hbscscotland", target = "_blank", "HBSC in Scotland"))
     )
 
@@ -91,7 +92,7 @@ shinyUI(
     
     # Slight hack here - make landing page boxes respond to col-md-6 and snap to
     # single row at ~750 px rather than ~560
-    ,tags$script(
+    , tags$script(
       HTML(
         "$('.lp-element').removeClass('col-sm-6');
         $('.app-panel').removeClass('col-sm-8');

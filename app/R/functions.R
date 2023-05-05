@@ -40,6 +40,6 @@ load_component <- function(component) {
 #' 
 #' @param size Size in pixels
 
-pts <- function (size) {
+pts <- function(size) {
   return(size * 5 / 14)
 }
