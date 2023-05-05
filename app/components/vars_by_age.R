@@ -125,7 +125,7 @@ vars_by_age_server <- function(id = "vars_by_age") {
             labels = c("Excellent", "Good"),
             limits = force
           ) +
-          facet_wrap( ~ Age, strip.position = "bottom") +
+          facet_wrap(~ Age, strip.position = "bottom") +
           scale_x_discrete(x_map, expand = expansion(mult = 0.9)) +
           theme(panel.spacing = grid::unit(-1, "lines"),
                 axis.text.x =  element_blank()) +
@@ -151,7 +151,8 @@ vars_by_age_server <- function(id = "vars_by_age") {
           )
       }
       plot_out
-    }) %>% bindCache(input$select_var, input$agegrp)
+    }) %>%
+      bindCache(input$select_var, input$agegrp)
     
     
     

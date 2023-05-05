@@ -99,12 +99,14 @@ influences_server <- function(id = "influences") {
           group_by(!!sym(exposure$variable), !!sym(outcome$variable)) %>% 
           count() %>% 
           group_by(!!sym(exposure$variable)) %>% 
-          mutate(denom = sum (n),
+          mutate(denom = sum(n),
                 prop =  n / denom,
                 perc_label = paste0(round(100 * prop, 0),
                                     "%"),
-                expo_lab = paste0(paste0(rep(" ", 20), collapse = ""), "\n", str_wrap(!!sym(exposure$variable), 10), "\n ")) %>%
-         mutate(text_y = abs(as.numeric(!!sym(outcome$variable) == levels(!!sym(outcome$variable))[[1]]) - prop / 2)) %>% 
+                expo_lab = paste0(paste0(rep(" ", 20), collapse = ""),
+                                  "\n", str_wrap(!!sym(exposure$variable), 10), "\n ")) %>%
+         mutate(text_y = abs(as.numeric(!!sym(outcome$variable) == levels(!!sym(outcome$variable))[[1]])
+                             - prop / 2)) %>% 
          filter(!!sym(outcome$variable) == base_lab) %>% 
           ggplot(aes(expo_lab, prop)) +
             geom_bar(stat = "identity",
@@ -128,7 +130,7 @@ influences_server <- function(id = "influences") {
             geom_text(aes(y = text_y, label = perc_label),
                       colour = "#f5f5f5",
                       size = 12) +
-            theme(axis.title.y = element_text(angle = 0,vjust = 0.5),
+            theme(axis.title.y = element_text(angle = 0, vjust = 0.5),
                   panel.grid.major.x = element_line(colour = "darkgrey", size = 1.2),
                   panel.grid.minor.x = element_line(colour = "grey"),
                   axis.text.x = element_text(hjust = 1)) +

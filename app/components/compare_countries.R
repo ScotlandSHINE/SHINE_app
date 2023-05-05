@@ -14,7 +14,7 @@ compare_countries_ui <- function(id = "compare_countries") {
                         ),
                         fluidRow(class = "question",
                             textOutput(ns("description")), style = "min-height: 15vh"),
-                        fluidRow(style = "min-height: 60vh", plotlyOutput(ns("plot") # , height = "45vh"  # , hover = ns("plot_hover")
+                        fluidRow(style = "min-height: 60vh", plotlyOutput(ns("plot")
                                             )),
                       ), data_sources
                       ))
@@ -36,7 +36,9 @@ compare_countries_server <- function(id = "compare_countries") {
       )
     })
     
-    comparison <- reactive({compare_countries[[input$select_var]]})
+    comparison <- reactive({
+      compare_countries[[input$select_var]]
+      })
     
     output$description <- renderText({
       req(input$select_var, comparison())
@@ -51,14 +53,14 @@ compare_countries_server <- function(id = "compare_countries") {
         filter(.data$age_grp == "15YO", country_region == "GB-SCT") %>%
         mutate(sco = factor(1),
                sco_lab = paste("Scotland\n", .data$value, "%"), 
-               value = case_when(.data$value<10 ~ 10, .data$value > 90 ~ 90, TRUE ~ .data$value))
+               value = case_when(.data$value < 10 ~ 10, .data$value > 90 ~ 90, TRUE ~ .data$value))
       
       # eng_lab_dat <- comparison()$data %>%
       #   filter(age_grp == "15YO", country_region == "GB-ENG") %>%
       #   mutate(sco = factor(2),
       #          eng_lab = paste("England\n", value, "%"))
       # 
-      comparison()$data %>%
+      non_facet_plot <- comparison()$data %>%
         left_join(country_codes, by = c("country_region" = "code")) %>%
         mutate(
           # sco = factor(ifelse(country_region == "GB-SCT", 1, ifelse(country_region == "GB-ENG", 2, 0))),
@@ -96,7 +98,7 @@ compare_countries_server <- function(id = "compare_countries") {
             xmin = -1,
             xmax = 1,
             group = "box",
-            text = paste0("Average: ", round(after_stat(y),0), "%")
+            text = paste0("Average: ", round(after_stat(y), 0), "%")
           ),
           geom = "rect",
           fun.data = function(p) {
@@ -139,7 +141,7 @@ compare_countries_server <- function(id = "compare_countries") {
         stat_summary(
           aes(group = sex, x = 1.5, text = ""),
           fun.data = function(t) {
-            y_pos = if (mean(t) < 25)
+            y_pos <- if (mean(t) < 25)
               25
             else if (mean(t) > 75)
               75
@@ -180,12 +182,12 @@ compare_countries_server <- function(id = "compare_countries") {
             text = sco_lab
           ),
           fontface = "bold"
-        ) -> non_facet_plot
+        )
       
-    if(max(700, input$win_width) >600) {
-      gg_part <- non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
+    if (max(700, input$win_width) > 600) {
+      gg_part <- non_facet_plot + facet_wrap(~ sex, scales = "free", nrow = 1)
     } else {
-      gg_part <- non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 2)
+      gg_part <- non_facet_plot + facet_wrap(~ sex, scales = "free", nrow = 2)
     }
 
     # gg_part <-  non_facet_plot + facet_wrap( ~ sex, scales = "free", nrow = 1)
@@ -199,7 +201,8 @@ compare_countries_server <- function(id = "compare_countries") {
           margin = list(b = 120)
         )
       
-    }) %>% bindCache(input$winwidth, input$select_var)
+    }) %>%
+      bindCache(input$winwidth, input$select_var)
     
     
   })
