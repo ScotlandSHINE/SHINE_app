@@ -6,15 +6,21 @@ on:
 
 name: shinytest
 
-env:
-  RENV_PATHS_ROOT: '%LOCALAPPDATA%/R/cache/R/renv'
+# env:
+#   RENV_PATHS_ROOT: '%LOCALAPPDATA%/R/cache/R/renv'
 
 jobs:
   shinytest:
     runs-on: windows-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-    steps:
+      
+      - name: Set RENV_PATHS_ROOT
+        shell: bash
+        run: |
+          echo "RENV_PATHS_ROOT=${{ runner.temp }}/renv" >> $GITHUB_ENV
+          steps:
+          
       - uses: actions/checkout@v3
 
       - uses: r-lib/actions/setup-r@v2
