@@ -1,0 +1,75 @@
+{
+  "input": {
+    "compare_countries": 0,
+    "compare_countries-win_width": 992,
+    "home_logo": 0,
+    "influences": 0,
+    "main_page": "Young people's health",
+    "time_changes": 0,
+    "vars_by_age": 1,
+    "vars_by_age-agegrp": false,
+    "vars_by_age-select_var": "Report good or excellent health"
+  },
+  "output": {
+    "vars_by_age-plot": {
+      "src": "[image data sha1: c357bbce32aafa3ae2968a7d9b4e62e6a71034be]",
+      "alt": "Plot object",
+      "coordmap": {
+        "panels": [
+          {
+            "panel": 1,
+            "row": 1,
+            "col": 1,
+            "panel_vars": {
+              "panelvar1": "All"
+            },
+            "log": {
+              "x": null,
+              "y": null
+            },
+            "domain": {
+              "left": 0.1,
+              "right": 2.9,
+              "bottom": 0,
+              "top": 100,
+              "discrete_limits": {
+                "x": [
+                  "Boys",
+                  "Girls"
+                ]
+              }
+            },
+            "mapping": {
+              "x": "Gender",
+              "y": "Percentage",
+              "fill": "Gender",
+              "alpha": "Rating",
+              "panelvar1": "Age"
+            },
+            "range": {
+              "left": 386.354919053549,
+              "right": 817.785803237858,
+              "bottom": 412.069738480697,
+              "top": 5.47945205479452
+            }
+          }
+        ],
+        "dims": {
+          "width": 996,
+          "height": 480
+        }
+      },
+      "class": "shiny-scalable"
+    },
+    "vars_by_age-question": "Would you say your health is:",
+    "vars_by_age-var_sel": {
+      "html": "<div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n  <label class=\"control-label\" id=\"vars_by_age-select_var-label\" for=\"vars_by_age-select_var\">Select a health topic to compare across ages and genders:<\/label>\n  <div>\n    <select id=\"vars_by_age-select_var\" class=\"form-control\"><option value=\"Eat breakfast every morning on weekdays\" selected>Eat breakfast every morning on weekdays<\/option>\n<option value=\"Daily fruit consumption\">Daily fruit consumption<\/option>\n<option value=\"Daily vegetable consumption\">Daily vegetable consumption<\/option>\n<option value=\"Daily consumption of sweets or chocolate\">Daily consumption of sweets or chocolate<\/option>\n<option value=\"Daily consumption of sugary drinks\">Daily consumption of sugary drinks<\/option>\n<option value=\"Daily consumption of energy drinks\">Daily consumption of energy drinks<\/option>\n<option value=\"Feel very happy\">Feel very happy<\/option>\n<option value=\"Often or always feel confident\">Often or always feel confident<\/option>\n<option value=\"Sleep difficulties\">Sleep difficulties<\/option>\n<option value=\"Been bullied at least 2-3 times a month in the past couple of months\">Been bullied at least 2-3 times a month in the past couple of months<\/option>\n<option value=\"Been cyber-bullied at least 2-3 times a month in the past couple of months\">Been cyber-bullied at least 2-3 times a month in the past couple of months<\/option>\n<option value=\"Report good or excellent health\">Report good or excellent health<\/option>\n<option value=\"Watching TV for 2 or more hours a day on weekdays\">Watching TV for 2 or more hours a day on weekdays<\/option>\n<option value=\"Playing computer games for 2 or more hours a day on weekdays\">Playing computer games for 2 or more hours a day on weekdays<\/option>\n<option value=\"Using computers (not games) for 2 or more hours a day on weekdays\">Using computers (not games) for 2 or more hours a day on weekdays<\/option>\n<option value=\"Report high life satisfaction\">Report high life satisfaction<\/option>\n<option value=\"Feel low\">Feel low<\/option>\n<option value=\"Feel nervous\">Feel nervous<\/option><\/select>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    }
+  },
+  "export": {
+
+  }
+}
