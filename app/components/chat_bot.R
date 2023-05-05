@@ -1,6 +1,6 @@
 chat_bot_ui <- function(id = "chat_bot") {
   ns <- NS("chat_bot")
-  
+
   fluidPage(tags$div(
     class = "chat_space",
     tags$div(
@@ -19,25 +19,25 @@ chat_bot_ui <- function(id = "chat_bot") {
       ),
     )
   ))
-  
+
 }
 
 chat_bot_server <- function(id = "chat_bot") {
   moduleServer(id, function(input, output, session) {
     tips <-
-      read_lines("components/chat_bot_data/vars_by_age_tips.txt") %>% sample(., length(.))
-    
+      read_lines("components/chat_bot_data/vars_by_age_tips.txt") %>% sample()
+
     first_tip <- reactiveTimer(30000, session)
-    
+
     n_display <- reactiveVal(0)
-    
-    
+
+
     display_tips <- eventReactive(first_tip(), {
       if (n_display() == 0) {
       n_display(n_display() + 1)
         return("Hi, im @tipzbot. I'll try to give you ideas as you explore the data!")
       }
-      tips_out <- tips[1:min(n_display(), length(tips))]
+      tips_out <- tips[seq_len(min(n_display(), length(tips)))]
       n_display(n_display() + 1)
       tips_out
     })
@@ -46,7 +46,7 @@ chat_bot_server <- function(id = "chat_bot") {
       div(class = "chat-bubbles",
           
           map(
-            1:length(display_tips()),
+            seq_along(display_tips()),
             ~
               tags$div(
                 class = "talk-bubble",

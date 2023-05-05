@@ -16,7 +16,7 @@ main_colour <- "#333333"
 global_girls_colour <- "#FFB948"
 global_boys_colour <- "#BE4D00"
 global_good_colour <- "#8d96a3"
-global_excel_colour <- "#00798c" 
+global_excel_colour <- "#00798c"
 
 css <- sass(sass_file("app/styles/shine_app.scss"))
 

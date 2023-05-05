@@ -48,10 +48,10 @@ compare_countries_server <- function(id = "compare_countries") {
       
       
       scot_lab_dat <- comparison()$data %>%
-        filter(age_grp == "15YO", country_region == "GB-SCT") %>%
+        filter(.data$age_grp == "15YO", country_region == "GB-SCT") %>%
         mutate(sco = factor(1),
-               sco_lab = paste("Scotland\n", value, "%"), 
-               value = case_when(value<10 ~ 10, value > 90 ~ 90, TRUE ~ value))
+               sco_lab = paste("Scotland\n", .data$value, "%"), 
+               value = case_when(.data$value<10 ~ 10, .data$value > 90 ~ 90, TRUE ~ .data$value))
       
       # eng_lab_dat <- comparison()$data %>%
       #   filter(age_grp == "15YO", country_region == "GB-ENG") %>%
@@ -62,18 +62,18 @@ compare_countries_server <- function(id = "compare_countries") {
         left_join(country_codes, by = c("country_region" = "code")) %>%
         mutate(
           # sco = factor(ifelse(country_region == "GB-SCT", 1, ifelse(country_region == "GB-ENG", 2, 0))),
-          sco = factor(case_when(country_region == "GB-SCT" ~ 1,
-                           country_region == "GB-ENG" ~ 2,
-                           country_region == "GB-WLS" ~ 3,
-                           country_region == "IRL" ~ 4,
+          sco = factor(case_when(.data$country_region == "GB-SCT" ~ 1,
+                           .data$country_region == "GB-ENG" ~ 2,
+                           .data$country_region == "GB-WLS" ~ 3,
+                           .data$country_region == "IRL" ~ 4,
                            TRUE ~ 0)),
-          eng = country_region == "GB-ENG",
-          eng_lab = ifelse(eng, paste("England\n", value, "%"), NA),
-          country = str_remove_all(name, "(United Kingdom |\\(|\\))") %>% str_replace("(?<=Belgium)", ":"),
-          tooltip = paste0(country, ":\n", value, "%")
+          eng = .data$country_region == "GB-ENG",
+          eng_lab = ifelse(eng, paste("England\n", .data$value, "%"), NA),
+          country = str_remove_all(.data$name, "(United Kingdom |\\(|\\))") %>% str_replace("(?<=Belgium)", ":"),
+          tooltip = paste0(country, ":\n", .data$value, "%")
         ) %>%
         filter(age_grp == "15YO") %>%
-        ggplot(aes(y = value, x = 0, text = tooltip)) +
+        ggplot(aes(y = .data$value, x = 0, text = .data$tooltip)) +
         stat_summary(
           aes(
             xmin = -1,
