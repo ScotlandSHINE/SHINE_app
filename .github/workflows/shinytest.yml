@@ -19,7 +19,9 @@ jobs:
           use-public-rspm: true
 
       - name: Install shinytest
-        run: install.packages("shinytest")
+        run:
+            install.packages("shinytest")
+            shinytest::installDependencies()
         shell: Rscript {0}
 
       - name: Test app directory
