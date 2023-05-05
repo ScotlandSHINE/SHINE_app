@@ -20,8 +20,7 @@ jobs:
 
       - name: Install shinytest
         run:
-            install.packages("shinytest")
-            shinytest::installDependencies()
+            install.packages("shinytest"); shinytest::installDependencies()
         shell: Rscript {0}
 
       - name: Test app directory
