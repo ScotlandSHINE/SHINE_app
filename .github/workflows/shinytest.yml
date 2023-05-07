@@ -36,7 +36,7 @@ jobs:
       - uses: r-lib/actions/setup-renv@v2
       
       - name: Run app compile tests
-        run: R.exe -f run_tests.R
+        run: R -f run_tests.R
 
       - uses: rstudio/shinytest2/actions/test-app@v1
         with:
