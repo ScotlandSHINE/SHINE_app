@@ -17,7 +17,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-latest, r: [release, '4.2.3']}
+          os: [ubuntu-latest, windows-latest]
+          r: [release, '4.2.3']
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
