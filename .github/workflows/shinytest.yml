@@ -1,50 +1,41 @@
+# Workflow derived from https://github.com/rstudio/shinytest2/tree/main/actions/test-app/example-test-app-description.yaml
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
     branches: [main, master]
   pull_request:
     branches: [main, master]
 
-name: shinytest
-
-# env:
-#   RENV_PATHS_ROOT: '%LOCALAPPDATA%/R/cache/R/renv'
-
+name: Test shiny app (shinytest2)
 jobs:
-  shinytest:
-    runs-on: windows-latest
+  test-app:
+    runs-on: ${{ matrix.config.os }}
+
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: ubuntu-latest, r: 4.2.3}
+
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      
+      R_KEEP_PKG_SOURCE: yes
+
     steps:
-      - name: Set RENV_PATHS_ROOT
-        shell: bash
-        run: |
-          echo "RENV_PATHS_ROOT=${{ runner.temp }}/renv" >> $GITHUB_ENV
-          
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-pandoc@v2
 
       - uses: r-lib/actions/setup-r@v2
         with:
+          r-version: ${{ matrix.config.r }}
           use-public-rspm: true
-          r-version: 4.2.3
-          
-      - name: Cache packages
-        uses: actions/cache@v3
+
+      - uses: r-lib/actions/setup-renv@v2
+
+      - uses: rstudio/shinytest2/actions/test-app@v1
         with:
-          path: ${{ env.RENV_PATHS_ROOT }}
-          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-renv-
-      
-      - name: Restore packages
-        shell: Rscript {0}
-        run: |
-          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-          renv::restore()
-
-      - name: Install shinytest deps
-        run: shinytest::installDependencies()
-        shell: Rscript {0}
-
-      - name: Run app tests
-        run: R.exe -f run_tests.R
+          app-dir: "app"
+          upload-snapshots: true
