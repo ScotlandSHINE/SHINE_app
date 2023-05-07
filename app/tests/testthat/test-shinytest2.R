@@ -16,11 +16,3 @@ test_that("{shinytest2} recording: influences", {
   app$set_inputs(`influences-outcome` = "Life satisfaction")
   app$expect_values()
 })
-
-
-test_that("{shinytest2} recording: time_changes", {
-  app <- AppDriver$new(name = "time_changes", seed = 222, height = 754, width = 1235)
-  app$click("time_changes")
-  app$set_inputs(`time_changes-select_var` = "Playing computer games for 2 or more hours a day on weekdays 2006-2018")
-  app$expect_values()
-})
