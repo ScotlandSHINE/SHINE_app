@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ubuntu-latest
+        os: [ubuntu-latest, ubuntu-20.04]
         r: [release, '4.2.3']
 
     env:
