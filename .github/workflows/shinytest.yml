@@ -16,8 +16,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
-        r: [release]
+        os: [ubuntu-20.04]
+        r: ['4.2.3']
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -41,5 +41,4 @@ jobs:
       - uses: rstudio/shinytest2/actions/test-app@v1
         with:
           upload-snapshots: true
-          app-dir: |
-            'app'
+          app-dir: app
