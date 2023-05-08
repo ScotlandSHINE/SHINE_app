@@ -1,5 +1,5 @@
 <!-- badges: start -->
-![Docker Image](https://img.shields.io/static/v1?label=Docker%20Build&message=Here&logo=docker&url=https://hub.docker.com/repository/docker/scotlandshine/shiny-shine)
+[![Docker Image](https://img.shields.io/static/v1?label=Docker%20Build&message=Here&logo=docker)](https://hub.docker.com/repository/docker/scotlandshine/shiny-shine)
 ![Docker Build](https://github.com/ScotlandSHINE/SHINE_app/actions/workflows/docker-image.yml/badge.svg)
 [![Shinyapps.io](https://img.shields.io/badge/shinyapps.io-Scotland__SHINE-%235B90BF)](https://andybaxter.shinyapps.io/Scotland_SHINE/)
 <!-- badges: end -->
