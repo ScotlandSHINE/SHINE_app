@@ -5,7 +5,7 @@
     "home_logo": 0,
     "influences": 1,
     "influences-exposure": "Breakfast on schooldays",
-    "influences-outcome": "Life satisfaction",
+    "influences-outcome": "Feeling low",
     "main_page": "Influences on health",
     "time_changes": 0,
     "vars_by_age": 0,
@@ -25,7 +25,7 @@
       ]
     },
     "influences-plot": {
-      "src": "[image data hash: 64f7a9f928426a2651c7d7a739d03f52]",
+      "src": "[image data hash: 9abddf9d2701dc1203cc27c84a78f2eb]",
       "alt": "Plot object",
       "coordmap": {
         "panels": [
