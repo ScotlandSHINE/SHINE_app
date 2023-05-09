@@ -5,8 +5,6 @@ library(sass)
 library(bslib)
 library(zeallot)
 library(scales)
-# library(shinyWidgets)
-# library(crosstalk)
 library(plotly)
 library(ggrepel)
 library(shinyjs)
@@ -42,8 +40,6 @@ secondary_colour <- "#016bb2"
 main_colour <- "#333333"
 global_girls_colour <- "#2F3191"
 global_boys_colour <- "#2AAAE1"
-# global_girls_colour <- "#edae49"
-# global_boys_colour <- "#66a182"
 global_good_colour <- "#8d96a3"
 global_excel_colour <- "#00798c" 
 

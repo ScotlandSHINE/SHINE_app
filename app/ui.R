@@ -5,7 +5,6 @@ shinyUI(
     theme = bs_theme(version = 4),
     useShinyjs(),
     header = tags$head(
-      # tags$meta(name = "run_number", content = verbatimTextOutput("run_number")),
       tags$link(href = "shine_app.css", rel = "stylesheet", type = "text/css"),
       tags$link(rel = "shortcut icon", href = "favicon_shine.ico"),
       includeHTML("google_analytics.html"),
@@ -48,7 +47,6 @@ shinyUI(
                                  time_changes_lp_box),
                           column(6, class = "lp-element col-md-6",
                                  compare_countries_lp_box)),
-    # textOutput("run_number"),
                  h3(id = "extra_head", HTML("More info about data used in these apps
                                             <i class='fas fa-arrow-down' style='font-size: 18pt'></i>"))
                           ),
