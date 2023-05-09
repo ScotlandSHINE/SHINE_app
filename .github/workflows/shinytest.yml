@@ -47,4 +47,4 @@ jobs:
         shell: Rscript {0}
 
       - name: Run app tests
-        run: R.exe -f run_tests.R
+        run: R -f run_tests.R
