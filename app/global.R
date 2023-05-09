@@ -9,6 +9,7 @@ library(scales)
 # library(crosstalk)
 library(plotly)
 library(ggrepel)
+library(shinyjs)
 source("R/functions.R")
 })
 # Setting display options for whole app -----------------------------------

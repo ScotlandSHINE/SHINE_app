@@ -47,4 +47,13 @@ shinyServer(function(input, output, session) {
   time_changes_server()
   
   compare_countries_server()
+  
+  observe({
+    shinyjs::runjs(
+      glue::glue(
+        "$('head').prepend(",
+        "\"<meta name='run_number' content={Sys.getenv('run_number')}>\")",
+      )
+    )
+  })
 })
