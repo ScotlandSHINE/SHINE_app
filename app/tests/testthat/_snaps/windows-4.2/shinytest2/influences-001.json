@@ -1,0 +1,78 @@
+{
+  "input": {
+    "compare_countries": 0,
+    "compare_countries-win_width": 1235,
+    "home_logo": 0,
+    "influences": 1,
+    "influences-exposure": "Breakfast on schooldays",
+    "influences-outcome": "Life satisfaction",
+    "main_page": "Influences on health",
+    "time_changes": 0,
+    "vars_by_age": 0,
+    "vars_by_age-agegrp": true
+  },
+  "output": {
+    "influences-exp_set": {
+      "html": "<div class=\"form-group shiny-input-container\" style=\"width:300px;\">\n  <label class=\"control-label\" id=\"influences-exposure-label\" for=\"influences-exposure\">How is...<\/label>\n  <div>\n    <select id=\"influences-exposure\" class=\"form-control\"><option value=\"Breakfast on schooldays\" selected>Breakfast on schooldays<\/option>\n<option value=\"Eating fruit\">Eating fruit<\/option>\n<option value=\"Eating sweets\">Eating sweets<\/option>\n<option value=\"Bullying others\">Bullying others<\/option>\n<option value=\"Being bullied\">Being bullied<\/option>\n<option value=\"Family helpful\">Family helpful<\/option>\n<option value=\"Pressured by schoolwork\">Pressured by schoolwork<\/option>\n<option value=\"Smoked in the past 30 days\">Smoked in the past 30 days<\/option>\n<option value=\"Been drunk in the past 30 days\">Been drunk in the past 30 days<\/option><\/select>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "influences-out_set": {
+      "html": "<div class=\"form-group shiny-input-container\" style=\"width:300px;\">\n  <label class=\"control-label\" id=\"influences-outcome-label\" for=\"influences-outcome\">Linked to...<\/label>\n  <div>\n    <select id=\"influences-outcome\" class=\"form-control\"><option value=\"Feeling low\" selected>Feeling low<\/option>\n<option value=\"Health\">Health<\/option>\n<option value=\"Life satisfaction\">Life satisfaction<\/option><\/select>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "influences-plot": {
+      "src": "[image data hash: 64f7a9f928426a2651c7d7a739d03f52]",
+      "alt": "Plot object",
+      "coordmap": {
+        "panels": [
+          {
+            "panel": 1,
+            "row": 1,
+            "col": 1,
+            "panel_vars": {
+
+            },
+            "log": {
+              "x": null,
+              "y": null
+            },
+            "domain": {
+              "left": -0.05,
+              "right": 1.05,
+              "bottom": 0.4,
+              "top": 2.6,
+              "discrete_limits": {
+                "y": [
+                  "                    \nNo\n ",
+                  "                    \nYes\n "
+                ]
+              }
+            },
+            "mapping": {
+              "x": "prop",
+              "y": "expo_lab"
+            },
+            "range": {
+              "left": 385.354872625246,
+              "right": 824.52044860538,
+              "bottom": 417.644993937059,
+              "top": 5.47945091324201
+            }
+          }
+        ],
+        "dims": {
+          "width": 830,
+          "height": 480
+        }
+      },
+      "class": "shiny-scalable"
+    }
+  },
+  "export": {
+
+  }
+}

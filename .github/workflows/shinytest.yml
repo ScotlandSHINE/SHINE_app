@@ -1,50 +1,79 @@
+# Workflow derived from https://github.com/rstudio/shinytest2/tree/main/actions/test-app/example-test-app-description.yaml
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
     branches: [main, master]
   pull_request:
     branches: [main, master]
 
-name: shinytest
-
-# env:
-#   RENV_PATHS_ROOT: '%LOCALAPPDATA%/R/cache/R/renv'
-
+name: Test shiny app (shinytest2)
 jobs:
-  shinytest:
-    runs-on: windows-latest
+  test-app:
+    runs-on: ${{ matrix.os }}
+
+    name: ${{ matrix.os }} (${{ matrix.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-20.04]
+        r: ['4.2.3']
+
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      
+      R_KEEP_PKG_SOURCE: yes
+
     steps:
-      - name: Set RENV_PATHS_ROOT
-        shell: bash
-        run: |
-          echo "RENV_PATHS_ROOT=${{ runner.temp }}/renv" >> $GITHUB_ENV
-          
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-pandoc@v2
 
       - uses: r-lib/actions/setup-r@v2
         with:
+          r-version: ${{ matrix.r }}
           use-public-rspm: true
-          r-version: 4.2.3
-          
-      - name: Cache packages
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.RENV_PATHS_ROOT }}
-          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-renv-
+
+      - uses: r-lib/actions/setup-renv@v2
       
-      - name: Restore packages
+      - name: Run app compile tests
+        run: R -f run_tests.R
+        
+      - name: Test app
         shell: Rscript {0}
+        id: test-app
         run: |
-          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-          renv::restore()
-
-      - name: Install shinytest deps
-        run: shinytest::installDependencies()
-        shell: Rscript {0}
-
-      - name: Run app tests
-        run: R.exe -f run_tests.R
+          ## -- rstudio/shinytest2/actions/test-app --------------------------------------
+          options(crayon.enabled = TRUE)
+          app_dirs <- "app"
+          ## Outputs
+          # `paths-json`
+          snap_paths <- paste0(app_dirs, "/tests/testthat/_snaps")
+          snap_paths_json <- jsonlite::toJSON(snap_paths)
+          cat("paths-json=", snap_paths_json, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)
+          # `r-version`
+          v <- paste0(version$major, ".", version$minor)
+          cat("r-version=", v, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)
+          ## Test apps
+          test_results <- Map(app_dirs, seq_along(app_dirs), f = function(app_dir, i) {
+            # Test each app in a different R process to test each app in an
+            # independent environment. We do not want one app to have an effect on
+            # the next app.
+            callr::r(
+              function(app_dir, i) {
+                options(crayon.enabled = TRUE)
+                if (i > 1) cat("\n\n")
+                # Wrap in try for the rare chance `cli` isn't installed
+                try(cli::cat_rule(paste0("{shinytest2}: ", app_dir), line = "bar3"))
+                # Test app
+                try(shinytest2::test_app(app_dir), silent = FALSE)
+              },
+              list(app_dir = app_dir, i = i),
+              show = TRUE
+            )
+          })
+          # Display that an error was found
+          is_error <- vapply(test_results, inherits, logical(1), "try-error")
+          if (any(is_error)) {
+            stop("At least one error found while testing Apps above. Check previous logs for more information")
+          }
+          invisible()
