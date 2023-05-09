@@ -9,6 +9,6 @@ test_that("Component files compile", {
   expect_silent(source("app/components/vars_by_age.R"))
 })
 
-# test_that("Application works", {
-#   expect_pass(testApp("app", compareImages = TRUE))
-# })
+test_that("Application works", {
+  expect_pass(testApp("app", compareImages = TRUE))
+})

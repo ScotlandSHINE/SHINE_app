@@ -12,7 +12,7 @@
   },
   "output": {
     "vars_by_age-plot": {
-      "src": "[image data sha1: b3373432ecb1dbad34fc73823d2bb4202348056c]",
+      "src": "[image data sha1: d91a17f37d42be5a4f02dfb8a228cae8f31380f6]",
       "alt": "Plot object",
       "coordmap": {
         "panels": [
@@ -47,10 +47,10 @@
               "panelvar1": "Age"
             },
             "range": {
-              "left": 341.354884780967,
-              "right": 834.785719424022,
-              "bottom": 411.069652841169,
-              "top": 5.47945091324201
+              "left": 342.354919053549,
+              "right": 831.785803237858,
+              "bottom": 410.069738480697,
+              "top": 5.47945205479452
             }
           }
         ],
