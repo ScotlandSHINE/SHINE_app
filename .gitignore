@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 /import
+app/tests/shinytest/*current/
