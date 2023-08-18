@@ -1,4 +1,4 @@
-FROM rocker/shiny-verse
+FROM andybaxter/docker-shinyverse-arm:latest
 
 ENV run_number=1
 
