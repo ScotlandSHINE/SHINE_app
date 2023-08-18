@@ -88,7 +88,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .navbar > .container-fluid {
-  align-items: baseline;
+  align-items: center;
 }
 
 .navbar-brand {
