@@ -13,19 +13,19 @@
   },
   "output": {
     "influences-exp_set": {
-      "html": "<div class=\"form-group shiny-input-container\" style=\"width:300px;\">\n  <label class=\"control-label\" id=\"influences-exposure-label\" for=\"influences-exposure\">How is...<\/label>\n  <div>\n    <select id=\"influences-exposure\" class=\"form-control\"><option value=\"Breakfast on schooldays\" selected>Breakfast on schooldays<\/option>\n<option value=\"Eating fruit\">Eating fruit<\/option>\n<option value=\"Eating sweets\">Eating sweets<\/option>\n<option value=\"Bullying others\">Bullying others<\/option>\n<option value=\"Being bullied\">Being bullied<\/option>\n<option value=\"Family helpful\">Family helpful<\/option>\n<option value=\"Pressured by schoolwork\">Pressured by schoolwork<\/option>\n<option value=\"Smoked in the past 30 days\">Smoked in the past 30 days<\/option>\n<option value=\"Been drunk in the past 30 days\">Been drunk in the past 30 days<\/option><\/select>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\" style=\"width:300px;\">\n  <label class=\"control-label\" id=\"influences-exposure-label\" for=\"influences-exposure\">How is...<\/label>\n  <div>\n    <select class=\"shiny-input-select form-control\" id=\"influences-exposure\"><option value=\"Breakfast on schooldays\" selected>Breakfast on schooldays<\/option>\n<option value=\"Eating fruit\">Eating fruit<\/option>\n<option value=\"Eating sweets\">Eating sweets<\/option>\n<option value=\"Bullying others\">Bullying others<\/option>\n<option value=\"Being bullied\">Being bullied<\/option>\n<option value=\"Family helpful\">Family helpful<\/option>\n<option value=\"Pressured by schoolwork\">Pressured by schoolwork<\/option>\n<option value=\"Smoked in the past 30 days\">Smoked in the past 30 days<\/option>\n<option value=\"Been drunk in the past 30 days\">Been drunk in the past 30 days<\/option><\/select>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
     },
     "influences-out_set": {
-      "html": "<div class=\"form-group shiny-input-container\" style=\"width:300px;\">\n  <label class=\"control-label\" id=\"influences-outcome-label\" for=\"influences-outcome\">Linked to...<\/label>\n  <div>\n    <select id=\"influences-outcome\" class=\"form-control\"><option value=\"Feeling low\" selected>Feeling low<\/option>\n<option value=\"Health\">Health<\/option>\n<option value=\"Life satisfaction\">Life satisfaction<\/option><\/select>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\" style=\"width:300px;\">\n  <label class=\"control-label\" id=\"influences-outcome-label\" for=\"influences-outcome\">Linked to...<\/label>\n  <div>\n    <select class=\"shiny-input-select form-control\" id=\"influences-outcome\"><option value=\"Feeling low\" selected>Feeling low<\/option>\n<option value=\"Health\">Health<\/option>\n<option value=\"Life satisfaction\">Life satisfaction<\/option><\/select>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
     },
     "influences-plot": {
-      "src": "[image data sha1: c4d70bd7d39ce14582d51a24393487220f6a1179]",
+      "src": "[image data sha1: 8f6139a5a27492e804faea455b9f8ce4f9f0832c]",
       "alt": "Plot object",
       "coordmap": {
         "panels": [
@@ -57,10 +57,10 @@
               "y": "expo_lab"
             },
             "range": {
-              "left": 385.354919053549,
-              "right": 990.520547945206,
-              "bottom": 416.645080946451,
-              "top": 5.47945205479452
+              "left": 421.9174190535492,
+              "right": 990.5205479452055,
+              "bottom": 418.6366118910763,
+              "top": 5.479452054794521
             }
           }
         ],
