@@ -1,0 +1,21 @@
+services:
+  shine0:
+    image: scotlandshine/shiny-shine:latest
+    ports:
+      - 127.0.0.1:4000:3838
+    environment:
+      run_number: 1
+
+  shine1:
+    image: scotlandshine/shiny-shine:latest
+    ports:
+      - 127.0.0.1:4001:3838
+    environment:
+      run_number: 2
+
+  shine2:
+    image: scotlandshine/shiny-shine:latest
+    ports:
+      - 127.0.0.1:4002:3838
+    environment:
+      run_number: 3
